@@ -5,6 +5,10 @@ import json
 import urllib
 import urllib2
 
+def virus_total_url():
+    url = 'https://www.virustotal.com/vtapi/v2/file/report'
+    return url
+
 argvs = sys.argv
 argc = len(argvs)
 
@@ -14,7 +18,7 @@ if (argc != 2):
 
 hash = argvs[1]
 
-url = "https://www.virustotal.com/vtapi/v2/file/report"
+url = virus_total_url()
 parameters = {"resource": hash, "apikey": "e7416f0e54656ee951c464471fdea80e33e89e859d798eb158fdd713f7646d72"}
 
 data = urllib.urlencode(parameters)
