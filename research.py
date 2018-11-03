@@ -23,7 +23,7 @@ if (argc != 2):
 hash = argvs[1]
 
 url = virus_total_url()
-parameters = {"resource": hash, "apikey": api_key()}
+parameters = {'resource': hash, 'apikey': api_key()}
 
 data = urllib.urlencode(parameters)
 req = urllib2.Request(url, data)
