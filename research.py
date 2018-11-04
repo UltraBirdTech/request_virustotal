@@ -10,7 +10,11 @@ def virus_total_url():
     return url
 
 def api_key():
-    api_key = '' # write some file.
+    api_key_file_path = './api_key.txt'
+    api_key = ''
+    with open(api_key_file_path) as f:
+      api_key = f.read()
+      print 'api key:' + api_key
     return api_key
 
 argvs = sys.argv
