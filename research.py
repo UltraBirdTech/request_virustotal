@@ -18,8 +18,14 @@ def api_key():
       api_key_replace = api_key.replace('\n', '')
     return api_key_replace
 
-def request_for_virustotal(data):
-    req = urllib2.Request(virus_total_url(), data)
+def generate_data():
+    hash = argvs[1]
+    parameters = {'resource': hash, 'apikey': api_key()}
+    data = urllib.urlencode(parameters)
+    return data
+
+def request_for_virustotal():
+    req = urllib2.Request(virus_total_url(), generate_data())
     return req
 
 argvs = sys.argv
@@ -29,13 +35,10 @@ if (argc != 2):
   print 'Usage; python %s hash' % argvs[0]
   sys.exit(1)
 
-hash = argvs[1]
 
-parameters = {'resource': hash, 'apikey': api_key()}
 print 'api key:' + api_key()
 
-data = urllib.urlencode(parameters)
-req = request_for_virustotal(data)
+req = request_for_virustotal()
 response = urllib2.urlopen(req)
 json = response.read()
 print json
