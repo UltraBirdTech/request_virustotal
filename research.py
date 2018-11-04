@@ -18,6 +18,10 @@ def api_key():
       api_key_replace = api_key.replace('\n', '')
     return api_key_replace
 
+def request_for_virustotal(data):
+    req = urllib2.Request(virus_total_url(), data)
+    return req
+
 argvs = sys.argv
 argc = len(argvs)
 
@@ -27,14 +31,11 @@ if (argc != 2):
 
 hash = argvs[1]
 
-url = virus_total_url()
-print 'url: ' + url
-
 parameters = {'resource': hash, 'apikey': api_key()}
 print 'api key:' + api_key()
 
 data = urllib.urlencode(parameters)
-req = urllib2.Request(url, data)
+req = request_for_virustotal(data)
 response = urllib2.urlopen(req)
 json = response.read()
 print json
