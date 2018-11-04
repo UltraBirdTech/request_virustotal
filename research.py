@@ -14,8 +14,9 @@ def api_key():
     api_key = ''
     with open(api_key_file_path) as f:
       api_key = f.read()
-      print 'api key:' + api_key
-    return api_key
+      api_key_replace = api_key.replace('\r', '')
+      api_key_replace = api_key.replace('\n', '')
+    return api_key_replace
 
 argvs = sys.argv
 argc = len(argvs)
@@ -27,7 +28,10 @@ if (argc != 2):
 hash = argvs[1]
 
 url = virus_total_url()
+print 'url: ' + url
+
 parameters = {'resource': hash, 'apikey': api_key()}
+print 'api key:' + api_key()
 
 data = urllib.urlencode(parameters)
 req = urllib2.Request(url, data)
