@@ -50,7 +50,7 @@ print 'api key:' + api_key()
 
 req = request_for_virustotal()
 response = urllib2.urlopen(req)
-json = response.read()
+response_json = response.read()
 # json = {"response_code": 0, "resource": "aa", "verbose_msg": "Invalid resource, check what you are submitting"} 
-display_response_json(json)
+display_response_json(response_json)
 #print json
