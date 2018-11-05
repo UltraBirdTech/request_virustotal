@@ -7,10 +7,7 @@ import urllib2
 
 def main():
     argvs = sys.argv
-    argc = len(argvs)
-
-    if (argc != 2):
-      print 'Usage; python %s hash' % argvs[0]
+    if validation_check(argvs):
       sys.exit(1)
 
     print 'api key:' + api_key()
@@ -20,6 +17,13 @@ def main():
     response_json = response.read()
     # json = {"response_code": 0, "resource": "aa", "verbose_msg": "Invalid resource, check what you are submitting"}
     display_response_json(response_json)
+
+def validation_check(argvs):
+    argc = len(argvs)
+    if (argc != 2):
+        print 'Usage; python %s hash' % argvs[0]
+        return True
+    return False
 
 def virus_total_url():
     url = 'https://www.virustotal.com/vtapi/v2/file/report'
