@@ -28,6 +28,11 @@ def request_for_virustotal():
     req = urllib2.Request(virus_total_url(), generate_data())
     return req
 
+def display_response_json(json):
+    print json
+    print json["response_code"]
+    
+
 argvs = sys.argv
 argc = len(argvs)
 
@@ -39,6 +44,8 @@ if (argc != 2):
 print 'api key:' + api_key()
 
 req = request_for_virustotal()
-response = urllib2.urlopen(req)
-json = response.read()
-print json
+# response = urllib2.urlopen(req)
+# json = response.read()
+json = {"response_code": 0, "resource": "aa", "verbose_msg": "Invalid resource, check what you are submitting"} 
+display_response_json(json)
+#print json
