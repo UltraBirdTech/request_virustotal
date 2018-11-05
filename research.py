@@ -5,6 +5,22 @@ import json
 import urllib
 import urllib2
 
+def main():
+    argvs = sys.argv
+    argc = len(argvs)
+
+    if (argc != 2):
+      print 'Usage; python %s hash' % argvs[0]
+      sys.exit(1)
+
+    print 'api key:' + api_key()
+
+    req = request_for_virustotal(argvs)
+    response = urllib2.urlopen(req)
+    response_json = response.read()
+    # json = {"response_code": 0, "resource": "aa", "verbose_msg": "Invalid resource, check what you are submitting"}
+    display_response_json(response_json)
+
 def virus_total_url():
     url = 'https://www.virustotal.com/vtapi/v2/file/report'
     return url
@@ -18,14 +34,14 @@ def api_key():
       api_key_replace = api_key.replace('\n', '')
     return api_key_replace
 
-def generate_data():
+def generate_data(argvs):
     hash = argvs[1]
     parameters = {'resource': hash, 'apikey': api_key()}
     data = urllib.urlencode(parameters)
     return data
 
-def request_for_virustotal():
-    req = urllib2.Request(virus_total_url(), generate_data())
+def request_for_virustotal(argvs):
+    req = urllib2.Request(virus_total_url(), generate_data(argvs))
     return req
 
 def display_response_json(j):
@@ -39,17 +55,4 @@ def display_response_json(j):
     for k, v in data.items():
         print str(k) + " :" + str(v)
 
-argvs = sys.argv
-argc = len(argvs)
-
-if (argc != 2):
-  print 'Usage; python %s hash' % argvs[0]
-  sys.exit(1)
-
-print 'api key:' + api_key()
-
-req = request_for_virustotal()
-response = urllib2.urlopen(req)
-response_json = response.read()
-# json = {"response_code": 0, "resource": "aa", "verbose_msg": "Invalid resource, check what you are submitting"}
-display_response_json(response_json)
+main()
