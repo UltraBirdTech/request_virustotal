@@ -10,8 +10,6 @@ def main():
     if validation_check(argvs):
       sys.exit(1)
 
-    print 'api key:' + api_key()
-
     req = request_for_virustotal(argvs)
     response = urllib2.urlopen(req)
     response_json = response.read()
@@ -36,6 +34,7 @@ def api_key():
       api_key = f.read()
       api_key_replace = api_key.replace('\r', '')
       api_key_replace = api_key.replace('\n', '')
+      print 'api key:' + api_key_replace
     return api_key_replace
 
 def generate_data(argvs):
