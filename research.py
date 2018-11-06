@@ -12,9 +12,9 @@ def main():
 
     req = request_for_virustotal(argvs)
     response = urllib2.urlopen(req)
-    response_json = response.read()
+    response_read = response.read()
     # json = {"response_code": 0, "resource": "aa", "verbose_msg": "Invalid resource, check what you are submitting"}
-    display_response_json(response_json)
+    display_response_json(response_read)
 
 def validation_check(argvs):
     argc = len(argvs)
