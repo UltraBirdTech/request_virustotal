@@ -47,7 +47,6 @@ def request_for_virustotal(argvs):
     return req
 
 def display_response_json(j):
-    print j
     data = json.loads(j)
     if data["response_code"] == 0:
         print "Result is FALSE. Please check your option."
