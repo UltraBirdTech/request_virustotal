@@ -19,3 +19,21 @@ gunzip -v /root/work/malware/downloads/downloads.tgz.12.gz
 gunzip -v /root/work/malware/downloads/downloads.tgz.13.gz
 gunzip -v /root/work/malware/downloads/downloads.tgz.14.gz
 gunzip -v /root/work/malware/downloads/downloads.tgz.15.gz
+
+# check folders
+tar -xzvf downloads.tgz.1 -C ./data1
+tar -xzvf downloads.tgz.2 -C ./data2
+tar -xzvf downloads.tgz.3 -C ./data3
+tar -xzvf downloads.tgz.4 -C ./data4
+tar -xzvf downloads.tgz.5 -C ./data5
+tar -xzvf downloads.tgz.6 -C ./data6
+tar -xzvf downloads.tgz.7 -C ./data7
+tar -xzvf downloads.tgz.8 -C ./data8
+tar -xzvf downloads.tgz.9 -C ./data9
+tar -xzvf downloads.tgz.10 -C ./data10
+tar -xzvf downloads.tgz.11 -C ./data11
+tar -xzvf downloads.tgz.12 -C ./data12
+tar -xzvf downloads.tgz.13 -C ./data13
+tar -xzvf downloads.tgz.14 -C ./data14
+tar -xzvf downloads.tgz.15 -C ./data15
+
