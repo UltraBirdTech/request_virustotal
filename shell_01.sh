@@ -1,7 +1,13 @@
 #!/bin/sh
 
 clear
-ls -la /root/work/malware/downloads 
+#ls -la /root/work/malware/downloads
+
+for i in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 
+do
+echo $i
+done
+exit 0
 
 cd /root/work/malware/downloads
 gunzip -v /root/work/malware/downloads/downloads.tgz.1.gz
