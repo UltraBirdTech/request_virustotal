@@ -7,7 +7,9 @@ for i in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
 do
 echo $i
 echo "/root/work/malware/downloads/donloads/tgz.$i.gz"
+# gunzip -v /root/work/malware/downloads/donloads/tgz.$i.gz
 done
+
 exit 0
 
 cd /root/work/malware/downloads
