@@ -14,8 +14,8 @@ if [ ! -e $HONEYPOT_DIR/downloads.tar.gz ]
 	fi
 
 mv $HONEYPOT_DIR/downloads.tar.gz $MALWARE_DIR
-gunzip -v /root/work/malware/downloads.tar.gz
-tar -xvf /root/work/malware/downloads.tar -C /root/work/malware/
+gunzip -v $MALWARE_DIR/downloads.tar.gz
+tar -xvf $MALWARE_DIR/downloads.tar -C $MALWARE_DIR
 
 for i in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
 do
