@@ -7,8 +7,6 @@ if [ ! -e $HONEYPOT_DIR/downloads.tar.gz ]
   then
     echo "Not Found File"
     exit 0
-  else
-    echo "Found File"
   fi
 
 mv $HONEYPOT_DIR/downloads.tar.gz $MALWARE_DIR
