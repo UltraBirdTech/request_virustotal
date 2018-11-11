@@ -5,7 +5,7 @@ MALWARE_DIR='/root/work/malware'
 
 if [ ! -e $HONEYPOT_DIR/downloads.tar.gz ]
   then
-    echo "Not Found File"
+    echo "Not Found File. Please check $HONEYPOT_DIR/downloads.tar.gz"
     exit 0
   fi
 
