@@ -2,6 +2,7 @@
 
 HONEYPOT_DIR='/root/work/honeypot'
 MALWARE_DIR='/root/work/malware'
+MALWARE_DOWNLOAD_DIR='/root/work/malware/downloads'
 echo $HONEYPOT_DIR
 echo $MALWARE_DIR
 
@@ -19,8 +20,8 @@ tar -xvf $MALWARE_DIR/downloads.tar -C $MALWARE_DIR
 
 for i in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
 do
-gunzip -v /root/work/malware/downloads/downloads.tgz.$i.gz
+gunzip -v $MALWARE_DOWNLOAD_DIR/downloads.tgz.$i.gz
 # check exist folder
-mkdir /root/work/malware/downloads/data$i
-tar -xzvf /root/work/malware/downloads/downloads.tgz.$i -C /root/work/malware/downloads/data$i
+mkdir $MALWARE_DOWNLOAD_DIR/downloads/data$i
+tar -xzvf $MALWARE_DOWNLOAD_DIR/downloads.tgz.$i -C $MALWARE_DOWNLOAD_DIR/data$i
 done
