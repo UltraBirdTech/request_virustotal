@@ -7,10 +7,10 @@ TAR_FILE='downloads.tar'
 
 if [ ! -e $HONEYPOT_DIR/downloads.tar.gz ]
   then
-    echo "Not Found File. Please check $HONEYPOT_DIR/downloads.tar.gz"
+    echo "Not Found File. Please check $HONEYPOT_DIR/$DOWNLOAD_FILE"
     exit 0
   fi
 
-mv $HONEYPOT_DIR/downloads.tar.gz $MALWARE_DIR
-gunzip -v $MALWARE_DIR/downloads.tar.gz
-tar -xvf $MALWARE_DIR/downloads.tar -C $MALWARE_DIR
+mv $HONEYPOT_DIR/$DOWNLOAD_FILE $MALWARE_DIR
+gunzip -v $MALWARE_DIR/$DOWNLOAD_FILE
+tar -xvf $MALWARE_DIR/$TAR_FILE -C $MALWARE_DIR
