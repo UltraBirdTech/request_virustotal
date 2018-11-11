@@ -1,4 +1,4 @@
-#!bin/sh
+#!bin/bash
 echo 'create downloads folder is start.'
 mkdir ./downloads
 echo 'create downloads foler is finished.'
