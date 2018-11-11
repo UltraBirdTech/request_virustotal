@@ -1,5 +1,10 @@
 #!/bin/bash
 
+HONEYPOT_DIR='/root/work/honeypot'
+MALWARE_DIR='/root/work/malware'
+echo $HONEYPOT_DIR
+echo $MALWARE_DIR
+exit 0
 # check file
 mv /root/work/honeypot/downloads.tar.gz /root/work/malware/
 gunzip -v /root/work/malware/downloads.tar.gz
