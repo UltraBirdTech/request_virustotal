@@ -4,9 +4,16 @@ HONEYPOT_DIR='/root/work/honeypot'
 MALWARE_DIR='/root/work/malware'
 echo $HONEYPOT_DIR
 echo $MALWARE_DIR
-exit 0
-# check file
-mv /root/work/honeypot/downloads.tar.gz /root/work/malware/
+
+if [ ! -e $HONEYPOT_DIR/downloads.tar.gz ]
+	then
+		echo "Not Found File"
+		exit 0
+	else
+		echo "Found File"
+	fi
+
+mv $HONEYPOT_DIR/downloads.tar.gz $MALWARE_DIR
 gunzip -v /root/work/malware/downloads.tar.gz
 tar -xvf /root/work/malware/downloads.tar -C /root/work/malware/
 
