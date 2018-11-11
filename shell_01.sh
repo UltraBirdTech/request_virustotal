@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # check file
 mv /root/work/honeypot/downloads.tar.gz /root/work/malware/
