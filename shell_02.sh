@@ -8,7 +8,7 @@ if [ ! -n "$num" ]
     num='7'
 fi
 
-
+for i in `seq $num`
 do
 gunzip -v $MALWARE_DOWNLOAD_DIR/downloads.tgz.$i.gz
 if [ ! -e $MALWARE_DOWNLOAD_DIR/data$i ]
