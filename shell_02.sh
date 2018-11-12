@@ -2,7 +2,18 @@
 
 MALWARE_DOWNLOAD_DIR='/root/work/malware/downloads'
 
-for i in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
+echo $#
+echo $1
+num=$1
+echo "First: $num"
+if [ ! -n "$num" ]
+  then
+    num='7'
+  fi
+
+echo "Second: $num"
+
+for i in `seq $num`
 do
 gunzip -v $MALWARE_DOWNLOAD_DIR/downloads.tgz.$i.gz
 if [ ! -e $MALWARE_DOWNLOAD_DIR/data$i ]
