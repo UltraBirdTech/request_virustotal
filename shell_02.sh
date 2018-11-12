@@ -6,6 +6,10 @@ num=$1
 if [ ! -n "$num" ]
   then
     num='7'
+elif [ $num -gt 15 ]
+  then
+    echo 'Option: Please input less 15.'
+    exit 0
 fi
 
 for i in `seq $num`
