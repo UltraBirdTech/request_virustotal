@@ -27,6 +27,10 @@ def virus_total_url():
     url = 'https://www.virustotal.com/vtapi/v2/file/report'
     return url
 
+def donloads_folder():
+    folder_path = '/root/work/malware/downloads'
+    return folder_path
+
 def api_key():
     api_key_file_path = './api_key.txt'
     with open(api_key_file_path) as f:
