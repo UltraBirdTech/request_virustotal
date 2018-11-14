@@ -2,23 +2,13 @@
 
 MALWARE_DOWNLOAD_DIR='/root/work/malware/downloads'
 
-num=$1
-if [ ! -n "$num" ]
-  then
-    num='7'
-elif [ $num -gt 15 ]
-  then
-    echo 'Option: Please input less 15.'
-    exit 0
-fi
+echo ls $MALWARE_DOWNLOAD_DIR
 
-for i in `seq $num`
+file_num=$(ls $MALWARE_DOWNLOAD_DIR | grep data* | wc -l)
+
+echo $file_num
+
+for i in `seq $file_num`
 do
-gunzip -v $MALWARE_DOWNLOAD_DIR/downloads.tgz.$i.gz
-if [ ! -e $MALWARE_DOWNLOAD_DIR/data$i ]
-  then
-    echo 'create folder'
-    mkdir $MALWARE_DOWNLOAD_DIR/data$i
-fi
-tar -xzvf $MALWARE_DOWNLOAD_DIR/downloads.tgz.$i -C $MALWARE_DOWNLOAD_DIR/data$i
+	echo $i
 done
