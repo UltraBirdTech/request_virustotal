@@ -13,5 +13,5 @@ if [ ! -e "$MALWARE_DOWNLOAD_DIR/malware" ]
 
 for i in `seq $file_num`
 do
-  cp $MALWARE_DOWNLOAD_DIR/data$i/data/cowrie/downloads/* $MALWARE_DOWNLOAD_DIR/malware
+  cp -p $MALWARE_DOWNLOAD_DIR/data$i/data/cowrie/downloads/* $MALWARE_DOWNLOAD_DIR/malware
 done
