@@ -8,6 +8,8 @@ file_num=$(ls $MALWARE_DOWNLOAD_DIR | grep data* | wc -l)
 if [ ! -e "$MALWARE_DOWNLOAD_DIR/malware" ]
   then
     mkdir $MALWARE_DOWNLOAD_DIR/malware
+else
+    rm $MALWARE_DOWNLOAD_DIR/malware/*
   fi
 
 for i in `seq $file_num`
