@@ -12,6 +12,7 @@ def main():
 
     req = request_for_virustotal(argvs)
     recieve_response(req)
+
 def validation_check(argvs):
     argc = len(argvs)
     if (argc != 2):
