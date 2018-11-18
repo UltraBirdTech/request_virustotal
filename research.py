@@ -11,9 +11,7 @@ def main():
       sys.exit(1)
 
     req = request_for_virustotal(argvs)
-    response = urllib2.urlopen(req)
-    response_read = response.read()
-    display_response_json(response_read)
+    receive_response(req)
 
 def validation_check(argvs):
     argc = len(argvs)
@@ -58,5 +56,10 @@ def display_response_json(j):
 
     for k, v in data.items():
         print str(k) + " :" + str(v)
+
+def receive_response(req):
+    response = urllib2.urlopen(req)
+    response_read = response.read()
+    display_response_json(response_read)
 
 main()
