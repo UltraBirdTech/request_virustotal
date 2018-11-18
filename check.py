@@ -20,6 +20,9 @@ def validation_check(argvs):
         return True
     return False
 
+def check_folder_path():
+    return '/root/work/malware/downloads/malware'
+
 def virus_total_url():
     url = 'https://www.virustotal.com/vtapi/v2/file/report'
     return url
