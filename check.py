@@ -68,5 +68,4 @@ def revieve_response(req):
     response_read = response.read()
     display_response_json(response_read)
 
-
 main()
