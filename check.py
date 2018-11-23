@@ -45,7 +45,8 @@ def main():
            sleep(65)
            i = 0
 
-    generate_output_file(result_array) 
+    output_file = OutputFile()
+    output_file.generate(result_array)
     print 'END SCRIPT'
     exit()
 
@@ -66,6 +67,24 @@ class MalwareFile:
     def generate_row(self):
         return "|" + self.file_name + "|" + self.datetime + "|" + self.detection_rate + "|" + self.permalink + "|"
 
+class OutputFile:
+    def generate(self, array):
+        f = open(generate_file_name(), 'w')
+        f.writelines(self.header() + "\n")
+        f.writelines(self.constitution() + "\n")
+        for line in array:
+            f.writelines(line + "\n")
+        f.close()
+
+    def generate_file_name():
+        return 'virus_total_' + str(datetime.now().strftime("%Y%m%d%H%M%S")) + '.txt'
+
+    def header(self):
+        return '|file name|date| kensyuturitu| URL |'
+
+    def constitution(self):
+        return '|:--|:--|:--:|:--|'
+
 # read api_key from ./api_key.txt
 def api_key():
     api_key_file_path = './api_key.txt'
@@ -85,21 +104,4 @@ def recieve_response(req):
     response = urllib2.urlopen(req)
     return response.read()
 
-def generate_file_name():
-    return 'virus_total_' + str(datetime.now().strftime("%Y%m%d%H%M%S")) + '.txt'
-
-def header():
-    return '|file name|date| kensyuturitu| URL |'
-
-def constitution():
-    return '|:--|:--|:--:|:--|'
-
-def generate_output_file(array):
-    f = open(generate_file_name(), 'w')
-    f.writelines(header() + "\n")
-    f.writelines(constitution() + "\n")
-    for line in array:
-        f.writelines(line + "\n")
-    
-    f.close()
 main()
