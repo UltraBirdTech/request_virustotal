@@ -10,6 +10,16 @@ def main():
     if validation_check(argvs):
       sys.exit(1)
 
+    print 'START SCRIPT'
+
+
+
+
+
+    print 'END SCRIPT'
+    exit()
+
+
     req = request_for_virustotal(argvs)
     recieve_response(req)
 
