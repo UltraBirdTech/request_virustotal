@@ -4,23 +4,42 @@ import sys
 import json
 import urllib
 import urllib2
+import hashlib
+import glob
 
 def main():
     argvs = sys.argv
-    if validation_check(argvs):
-      sys.exit(1)
+#    if validation_check(argvs):
+#      sys.exit(1)
 
     print 'START SCRIPT'
 
+    file_array = glob.glob(check_folder_path() + '*')
+    print file_array
+    print len(file_array)
+    i = 0 
+    hash_array = []
+    for file in file_array:
+       i += 1
+       print file
+       print i
 
+       with open(file, 'rb') as f:
+           hash = hashlib.sha256(f.read()).hexdigest()
+           print hash
+      #     hash_array.append(hash)
+           req = request_for_virustotal(hash)
+           recieve_response(req)
+           exit()
+    
 
-
-
+    #print hash_array
+    #print len(hash_array)
     print 'END SCRIPT'
     exit()
 
 
-    req = request_for_virustotal(argvs)
+    req = request_for_virustotal(argvs[1])
     recieve_response(req)
 
 def validation_check(argvs):
@@ -31,7 +50,7 @@ def validation_check(argvs):
     return False
 
 def check_folder_path():
-    return '/root/work/malware/downloads/malware'
+    return '/root/work/malware/downloads/malware/'
 
 def read_files():
     path = check_folder_path()
@@ -53,14 +72,14 @@ def api_key():
       print 'api key:' + api_key
     return api_key
 
-def generate_data(argvs):
-    hash = argvs[1]
+def generate_data(data):
+    hash = data 
     parameters = {'resource': hash, 'apikey': api_key()}
     data = urllib.urlencode(parameters)
     return data
 
-def request_for_virustotal(argvs):
-    req = urllib2.Request(virus_total_url(), generate_data(argvs))
+def request_for_virustotal(data):
+    req = urllib2.Request(virus_total_url(), generate_data(data))
     return req
 
 def display_response_json(j):
@@ -73,9 +92,10 @@ def display_response_json(j):
     for k, v in data.items():
         print str(k) + " :" + str(v)
 
-def revieve_response(req):
+def recieve_response(req):
     response = urllib2.urlopen(req)
     response_read = response.read()
     display_response_json(response_read)
+    return response_read
 
 main()
