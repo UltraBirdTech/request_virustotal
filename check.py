@@ -12,6 +12,8 @@ import os
 
 MALWARE_DIR = '/root/work/malware/downloads/malware/'
 
+VIRUS_TOTAL_REPORT_URL = 'https://www.virustotal.com/vtapi/v2/file/report'
+
 def main():
     print 'START SCRIPT'
 
@@ -39,7 +41,7 @@ def main():
          permalink = res_json["permalink"]
          file_detection_rate =  str(res_json["positives"]) + '/' + str(res_json["total"])
 
-       time_float = os.path.getmtime(check_folder_path() + file_name)
+       time_float = os.path.getmtime(MALWARE_DIR + file_name)
        file_timedate = datetime.fromtimestamp(time_float).strftime("%Y/%m/%d %H:%M:%S")
        result_array.append("|" + file_name + "|" + file_timedate + "|" + file_detection_rate + "|" + permalink + "|")
        if 4 == i:
@@ -50,9 +52,6 @@ def main():
     generate_output_file(result_array) 
     print 'END SCRIPT'
     exit()
-
-def virus_total_url():
-    return 'https://www.virustotal.com/vtapi/v2/file/report'
 
 def downloads_folder():
     return '/root/work/malware/downloads'
@@ -70,7 +69,7 @@ def generate_data(data):
     return urllib.urlencode(parameters)
 
 def request_for_virustotal(data):
-    return urllib2.Request(virus_total_url(), generate_data(data))
+    return urllib2.Request(VIRUS_TOTAL_REPORT_URL, generate_data(data))
 
 def recieve_response(req):
     response = urllib2.urlopen(req)
