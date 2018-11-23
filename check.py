@@ -27,12 +27,11 @@ def main():
        res = recieve_response(req)
        res_json = json.loads(res)
        print res_json
-       if 'permalink' in res_json:
+       if res_json['response_code'] == 0:
+           print res_json
+       else
          permalink = res_json["permalink"]
-
-       if 'positives' in res_json:
          file_detection_rate =  str(res_json["positives"]) + '/' + str(res_json["total"])
-
 
        time_float = os.path.getmtime(check_folder_path() + file_name)
        file_timedate = datetime.fromtimestamp(time_float).strftime("%Y/%m/%d %H:%M:%S")
