@@ -19,7 +19,6 @@ def main():
     file_array = sorted(glob.glob( MALWARE_DIR + '*'), key=os.path.getmtime)
     result_array = []
     for i, file in enumerate(file_array):
-       print i
        with open(file, 'rb') as f:
            malware = MalwareFile(f)
            print '[LOG] Check: ' + malware.file_name
