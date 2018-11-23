@@ -57,12 +57,11 @@ class MalwareFile:
 
 class OutputFile:
     def generate(self, array):
-        f = open(self.generate_file_name(), 'w')
-        f.writelines(self.header() + "\n")
-        f.writelines(self.constitution() + "\n")
-        for line in array:
-            f.writelines(line + "\n")
-        f.close()
+        with open(self.generate_file_name(), 'w') as f:
+            f.writelines(self.header() + "\n")
+            f.writelines(self.constitution() + "\n")
+            for line in array:
+                f.writelines(line + "\n")
 
     def generate_file_name(self):
         return 'virus_total_' + str(datetime.now().strftime("%Y%m%d%H%M%S")) + '.txt'
