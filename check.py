@@ -53,9 +53,6 @@ def main():
     print 'END SCRIPT'
     exit()
 
-def downloads_folder():
-    return '/root/work/malware/downloads'
-
 def api_key():
     api_key_file_path = './api_key.txt'
     with open(api_key_file_path) as f:
