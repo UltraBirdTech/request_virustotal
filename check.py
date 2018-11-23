@@ -40,7 +40,6 @@ def main():
        file_timedate = datetime.fromtimestamp(time_float).strftime("%Y/%m/%d %H:%M:%S")
        result_array.append("|" + file_name + "|" + file_timedate + "|" + file_detection_rate + "|" + permalink + "|")
        if 4 == i:
-           break
            print '[LOG] Sleep 65 seconds.'
            sleep(65)
            i = 0
