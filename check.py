@@ -10,10 +10,12 @@ from datetime import datetime
 from time import sleep
 import os
 
+MALWARE_DIR = '/root/work/malware/downloads/malware/'
+
 def main():
     print 'START SCRIPT'
 
-    file_array = sorted(glob.glob( check_folder_path() + '*'), key=os.path.getmtime)
+    file_array = sorted(glob.glob( MALWARE_DIR + '*'), key=os.path.getmtime)
     i = 0 
     result_array = []
 
@@ -48,9 +50,6 @@ def main():
     generate_output_file(result_array) 
     print 'END SCRIPT'
     exit()
-
-def check_folder_path():
-    return '/root/work/malware/downloads/malware/'
 
 def virus_total_url():
     return 'https://www.virustotal.com/vtapi/v2/file/report'
