@@ -10,7 +10,7 @@ from datetime import datetime
 from time import sleep
 import os
 
-MALWARE_DIR = '/root/work/malware/downloads/malware/'
+MALWARE_DIR = '/root/work/malware/home/honey/downloads/malware/'
 
 VIRUS_TOTAL_REPORT_URL = 'https://www.virustotal.com/vtapi/v2/file/report'
 
@@ -31,15 +31,13 @@ def main():
        virus_total.request(malware)
 
        result_array.append(malware.generate_row())
-       if 4 == i:
+       if i % 4 == 0:
            print '[LOG] Sleep 65 seconds.'
            sleep(65)
-           i = 0
 
     output_file = OutputFile()
     output_file.generate(result_array)
     print 'END SCRIPT'
-    exit()
 
 class MalwareFile:
     def __init__(self, f):
@@ -48,6 +46,8 @@ class MalwareFile:
         # check file datetime.
         time_float = os.path.getmtime(MALWARE_DIR + self.file_name)
         self.datetime = datetime.fromtimestamp(time_float).strftime("%Y/%m/%d %H:%M:%S")
+        self.detection_rate = '-'
+        self.permalink = '-'
 
     def set_permalink(self, data):
         self.permalink = data["permalink"]
