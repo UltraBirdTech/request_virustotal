@@ -11,18 +11,15 @@ from time import sleep
 import os
 
 MALWARE_DIR = '/root/work/malware/home/honey/downloads/malware/'
-
 VIRUS_TOTAL_REPORT_URL = 'https://www.virustotal.com/vtapi/v2/file/report'
 
 def main():
     print 'START SCRIPT'
 
     file_array = sorted(glob.glob( MALWARE_DIR + '*'), key=os.path.getmtime)
-    i = 0 
     result_array = []
-
-    for file in file_array:
-       i += 1
+    for i, file in enumerate(file_array):
+       print i
        with open(file, 'rb') as f:
            malware = MalwareFile(f)
            print '[LOG] Check: ' + malware.file_name
@@ -31,7 +28,7 @@ def main():
        virus_total.request(malware)
 
        result_array.append(malware.generate_row())
-       if i % 4 == 0:
+       if (i + 1) % 4 == 0:
            print '[LOG] Sleep 65 seconds.'
            sleep(65)
 
