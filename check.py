@@ -38,7 +38,7 @@ def main():
            malware.set_permalink(res_json)
            malware.set_detection_rate(res_json)
 
-       result_array.append("|" + malware.file_name + "|" + malware.datetime + "|" + malware.detection_rate + "|" + malware.permalink + "|")
+       result_array.append(malware.generate_row())
        if 4 == i:
            break
            print '[LOG] Sleep 65 seconds.'
@@ -62,6 +62,9 @@ class MalwareFile:
 
     def set_detection_rate(self, data):
         self.detection_rate =  str(data["positives"]) + '/' + str(data["total"])
+
+    def generate_row(self):
+        return "|" + self.file_name + "|" + self.datetime + "|" + self.detection_rate + "|" + self.permalink + "|"
 
 # read api_key from ./api_key.txt
 def api_key():
