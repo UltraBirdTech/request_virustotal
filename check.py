@@ -7,6 +7,7 @@ import urllib2
 import hashlib
 import glob
 from datetime import datetime
+from time import sleep
 import os
 
 def main():
@@ -20,18 +21,26 @@ def main():
        i += 1
        with open(file, 'rb') as f:
            hash = hashlib.sha256(f.read()).hexdigest()
-           req = request_for_virustotal(hash)
-           res = recieve_response(req)
-           res_json = json.loads(res)
-           permalink = res_json["permalink"]
-           file_detection_rate =  str(res_json["positives"]) + '/' + str(res_json["total"])
            file_name = f.name.split("/")[-1]
 
-           time_float = os.path.getmtime(check_folder_path() + file_name)
-           file_timedate = datetime.fromtimestamp(time_float).strftime("%Y/%m/%d %H:%M:%S")
-           result_array.append("|" + file_name + "|" + file_timedate + "|" + file_detection_rate + "|" + permalink + "|")
-           if 3 < i:
-             break
+       req = request_for_virustotal(hash)
+       res = recieve_response(req)
+       res_json = json.loads(res)
+       print res_json
+       if 'permalink' in res_json:
+         permalink = res_json["permalink"]
+
+       if 'positives' in res_json:
+         file_detection_rate =  str(res_json["positives"]) + '/' + str(res_json["total"])
+
+
+       time_float = os.path.getmtime(check_folder_path() + file_name)
+       file_timedate = datetime.fromtimestamp(time_float).strftime("%Y/%m/%d %H:%M:%S")
+       result_array.append("|" + file_name + "|" + file_timedate + "|" + file_detection_rate + "|" + permalink + "|")
+       if 4 == i:
+           print '[LOG] Sleep 65 seconds.'
+           sleep(65)
+           i = 0
 
     generate_output_file(result_array) 
     print 'END SCRIPT'
