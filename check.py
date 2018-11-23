@@ -26,7 +26,7 @@ def main():
        req = request_for_virustotal(hash)
        res = recieve_response(req)
        res_json = json.loads(res)
-       print res_json
+
        permalink = ''
        file_detection_rate = ''
        if res_json['response_code'] == 0:
