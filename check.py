@@ -6,30 +6,33 @@ import urllib
 import urllib2
 import hashlib
 import glob
+from datetime import datetime
 
 def main():
     print 'START SCRIPT'
 
     file_array = glob.glob(check_folder_path() + '*')
-    print file_array
+#    print file_array
 
     i = 0 
     hash_array = []
     for file in file_array:
        i += 1
-       print file
-       print i
+     #  print file
+      # print i
 
        with open(file, 'rb') as f:
            hash = hashlib.sha256(f.read()).hexdigest()
-           print hash
+       #    print hash
       #     hash_array.append(hash)
            req = request_for_virustotal(hash)
            res = recieve_response(req)
-           print res
+         #  print res
            res_json = json.loads(res)
            print res_json["permalink"]
            print str(res_json["total"]) + '/' + str(res_json["positives"])
+
+           generate_output_file()
            exit()
     
     print 'END SCRIPT'
@@ -95,5 +98,6 @@ def recieve_response(req):
     return response_read
 
 def generate_output_file():
-    # something code.
+    print datetime.now()
+    print datetime.now().strftime("%Y%m%d%H%M%S")
 main()
