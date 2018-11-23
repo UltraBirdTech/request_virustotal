@@ -30,7 +30,8 @@ def main():
            time_float = os.path.getmtime(check_folder_path() + file_name)
            file_timedate = datetime.fromtimestamp(time_float).strftime("%Y/%m/%d %H:%M:%S")
            result_array.append("|" + file_name + "|" + file_timedate + "|" + file_detection_rate + "|" + permalink + "|")
-           break
+           if 3 < i:
+             break
 
     generate_output_file(result_array) 
     print 'END SCRIPT'
