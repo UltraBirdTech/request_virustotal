@@ -39,13 +39,6 @@ def main():
     req = request_for_virustotal(argvs[1])
     recieve_response(req)
 
-def validation_check(argvs):
-    argc = len(argvs)
-    if (argc != 2):
-        print 'Usage; python %s hash' % argvs[0]
-        return True
-    return False
-
 def check_folder_path():
     return '/root/work/malware/downloads/malware/'
 
