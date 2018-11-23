@@ -8,15 +8,11 @@ import hashlib
 import glob
 
 def main():
-    argvs = sys.argv
-#    if validation_check(argvs):
-#      sys.exit(1)
-
     print 'START SCRIPT'
 
     file_array = glob.glob(check_folder_path() + '*')
     print file_array
-    print len(file_array)
+
     i = 0 
     hash_array = []
     for file in file_array:
@@ -32,12 +28,8 @@ def main():
            recieve_response(req)
            exit()
     
-
-    #print hash_array
-    #print len(hash_array)
     print 'END SCRIPT'
     exit()
-
 
     req = request_for_virustotal(argvs[1])
     recieve_response(req)
