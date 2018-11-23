@@ -7,6 +7,7 @@ import urllib2
 import hashlib
 import glob
 from datetime import datetime
+import os
 
 def main():
     print 'START SCRIPT'
@@ -15,12 +16,14 @@ def main():
 #    print file_array
 
     i = 0 
-    hash_array = []
+    result_array = []
+    print '1'
+
     for file in file_array:
        i += 1
      #  print file
       # print i
-
+       print 'kiteru'
        with open(file, 'rb') as f:
            hash = hashlib.sha256(f.read()).hexdigest()
        #    print hash
@@ -29,12 +32,22 @@ def main():
            res = recieve_response(req)
          #  print res
            res_json = json.loads(res)
+           permalink = res_json["permalink"]
            print res_json["permalink"]
+           file_detection_rate =  str(res_json["positives"]) + '/' + str(res_json["total"])
            print str(res_json["total"]) + '/' + str(res_json["positives"])
+           file_name = f.name.split("/")[-1]
+           print file_name
 
-           generate_output_file()
-           exit()
-    
+           time_float = os.path.getmtime(check_folder_path() + file_name)
+           file_timedate = datetime.fromtimestamp(time_float).strftime("%Y/%m/%d %H:%M:%S")
+           print file_timedate
+           print result_array
+           result_array.append("|" + file_name + "|" + file_timedate + "|" + file_detection_rate + "|" + permalink )
+           print result_array
+           break
+
+    generate_output_file(result_array) 
     print 'END SCRIPT'
     exit()
 
@@ -97,7 +110,21 @@ def recieve_response(req):
 #    display_response_json(response_read)
     return response_read
 
-def generate_output_file():
-    print datetime.now()
-    print datetime.now().strftime("%Y%m%d%H%M%S")
+def generate_file_name():
+    return 'virus_total_' + str(datetime.now().strftime("%Y%m%d%H%M%S")) + '.txt'
+
+def header():
+    return '|file name|date| kensyuturitu| URL |'
+
+def constitution():
+    return '|:--|:--|:--:|:--|'
+
+def generate_output_file(array):
+    f = open(generate_file_name(), 'w')
+    f.writelines(header() + "\n")
+    f.writelines(constitution() + "\n")
+    for line in array:
+        f.writelines(line + "\n")
+    
+    f.close()
 main()
