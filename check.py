@@ -13,7 +13,7 @@ import os
 def main():
     print 'START SCRIPT'
 
-    file_array = glob.glob(check_folder_path() + '*')
+    file_array = sorted(glob.glob( check_folder_path() + '*'), key=os.path.getmtime)
     i = 0 
     result_array = []
 
@@ -32,7 +32,7 @@ def main():
        if res_json['response_code'] == 0:
            print '===================[LOG] FAILED API======================'
            print res_json
-       else
+       else:
          permalink = res_json["permalink"]
          file_detection_rate =  str(res_json["positives"]) + '/' + str(res_json["total"])
 
@@ -40,6 +40,7 @@ def main():
        file_timedate = datetime.fromtimestamp(time_float).strftime("%Y/%m/%d %H:%M:%S")
        result_array.append("|" + file_name + "|" + file_timedate + "|" + file_detection_rate + "|" + permalink + "|")
        if 4 == i:
+           break
            print '[LOG] Sleep 65 seconds.'
            sleep(65)
            i = 0
@@ -65,7 +66,6 @@ def api_key():
       read = f.read()
       api_key = read.replace('\r', '')
       api_key = read.replace('\n', '')
-      print 'api key:' + api_key
     return api_key
 
 def generate_data(data):
