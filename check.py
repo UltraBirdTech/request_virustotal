@@ -43,9 +43,6 @@ def main():
 def check_folder_path():
     return '/root/work/malware/downloads/malware/'
 
-def read_files():
-    path = check_folder_path()
-
 def virus_total_url():
     url = 'https://www.virustotal.com/vtapi/v2/file/report'
     return url
