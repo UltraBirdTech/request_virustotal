@@ -72,20 +72,9 @@ def request_for_virustotal(data):
     req = urllib2.Request(virus_total_url(), generate_data(data))
     return req
 
-def display_response_json(j):
-    data = json.loads(j)
-    if data["response_code"] == 0:
-        print "Result is FALSE. Please check your option."
-    else:
-        print "Scan is Success"
-
-    for k, v in data.items():
-        print str(k) + " :" + str(v)
-
 def recieve_response(req):
     response = urllib2.urlopen(req)
     response_read = response.read()
-#    display_response_json(response_read)
     return response_read
 
 def generate_file_name():
