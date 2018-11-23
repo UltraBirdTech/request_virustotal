@@ -22,6 +22,7 @@ def main():
        with open(file, 'rb') as f:
            hash = hashlib.sha256(f.read()).hexdigest()
            file_name = f.name.split("/")[-1]
+           print '[LOG] Check: ' + file_name
 
        req = request_for_virustotal(hash)
        res = recieve_response(req)
