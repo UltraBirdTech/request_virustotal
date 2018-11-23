@@ -27,20 +27,11 @@ def main():
            malware = MalwareFile(f)
            print '[LOG] Check: ' + malware.file_name
 
-       req = request_for_virustotal(malware.sha256)
-       res = recieve_response(req)
-       res_json = json.loads(res)
-
-       if res_json['response_code'] == 0:
-           print '===================[LOG] FAILED API======================'
-           print res_json
-       else:
-           malware.set_permalink(res_json)
-           malware.set_detection_rate(res_json)
+       virus_total = VirusTotal()
+       virus_total.request(malware)
 
        result_array.append(malware.generate_row())
        if 4 == i:
-           break
            print '[LOG] Sleep 65 seconds.'
            sleep(65)
            i = 0
@@ -69,14 +60,14 @@ class MalwareFile:
 
 class OutputFile:
     def generate(self, array):
-        f = open(generate_file_name(), 'w')
+        f = open(self.generate_file_name(), 'w')
         f.writelines(self.header() + "\n")
         f.writelines(self.constitution() + "\n")
         for line in array:
             f.writelines(line + "\n")
         f.close()
 
-    def generate_file_name():
+    def generate_file_name(self):
         return 'virus_total_' + str(datetime.now().strftime("%Y%m%d%H%M%S")) + '.txt'
 
     def header(self):
@@ -85,6 +76,21 @@ class OutputFile:
     def constitution(self):
         return '|:--|:--|:--:|:--|'
 
+class VirusTotal():
+    def request(self, malware):
+        parameters = {'resource': malware.sha256, 'apikey': api_key()}
+        data = urllib.urlencode(parameters)
+        request = urllib2.Request(VIRUS_TOTAL_REPORT_URL, data)
+        response = urllib2.urlopen(request)
+        res_json = json.loads(response.read())
+
+        if res_json['response_code'] == 0:
+            print '===================[LOG] FAILED API======================'
+            print res_json
+        else:
+            malware.set_permalink(res_json)
+            malware.set_detection_rate(res_json)
+
 # read api_key from ./api_key.txt
 def api_key():
     api_key_file_path = './api_key.txt'
@@ -92,16 +98,5 @@ def api_key():
       read = f.read()
       api_key = read.replace('\n', '')
     return api_key
-
-def generate_data(data):
-    parameters = {'resource': data, 'apikey': api_key()}
-    return urllib.urlencode(parameters)
-
-def request_for_virustotal(data):
-    return urllib2.Request(VIRUS_TOTAL_REPORT_URL, generate_data(data))
-
-def recieve_response(req):
-    response = urllib2.urlopen(req)
-    return response.read()
 
 main()
