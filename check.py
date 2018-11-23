@@ -13,38 +13,23 @@ def main():
     print 'START SCRIPT'
 
     file_array = glob.glob(check_folder_path() + '*')
-#    print file_array
-
     i = 0 
     result_array = []
-    print '1'
 
     for file in file_array:
        i += 1
-     #  print file
-      # print i
-       print 'kiteru'
        with open(file, 'rb') as f:
            hash = hashlib.sha256(f.read()).hexdigest()
-       #    print hash
-      #     hash_array.append(hash)
            req = request_for_virustotal(hash)
            res = recieve_response(req)
-         #  print res
            res_json = json.loads(res)
            permalink = res_json["permalink"]
-           print res_json["permalink"]
            file_detection_rate =  str(res_json["positives"]) + '/' + str(res_json["total"])
-           print str(res_json["total"]) + '/' + str(res_json["positives"])
            file_name = f.name.split("/")[-1]
-           print file_name
 
            time_float = os.path.getmtime(check_folder_path() + file_name)
            file_timedate = datetime.fromtimestamp(time_float).strftime("%Y/%m/%d %H:%M:%S")
-           print file_timedate
-           print result_array
            result_array.append("|" + file_name + "|" + file_timedate + "|" + file_detection_rate + "|" + permalink )
-           print result_array
            break
 
     generate_output_file(result_array) 
