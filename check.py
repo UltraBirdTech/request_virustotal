@@ -24,27 +24,23 @@ def main():
     for file in file_array:
        i += 1
        with open(file, 'rb') as f:
-           hash = hashlib.sha256(f.read()).hexdigest()
-           file_name = f.name.split("/")[-1]
-           print '[LOG] Check: ' + file_name
+           malware = MalwareFile(f)
+           print '[LOG] Check: ' + malware.file_name
 
-       req = request_for_virustotal(hash)
+       req = request_for_virustotal(malware.sha256)
        res = recieve_response(req)
        res_json = json.loads(res)
 
-       permalink = ''
-       file_detection_rate = ''
        if res_json['response_code'] == 0:
            print '===================[LOG] FAILED API======================'
            print res_json
        else:
-         permalink = res_json["permalink"]
-         file_detection_rate =  str(res_json["positives"]) + '/' + str(res_json["total"])
+           malware.set_permalink(res_json)
+           malware.set_detection_rate(res_json)
 
-       time_float = os.path.getmtime(MALWARE_DIR + file_name)
-       file_timedate = datetime.fromtimestamp(time_float).strftime("%Y/%m/%d %H:%M:%S")
-       result_array.append("|" + file_name + "|" + file_timedate + "|" + file_detection_rate + "|" + permalink + "|")
+       result_array.append("|" + malware.file_name + "|" + malware.datetime + "|" + malware.detection_rate + "|" + malware.permalink + "|")
        if 4 == i:
+           break
            print '[LOG] Sleep 65 seconds.'
            sleep(65)
            i = 0
@@ -52,6 +48,20 @@ def main():
     generate_output_file(result_array) 
     print 'END SCRIPT'
     exit()
+
+class MalwareFile:
+    def __init__(self, f):
+        self.file_name = f.name.split("/")[-1]
+        self.sha256 = hashlib.sha256(f.read()).hexdigest()
+        # check file datetime.
+        time_float = os.path.getmtime(MALWARE_DIR + self.file_name)
+        self.datetime = datetime.fromtimestamp(time_float).strftime("%Y/%m/%d %H:%M:%S")
+
+    def set_permalink(self, data):
+        self.permalink = data["permalink"]
+
+    def set_detection_rate(self, data):
+        self.detection_rate =  str(data["positives"]) + '/' + str(data["total"])
 
 # read api_key from ./api_key.txt
 def api_key():
