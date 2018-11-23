@@ -53,12 +53,10 @@ def check_folder_path():
     return '/root/work/malware/downloads/malware/'
 
 def virus_total_url():
-    url = 'https://www.virustotal.com/vtapi/v2/file/report'
-    return url
+    return 'https://www.virustotal.com/vtapi/v2/file/report'
 
 def downloads_folder():
-    folder_path = '/root/work/malware/downloads'
-    return folder_path
+    return '/root/work/malware/downloads'
 
 def api_key():
     api_key_file_path = './api_key.txt'
@@ -69,19 +67,15 @@ def api_key():
     return api_key
 
 def generate_data(data):
-    hash = data 
-    parameters = {'resource': hash, 'apikey': api_key()}
-    data = urllib.urlencode(parameters)
-    return data
+    parameters = {'resource': data, 'apikey': api_key()}
+    return urllib.urlencode(parameters)
 
 def request_for_virustotal(data):
-    req = urllib2.Request(virus_total_url(), generate_data(data))
-    return req
+    return urllib2.Request(virus_total_url(), generate_data(data))
 
 def recieve_response(req):
     response = urllib2.urlopen(req)
-    response_read = response.read()
-    return response_read
+    return response.read()
 
 def generate_file_name():
     return 'virus_total_' + str(datetime.now().strftime("%Y%m%d%H%M%S")) + '.txt'
