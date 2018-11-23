@@ -81,7 +81,7 @@ class VirusTotal():
         res_json = json.loads(response.read())
 
         if res_json['response_code'] == 0:
-            print '===================[LOG] FAILED API======================'
+            print '===================[LOG] RESPONSE CODE IS 0.======================'
             print res_json
         else:
             malware.set_permalink(res_json)
