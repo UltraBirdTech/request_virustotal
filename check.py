@@ -37,9 +37,6 @@ def main():
     print 'END SCRIPT'
     exit()
 
-    req = request_for_virustotal(argvs[1])
-    recieve_response(req)
-
 def check_folder_path():
     return '/root/work/malware/downloads/malware/'
 
