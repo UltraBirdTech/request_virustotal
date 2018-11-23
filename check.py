@@ -17,6 +17,7 @@ def main():
     print 'START SCRIPT'
 
     file_array = sorted(glob.glob( MALWARE_DIR + '*'), key=os.path.getmtime)
+    print '[log]File num is: ' + str(len(file_array))
     result_array = []
     for i, file in enumerate(file_array):
        with open(file, 'rb') as f:
