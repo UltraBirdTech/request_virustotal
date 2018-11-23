@@ -27,7 +27,10 @@ def main():
        res = recieve_response(req)
        res_json = json.loads(res)
        print res_json
+       permalink = ''
+       file_detection_rate = ''
        if res_json['response_code'] == 0:
+           print '===================[LOG] FAILED API======================'
            print res_json
        else
          permalink = res_json["permalink"]
