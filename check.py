@@ -25,7 +25,11 @@ def main():
            print hash
       #     hash_array.append(hash)
            req = request_for_virustotal(hash)
-           recieve_response(req)
+           res = recieve_response(req)
+           print res
+           res_json = json.loads(res)
+           print res_json["permalink"]
+           print str(res_json["total"]) + '/' + str(res_json["positives"])
            exit()
     
     print 'END SCRIPT'
@@ -87,7 +91,9 @@ def display_response_json(j):
 def recieve_response(req):
     response = urllib2.urlopen(req)
     response_read = response.read()
-    display_response_json(response_read)
+#    display_response_json(response_read)
     return response_read
 
+def generate_output_file():
+    # something code.
 main()
