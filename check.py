@@ -15,7 +15,6 @@ VIRUS_TOTAL_REPORT_URL = 'https://www.virustotal.com/vtapi/v2/file/report'
 
 def main():
     print 'START SCRIPT'
-
     file_array = sorted(glob.glob( MALWARE_DIR + '*'), key=os.path.getmtime)
     print '[log]File num is: ' + str(len(file_array))
     result_array = []
@@ -23,15 +22,12 @@ def main():
        with open(file, 'rb') as f:
            malware = MalwareFile(f)
            print '[LOG] Check: ' + malware.file_name
-
        virus_total = VirusTotal()
        virus_total.request(malware)
-
        result_array.append(malware.generate_row())
        if (i + 1) % 4 == 0:
            print '[LOG] Sleep 65 seconds.'
            sleep(65)
-
     output_file = OutputFile()
     output_file.generate(result_array)
     print 'END SCRIPT'
