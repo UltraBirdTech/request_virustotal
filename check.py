@@ -18,11 +18,11 @@ def main():
     file_array = sorted(glob.glob( MALWARE_DIR + '*'), key=os.path.getmtime)
     print '[LOG] File num is: ' + str(len(file_array))
     result_array = []
+    virus_total = VirusTotal()
     for i, file in enumerate(file_array):
        with open(file, 'rb') as f:
            malware = MalwareFile(f)
            print '[LOG] Check: ' + malware.file_name
-       virus_total = VirusTotal()
        virus_total.request(malware)
        result_array.append(malware.generate_row())
        if (i + 1) % 4 == 0:
