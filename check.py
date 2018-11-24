@@ -15,7 +15,7 @@ MALWARE_DIR = '/root/work/malware/home/honey/downloads/malware/'
 def main():
     print 'START SCRIPT'
     file_array = sorted(glob.glob( MALWARE_DIR + '*'), key=os.path.getmtime)
-    print '[log]File num is: ' + str(len(file_array))
+    print '[LOG] File num is: ' + str(len(file_array))
     result_array = []
     for i, file in enumerate(file_array):
        with open(file, 'rb') as f:
@@ -71,7 +71,7 @@ class VirusTotal():
     VIRUS_TOTAL_REPORT_URL = 'https://www.virustotal.com/vtapi/v2/file/report'
     def __init__(self):
         self.api_key = self.api_key()
-        print self.api_key
+        print '[LOG] api key: ' + self.api_key
 
     def request(self, malware):
         parameters = {'resource': malware.sha256, 'apikey': self.api_key}
@@ -81,7 +81,7 @@ class VirusTotal():
         res_json = json.loads(response.read())
 
         if res_json['response_code'] == 0:
-            print '===================[LOG] RESPONSE CODE IS 0.======================'
+            print '[LOG] RESPONSE CODE IS 0.'
             print res_json
         else:
             malware.set_permalink(res_json)
