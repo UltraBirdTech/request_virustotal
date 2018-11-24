@@ -11,7 +11,6 @@ from time import sleep
 import os
 
 MALWARE_DIR = '/root/work/malware/home/honey/downloads/malware/'
-VIRUS_TOTAL_REPORT_URL = 'https://www.virustotal.com/vtapi/v2/file/report'
 
 def main():
     print 'START SCRIPT'
@@ -69,10 +68,11 @@ class OutputFile:
         return '|:--|:--|:--:|:--|'
 
 class VirusTotal():
+    VIRUS_TOTAL_REPORT_URL = 'https://www.virustotal.com/vtapi/v2/file/report'
     def request(self, malware):
-        parameters = {'resource': malware.sha256, 'apikey': api_key()}
+        parameters = {'resource': malware.sha256, 'apikey': self.api_key()}
         data = urllib.urlencode(parameters)
-        request = urllib2.Request(VIRUS_TOTAL_REPORT_URL, data)
+        request = urllib2.Request(self.VIRUS_TOTAL_REPORT_URL, data)
         response = urllib2.urlopen(request)
         res_json = json.loads(response.read())
 
@@ -84,7 +84,7 @@ class VirusTotal():
             malware.set_detection_rate(res_json)
 
     # read api_key from ./api_key.txt
-    def api_key():
+    def api_key(self):
         api_key_file_path = './api_key.txt'
         with open(api_key_file_path) as f:
           read = f.read()
