@@ -83,12 +83,12 @@ class VirusTotal():
             malware.set_permalink(res_json)
             malware.set_detection_rate(res_json)
 
-# read api_key from ./api_key.txt
-def api_key():
-    api_key_file_path = './api_key.txt'
-    with open(api_key_file_path) as f:
-      read = f.read()
-      api_key = read.replace('\n', '')
-    return api_key
+    # read api_key from ./api_key.txt
+    def api_key():
+        api_key_file_path = './api_key.txt'
+        with open(api_key_file_path) as f:
+          read = f.read()
+          api_key = read.replace('\n', '')
+        return api_key
 
 main()
