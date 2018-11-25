@@ -32,6 +32,9 @@ def main():
     output_file.generate(result_array)
     print 'END SCRIPT'
 
+#################################
+# マルウェアクラス
+# __init__() f: file information
 class MalwareFile:
     def __init__(self, f):
         self.file_name = f.name.split("/")[-1]
@@ -51,6 +54,9 @@ class MalwareFile:
     def generate_row(self):
         return "|" + self.file_name + "|" + self.datetime + "|" + self.detection_rate + "|" + self.permalink + "|"
 
+####################################
+# Output File Class
+# generate output file for paste a article.
 class OutputFile:
     def generate(self, array):
         with open(self.generate_file_name(), 'w') as f:
@@ -61,6 +67,7 @@ class OutputFile:
                 f.writelines(line + "\n")
 
     def generate_file_name(self):
+        # like 'virus_total_20180000000000.txt'
         return 'virus_total_' + str(datetime.now().strftime("%Y%m%d%H%M%S")) + '.txt'
 
     def header(self):
