@@ -17,7 +17,6 @@ def main():
     print 'START SCRIPT'
     file_array = sorted(glob.glob( MALWARE_DIR + '*'), key=os.path.getmtime)
     print '[LOG] File num is: ' + str(len(file_array))
-    # result_array = []
     malwares = []
     virus_total = VirusTotal()
     for i, file in enumerate(file_array):
@@ -25,13 +24,11 @@ def main():
            malware = MalwareFile(f)
            print '[LOG] Check: ' + malware.file_name
        virus_total.request(malware)
-       # result_array.append(malware.generate_row())
        malwares.append(malware)
        if (i + 1) % 4 == 0:
            print '[LOG] Sleep 65 seconds.'
            sleep(65)
     output_file = OutputFile()
-   # output_file.generate(result_array)
     output_file.generate(malwares)
     print 'END SCRIPT'
 
@@ -53,9 +50,6 @@ class MalwareFile:
 
     def set_detection_rate(self, data):
         self.detection_rate =  str(data['positives']) + '/' + str(data['total'])
-
-#    def generate_row(self):
-#        return '|' + self.file_name + '|' + self.datetime + '|' + self.detection_rate + '|' + self.permalink + '|'
 
 ####################################
 # Output File Class
@@ -111,3 +105,4 @@ class VirusTotal():
         return api_key
 
 main()
+
