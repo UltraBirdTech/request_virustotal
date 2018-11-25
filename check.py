@@ -76,6 +76,9 @@ class OutputFile:
     def constitution(self):
         return '|:--|:--|:--:|:--|'
 
+    def generate_row(self, malware):
+        # something code.
+
 class VirusTotal():
     VIRUS_TOTAL_REPORT_URL = 'https://www.virustotal.com/vtapi/v2/file/report'
     def __init__(self):
