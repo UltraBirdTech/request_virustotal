@@ -17,19 +17,22 @@ def main():
     print 'START SCRIPT'
     file_array = sorted(glob.glob( MALWARE_DIR + '*'), key=os.path.getmtime)
     print '[LOG] File num is: ' + str(len(file_array))
-    result_array = []
+    # result_array = []
+    malwares = []
     virus_total = VirusTotal()
     for i, file in enumerate(file_array):
        with open(file, 'rb') as f:
            malware = MalwareFile(f)
            print '[LOG] Check: ' + malware.file_name
        virus_total.request(malware)
-       result_array.append(malware.generate_row())
+       # result_array.append(malware.generate_row())
+       malwares.append(malware)
        if (i + 1) % 4 == 0:
            print '[LOG] Sleep 65 seconds.'
            sleep(65)
     output_file = OutputFile()
-    output_file.generate(result_array)
+   # output_file.generate(result_array)
+    output_file.generate(malwares)
     print 'END SCRIPT'
 
 #################################
@@ -51,20 +54,20 @@ class MalwareFile:
     def set_detection_rate(self, data):
         self.detection_rate =  str(data['positives']) + '/' + str(data['total'])
 
-    def generate_row(self):
-        return '|' + self.file_name + '|' + self.datetime + '|' + self.detection_rate + '|' + self.permalink + '|'
+#    def generate_row(self):
+#        return '|' + self.file_name + '|' + self.datetime + '|' + self.detection_rate + '|' + self.permalink + '|'
 
 ####################################
 # Output File Class
 # generate output file for paste a article.
 class OutputFile:
-    def generate(self, array):
+    def generate(self, malwares):
         with open(self.generate_file_name(), 'w') as f:
-            f.writelines('Total: ' + str(len(array)) + "\n")
+            f.writelines('Total: ' + str(len(malwares)) + "\n")
             f.writelines(self.header() + "\n")
             f.writelines(self.constitution() + "\n")
-            for line in array:
-                f.writelines(line + "\n")
+            for malware in malwares:
+                f.writelines(self.generate_row(malware) + "\n")
 
     def generate_file_name(self):
         # like 'virus_total_20180000000000.txt'
@@ -77,7 +80,7 @@ class OutputFile:
         return '|:--|:--|:--:|:--|'
 
     def generate_row(self, malware):
-        # something code.
+        return '|' + malware.file_name + '|' + malware.datetime + '|' + malware.detection_rate + '|' + malware.permalink + '|'
 
 class VirusTotal():
     VIRUS_TOTAL_REPORT_URL = 'https://www.virustotal.com/vtapi/v2/file/report'
