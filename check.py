@@ -46,13 +46,13 @@ class MalwareFile:
         self.permalink = '-'
 
     def set_permalink(self, data):
-        self.permalink = data["permalink"]
+        self.permalink = data['permalink']
 
     def set_detection_rate(self, data):
-        self.detection_rate =  str(data["positives"]) + '/' + str(data["total"])
+        self.detection_rate =  str(data['positives']) + '/' + str(data['total'])
 
     def generate_row(self):
-        return "|" + self.file_name + "|" + self.datetime + "|" + self.detection_rate + "|" + self.permalink + "|"
+        return '|' + self.file_name + '|' + self.datetime + '|' + self.detection_rate + '|' + self.permalink + '|'
 
 ####################################
 # Output File Class
