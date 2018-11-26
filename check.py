@@ -10,6 +10,7 @@ import glob
 from datetime import datetime
 from time import sleep
 import os
+import subprocess
 
 MALWARE_DIR = '/root/work/malware/home/honey/downloads/malware/'
 
@@ -44,12 +45,16 @@ class MalwareFile:
         self.datetime = datetime.fromtimestamp(time_float).strftime("%Y/%m/%d %H:%M:%S")
         self.detection_rate = '-'
         self.permalink = '-'
+        self.set_file_type()
 
     def set_permalink(self, data):
         self.permalink = data['permalink']
 
     def set_detection_rate(self, data):
         self.detection_rate =  str(data['positives']) + '/' + str(data['total'])
+
+    def set_file_type(self):
+        print subprocess.Popen("file " + MALWARE_DIR + self.file_name, shell=True)
 
 ####################################
 # Output File Class
