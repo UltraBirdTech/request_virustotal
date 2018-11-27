@@ -40,12 +40,14 @@ class MalwareFile:
     def __init__(self, f):
         self.file_name = f.name.split("/")[-1]
         self.sha256 = hashlib.sha256(f.read()).hexdigest()
-        # check file datetime.
-        time_float = os.path.getmtime(MALWARE_DIR + self.file_name)
-        self.datetime = datetime.fromtimestamp(time_float).strftime("%Y/%m/%d %H:%M:%S")
+        self.set_datetime()
         self.detection_rate = '-'
         self.permalink = '-'
         self.set_file_type()
+
+    def set_datetime(self):
+        time_float = os.path.getmtime(MALWARE_DIR + self.file_name)
+        self.datetime = datetime.fromtimestamp(time_float).strftime("%Y/%m/%d %H:%M:%S")
 
     def set_permalink(self, data):
         self.permalink = data['permalink']
