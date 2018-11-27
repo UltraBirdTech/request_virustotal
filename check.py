@@ -62,6 +62,10 @@ class MalwareFile:
         file_type_split = file_type.split(":")[-1]
         self.file_type = file_type_split.split(",")[0]
 
+    def set_file_kind(self):
+        #something code
+        #Output; Torjian, DDos Script
+        #Check response code.
 ####################################
 # Output File Class
 # generate output file for paste a article.
