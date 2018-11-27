@@ -58,8 +58,7 @@ class MalwareFile:
         file_type = proc.stdout.readline()
         proc.poll()
         file_type_split = file_type.split(":")[-1]
-        file_type = file_type_split.split(",")[0]
-        return file_type
+        self.file_type = file_type_split.split(",")[0]
 
 ####################################
 # Output File Class
