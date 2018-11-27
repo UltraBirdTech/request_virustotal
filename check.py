@@ -90,7 +90,7 @@ class OutputFile:
 class VirusTotal():
     VIRUS_TOTAL_REPORT_URL = 'https://www.virustotal.com/vtapi/v2/file/report'
     def __init__(self):
-        self.api_key = self.api_key()
+        self.set_api_key()
         print '[LOG] api key: ' + self.api_key
 
     def request(self, malware):
@@ -108,12 +108,11 @@ class VirusTotal():
             malware.set_detection_rate(res_json)
 
     # read api_key from ./api_key.txt
-    def api_key(self):
+    def set_api_key(self):
         api_key_file_path = './api_key.txt'
         with open(api_key_file_path) as f:
           read = f.read()
-          api_key = read.replace('\n', '')
-        return api_key
+        self.api_key = read.replace('\n', '')
 
 main()
 
