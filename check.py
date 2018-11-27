@@ -54,7 +54,12 @@ class MalwareFile:
         self.detection_rate =  str(data['positives']) + '/' + str(data['total'])
 
     def set_file_type(self):
-        print subprocess.Popen("file " + MALWARE_DIR + self.file_name, shell=True)
+        proc = subprocess.Popen("file " + MALWARE_DIR + self.file_name, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+        file_type = proc.stdout.readline()
+        proc.poll()
+        file_type_split = file_type.split(":")[-1]
+        file_type = file_type_split.split(",")[0]
+        return file_type
 
 ####################################
 # Output File Class
