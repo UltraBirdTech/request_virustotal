@@ -77,13 +77,13 @@ class OutputFile:
         return 'virus_total_' + str(datetime.now().strftime("%Y%m%d%H%M%S")) + '.txt'
 
     def header(self):
-        return '| ファイル名 | 取得日時 | 検出率 | URL |'
+        return '| ファイル名 | file type | 取得日時 | 検出率 | URL |'
 
     def constitution(self):
-        return '|:--|:--|:--:|:--|'
+        return '|:--|:--|:--|:--:|:--|'
 
     def generate_row(self, malware):
-        return '|' + malware.file_name + '|' + malware.datetime + '|' + malware.detection_rate + '|' + malware.permalink + '|'
+        return '|' + malware.file_name + '|'+ malware.file_type  + '|' + malware.datetime + '|' + malware.detection_rate + '|' + malware.permalink + '|'
 
 class VirusTotal():
     VIRUS_TOTAL_REPORT_URL = 'https://www.virustotal.com/vtapi/v2/file/report'
