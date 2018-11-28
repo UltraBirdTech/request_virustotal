@@ -87,13 +87,13 @@ class OutputFile:
         return 'virus_total_' + str(datetime.now().strftime("%Y%m%d%H%M%S")) + '.txt'
 
     def header(self):
-        return '| ファイル名 | タイプ | 取得日時 | 検出率 | URL |'
+        return '| ファイル名 | タイプ | 取得日時 | 検出率 |'
 
     def constitution(self):
         return '|:--|:--|:--|:--:|:--|'
 
     def generate_row(self, malware):
-        return '|' + malware.file_name + '|'+ malware.file_type  + '|' + malware.datetime + '|' + malware.detection_rate + '|' + malware.permalink + '|'
+        return '|' + '[' + malware.file_name +  '](' + malware.permalink + ')' + '|'+ malware.file_type  + '|' + malware.datetime + '|' + malware.detection_rate + '|'
 
 class VirusTotal():
     VIRUS_TOTAL_REPORT_URL = 'https://www.virustotal.com/vtapi/v2/file/report'
@@ -114,7 +114,7 @@ class VirusTotal():
         else:
             malware.set_permalink(res_json)
             malware.set_detection_rate(res_json)
-            malware.set_file_kind(res_json)
+#            malware.set_file_kind(res_json)
 
     # read api_key from ./api_key.txt
     def set_api_key(self):
