@@ -44,6 +44,7 @@ class MalwareFile:
         self.detection_rate = '-'
         self.permalink = '-'
         self.set_file_type()
+        self.kind = '-'
 
     def set_datetime(self):
         time_float = os.path.getmtime(MALWARE_DIR + self.file_name)
@@ -62,10 +63,13 @@ class MalwareFile:
         file_type_split = file_type.split(":")[-1]
         self.file_type = file_type_split.split(",")[0]
 
-    def set_file_kind(self):
+    def set_file_kind(self, data):
         #something code
         #Output; Torjian, DDos Script
         #Check response code.
+        print self
+        print data
+        exit()
 ####################################
 # Output File Class
 # generate output file for paste a article.
@@ -110,6 +114,7 @@ class VirusTotal():
         else:
             malware.set_permalink(res_json)
             malware.set_detection_rate(res_json)
+            malware.set_file_kind(res_json)
 
     # read api_key from ./api_key.txt
     def set_api_key(self):
