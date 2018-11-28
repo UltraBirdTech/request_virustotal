@@ -83,7 +83,7 @@ class OutputFile:
         return 'virus_total_' + str(datetime.now().strftime("%Y%m%d%H%M%S")) + '.txt'
 
     def header(self):
-        return '| ファイル名 | file type | 取得日時 | 検出率 | URL |'
+        return '| ファイル名 | タイプ | 取得日時 | 検出率 | URL |'
 
     def constitution(self):
         return '|:--|:--|:--|:--:|:--|'
