@@ -41,9 +41,9 @@ class MalwareFile:
         self.set_file_name(f)
         self.set_sha_256(f)
         self.set_datetime()
+        self.set_file_type()
         self.detection_rate = '-'
         self.permalink = '-'
-        self.set_file_type()
         self.kind = '-'
 
     def set_file_name(self, f):
@@ -56,18 +56,19 @@ class MalwareFile:
         time_float = os.path.getmtime(MALWARE_DIR + self.file_name)
         self.datetime = datetime.fromtimestamp(time_float).strftime("%Y/%m/%d %H:%M:%S")
 
-    def set_permalink(self, data):
-        self.permalink = data['permalink']
-
-    def set_detection_rate(self, data):
-        self.detection_rate =  str(data['positives']) + '/' + str(data['total'])
-
     def set_file_type(self):
         proc = subprocess.Popen("file " + MALWARE_DIR + self.file_name, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
         file_type = proc.stdout.readline()
         proc.poll()
         file_type_split = file_type.split(":")[-1]
         self.file_type = file_type_split.split(",")[0]
+
+
+    def set_permalink(self, data):
+        self.permalink = data['permalink']
+
+    def set_detection_rate(self, data):
+        self.detection_rate =  str(data['positives']) + '/' + str(data['total'])
 
     def set_file_kind(self, data):
         #something code
