@@ -63,7 +63,6 @@ class MalwareFile:
         file_type_split = file_type.split(":")[-1]
         self.file_type = file_type_split.split(",")[0]
 
-
     def set_permalink(self, data):
         self.permalink = data['permalink']
 
