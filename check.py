@@ -38,13 +38,16 @@ def main():
 # __init__() f: file information
 class MalwareFile:
     def __init__(self, f):
-        self.file_name = f.name.split("/")[-1]
+        self.set_file_name()
         self.sha256 = hashlib.sha256(f.read()).hexdigest()
         self.set_datetime()
         self.detection_rate = '-'
         self.permalink = '-'
         self.set_file_type()
         self.kind = '-'
+
+    def set_file_name(self):
+        self.file_name = f.name.split("/")[-1]
 
     def set_datetime(self):
         time_float = os.path.getmtime(MALWARE_DIR + self.file_name)
