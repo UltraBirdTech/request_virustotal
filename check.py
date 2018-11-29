@@ -83,6 +83,7 @@ class OutputFile:
     def generate(self, malwares):
         with open(self.generate_file_name(), 'w') as f:
             f.writelines('Total: ' + str(len(malwares)) + "\n")
+            f.writelines("\n")
             f.writelines(self.header() + "\n")
             f.writelines(self.constitution() + "\n")
             for malware in malwares:
