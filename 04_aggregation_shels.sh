@@ -1,6 +1,6 @@
 #!/bin/bash
 
-MALWARE_DOWNLOAD_DIR='/root/work/malware'
+MALWARE_DOWNLOAD_DIR='./downloads'
 HONEYPOT_DIR='home/honey/downloads'
 DOWNLOAD_DIR='data/cowrie/downloads/*'
 

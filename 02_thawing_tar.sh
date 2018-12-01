@@ -9,7 +9,7 @@ echo 'start move a tar file from /root/work/honeypot to /root/work/malware'
 if [ ! -e $DOWNLOAD_DIR/downloads.tar.gz ]
   then
     echo "Not Found File. Please check $DOWNLOAD_DIR/$DOWNLOAD_FILE"
-    exit(0)
+    exit 0
 else
     echo 'Found File'
   fi

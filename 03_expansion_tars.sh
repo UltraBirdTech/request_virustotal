@@ -1,6 +1,6 @@
 #!/bin/bash
 
-MALWARE_DOWNLOAD_DIR='/root/work/malware'
+MALWARE_DOWNLOAD_DIR='./downloads'
 HONEY_POT_DIR='home/honey/downloads'
 
 echo 'start expansion tars'
