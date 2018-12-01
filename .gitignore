@@ -1,2 +1,4 @@
 /api_key.txt
 /01_download.sh
+downloads/*
+!.gitkeep
