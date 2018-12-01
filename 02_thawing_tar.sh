@@ -1,6 +1,5 @@
 #!/bin/bash
 
-HONEYPOT_DIR='./downloads'
 DOWNLOAD_DIR='./downloads'
 MALWARE_DIR='/root/work/malware'
 DOWNLOAD_FILE='downloads.tar.gz'
@@ -10,15 +9,14 @@ echo 'start move a tar file from /root/work/honeypot to /root/work/malware'
 if [ ! -e $DOWNLOAD_DIR/downloads.tar.gz ]
   then
     echo "Not Found File. Please check $DOWNLOAD_DIR/$DOWNLOAD_FILE"
+    exit(0)
 else
-#    mv $HONEYPOT_DIR/$DOWNLOAD_FILE $MALWARE_DIR
-    echo 'test'
+    echo 'Found File'
   fi
 echo 'move a tar file is finishe.'
 
 ######## gunzip tar file #############
 echo 'gunzip tar file'
-#gunzip -v $MALWARE_DIR/$DOWNLOAD_FILE
 gunzip -v $DOWNLOAD_DIR/$DOWNLOAD_FILE
 echo 'gunzip is finish'
 
