@@ -30,7 +30,7 @@ def main():
            virus_total.request(malware)
            malwares.append(malware)
 
-       if virus_total.check_time():
+       if virus_total.check_increment_time():
            print '[LOG] Sleep 65 seconds.'
            sleep(65)
     output_file = OutputFile()
@@ -138,7 +138,7 @@ class VirusTotal():
     def increment_time(self):
         self.request_time+=1
 
-    def check_time(self):
+    def check_increment_time(self):
         return self.request_time != 0 and self.request_time % 4 == 0
 
     # read api_key from ./api_key.txt
