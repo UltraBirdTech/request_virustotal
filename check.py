@@ -116,7 +116,7 @@ class VirusTotal():
     VIRUS_TOTAL_REPORT_URL = 'https://www.virustotal.com/vtapi/v2/file/report'
     def __init__(self):
         self.set_api_key()
-        self.time = 0
+        self.request_time = 0
         print '[LOG] api key: ' + self.api_key
 
     def request(self, malware):
@@ -136,10 +136,10 @@ class VirusTotal():
 #            malware.set_file_kind(res_json)
 
     def increment_time(self):
-        self.time = self.time + 1
+        self.request_time = self.request_time + 1
 
     def check_time(self):
-        return self.time != 0 and self.time % 4 == 0
+        return self.request_time != 0 and self.request_time % 4 == 0
 
     # read api_key from ./api_key.txt
     def set_api_key(self):
