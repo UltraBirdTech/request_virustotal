@@ -24,9 +24,9 @@ def main():
     for i, file in enumerate(file_array):
        with open(file, 'rb') as f:
            malware = MalwareFile(f)
-           print '[LOG] Check: ' + malware.file_name
 
        if malware.check_date():
+           print '[LOG] Check: ' + malware.file_name
            virus_total.request(malware)
            malwares.append(malware)
 
