@@ -129,10 +129,9 @@ class VirusTotal():
         if res_json['response_code'] == 0:
             print '[LOG] RESPONSE CODE IS 0.'
             print res_json
-        else:
-            malware.set_permalink(res_json)
-            malware.set_detection_rate(res_json)
-#            malware.set_file_kind(res_json)
+        malware.set_permalink(res_json)
+        malware.set_detection_rate(res_json)
+#        malware.set_file_kind(res_json)
 
     def increment_request_time(self):
         self.request_time+=1
