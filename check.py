@@ -32,6 +32,8 @@ def main():
            print '[LOG] Check: ' + malware.file_name
            virus_total.request(malware)
            malwares.append(malware)
+       else:
+           print '[LOG] Skip: ' + malware.file_name
 
     output_file = OutputFile()
     output_file.generate(malwares)
