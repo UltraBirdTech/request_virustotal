@@ -48,8 +48,6 @@ class MalwareFile:
         self.set_sha_256(f)
         self.set_datetime()
         self.set_file_type()
-        self.detection_rate = '-'
-        self.permalink = '-'
         self.kind = '-'
 
     def set_file_name(self, f):
