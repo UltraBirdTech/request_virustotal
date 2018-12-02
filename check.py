@@ -29,10 +29,8 @@ def main():
        if malware.check_date():
            virus_total.request(malware)
            malwares.append(malware)
-           print virus_total.time 
 
-       #if (i + 1) % 4 == 0:
-       if (virus_total.time + 1) % 4 == 0:
+       if virus_total.time != 0 and virus_total.time % 4 == 0:
            print '[LOG] Sleep 65 seconds.'
            sleep(65)
     output_file = OutputFile()
