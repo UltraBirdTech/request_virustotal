@@ -8,11 +8,12 @@ import urllib2
 import hashlib
 import glob
 from datetime import datetime
+from datetime import timedelta
 from time import sleep
 import os
 import subprocess
 
-MALWARE_DIR = './downloads/'
+MALWARE_DIR = './downloads/malware/'
 
 def main():
     print 'START SCRIPT'
@@ -24,9 +25,14 @@ def main():
        with open(file, 'rb') as f:
            malware = MalwareFile(f)
            print '[LOG] Check: ' + malware.file_name
-       virus_total.request(malware)
-       malwares.append(malware)
-       if (i + 1) % 4 == 0:
+
+       if malware.check_date():
+           virus_total.request(malware)
+           malwares.append(malware)
+           print virus_total.time 
+
+       #if (i + 1) % 4 == 0:
+       if (virus_total.time + 1) % 4 == 0:
            print '[LOG] Sleep 65 seconds.'
            sleep(65)
     output_file = OutputFile()
@@ -76,6 +82,12 @@ class MalwareFile:
         print self
         print data
         exit()
+
+    def check_date(self):
+        week_ago_date = datetime.now().date() + timedelta(weeks=-1)
+        file_date = datetime.strptime(self.datetime,'%Y/%m/%d %H:%M:%S').date()
+        return week_ago_date <= file_date
+
 ####################################
 # Output File Class
 # generate output file for paste a article.
@@ -106,6 +118,7 @@ class VirusTotal():
     VIRUS_TOTAL_REPORT_URL = 'https://www.virustotal.com/vtapi/v2/file/report'
     def __init__(self):
         self.set_api_key()
+        self.time = 0
         print '[LOG] api key: ' + self.api_key
 
     def request(self, malware):
@@ -114,6 +127,7 @@ class VirusTotal():
         request = urllib2.Request(self.VIRUS_TOTAL_REPORT_URL, data)
         response = urllib2.urlopen(request)
         res_json = json.loads(response.read())
+        self.increment_time()
 
         if res_json['response_code'] == 0:
             print '[LOG] RESPONSE CODE IS 0.'
@@ -122,6 +136,9 @@ class VirusTotal():
             malware.set_permalink(res_json)
             malware.set_detection_rate(res_json)
 #            malware.set_file_kind(res_json)
+
+    def increment_time(self):
+        self.time = self.time + 1
 
     # read api_key from ./api_key.txt
     def set_api_key(self):
