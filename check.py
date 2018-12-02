@@ -62,6 +62,8 @@ class MalwareFile:
         time_float = os.path.getmtime( MALWARE_DIR + self.file_name)
         self.datetime = datetime.fromtimestamp(time_float).strftime("%Y/%m/%d %H:%M:%S")
 
+    # 自分自身のファイルタイプを調査し格納する。
+    # 内部的に Linux の file コマンドを打ち結果を格納する。
     def set_file_type(self):
         proc = subprocess.Popen("file " + MALWARE_DIR + self.file_name, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
         file_type = proc.stdout.readline()
@@ -69,9 +71,15 @@ class MalwareFile:
         file_type_split = file_type.split(":")[-1]
         self.file_type = file_type_split.split(",")[0].replace('\n', '')
 
+    # virus total へのURLを格納する。
+    # ステータスコードが0の場合、'permalink'のハッシュキーは存在しないためエラーになる。
+    # エラーになる前に、キーの存在チェックを行いエラーを回避。
     def set_permalink(self, data):
         self.permalink = data['permalink'] if ('permalink' in data) else '-'
 
+    # virus total の検出率を格納する。
+    # ステータスコードが0の場合、'positives', 'total' のハッシュキーは存在しないためエラーになる。
+    # エラーになる前に、キーの存在チェックを行いエラーを回避。
     def set_detection_rate(self, data):
         self.detection_rate = str(data['positives']) + '/' + str(data['total']) if ('positives' in data) else '-'
 
@@ -83,6 +91,8 @@ class MalwareFile:
         print data
         exit()
 
+    # ファイルの日付が、検査対象の日付に含まれているかの確認。
+    # TODO: 日付に変更してコマンドライン引数で受け取れるようにする。
     def check_date(self):
         week_ago_date = datetime.now().date() + timedelta(weeks=-1)
         file_date = datetime.strptime(self.datetime,'%Y/%m/%d %H:%M:%S').date()
