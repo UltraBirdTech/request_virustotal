@@ -15,6 +15,8 @@ import subprocess
 
 MALWARE_DIR = './downloads/malware/'
 
+################################
+# main method
 def main():
     print 'START SCRIPT'
     file_array = sorted(glob.glob( MALWARE_DIR + '*'), key=os.path.getmtime)
