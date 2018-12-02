@@ -107,10 +107,10 @@ class OutputFile:
         return '| ファイル名 | タイプ | 取得日時 | 検出率 |'
 
     def constitution(self):
-        return '|:--|:--|:--|:--:|:--|'
+        return '|:--|:--|:--|:--:|'
 
     def generate_row(self, malware):
-        return '|' + '[' + malware.file_name +  '](' + malware.permalink + ')' + '|'+ malware.file_type  + '|' + malware.datetime + '|' + malware.detection_rate + '|'
+        return '| [' + malware.file_name +  '](' + malware.permalink + ') |'+ malware.file_type  + '|' + malware.datetime + '|' + malware.detection_rate + '|'
 
 class VirusTotal():
     VIRUS_TOTAL_REPORT_URL = 'https://www.virustotal.com/vtapi/v2/file/report'
