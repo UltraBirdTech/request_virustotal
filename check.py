@@ -12,7 +12,7 @@ from time import sleep
 import os
 import subprocess
 
-MALWARE_DIR = '/root/work/malware/home/honey/downloads/malware/'
+MALWARE_DIR = './downloads/'
 
 def main():
     print 'START SCRIPT'
@@ -53,7 +53,7 @@ class MalwareFile:
         self.sha256 = hashlib.sha256(f.read()).hexdigest()
 
     def set_datetime(self):
-        time_float = os.path.getmtime(MALWARE_DIR + self.file_name)
+        time_float = os.path.getmtime( MALWARE_DIR + self.file_name)
         self.datetime = datetime.fromtimestamp(time_float).strftime("%Y/%m/%d %H:%M:%S")
 
     def set_file_type(self):
