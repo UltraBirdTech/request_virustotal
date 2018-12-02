@@ -26,13 +26,14 @@ def main():
            malware = MalwareFile(f)
 
        if malware.check_date():
+           if virus_total.check_increment_time():
+               print '[LOG] Sleep 65 seconds.'
+               sleep(65)
+
            print '[LOG] Check: ' + malware.file_name
            virus_total.request(malware)
            malwares.append(malware)
 
-       if virus_total.check_increment_time():
-           print '[LOG] Sleep 65 seconds.'
-           sleep(65)
     output_file = OutputFile()
     output_file.generate(malwares)
     print 'END SCRIPT'
