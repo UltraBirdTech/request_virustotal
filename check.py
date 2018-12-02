@@ -21,7 +21,7 @@ def main():
     print '[LOG] File num is: ' + str(len(file_array))
     malwares = []
     virus_total = VirusTotal()
-    for i, file in enumerate(file_array):
+    for file in file_array:
        with open(file, 'rb') as f:
            malware = MalwareFile(f)
 
