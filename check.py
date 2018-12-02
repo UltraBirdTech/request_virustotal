@@ -136,7 +136,7 @@ class VirusTotal():
 #            malware.set_file_kind(res_json)
 
     def increment_time(self):
-        self.request_time = self.request_time + 1
+        self.request_time+=1
 
     def check_time(self):
         return self.request_time != 0 and self.request_time % 4 == 0
