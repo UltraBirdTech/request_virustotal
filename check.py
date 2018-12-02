@@ -117,7 +117,6 @@ class VirusTotal():
     def __init__(self):
         self.set_api_key()
         self.request_time = 0
-        print '[LOG] api key: ' + self.api_key
 
     def request(self, malware):
         parameters = {'resource': malware.sha256, 'apikey': self.api_key}
@@ -147,6 +146,7 @@ class VirusTotal():
         with open(api_key_file_path) as f:
           read = f.read()
         self.api_key = read.replace('\n', '')
+        print '[LOG] api key: ' + self.api_key
 
 main()
 
