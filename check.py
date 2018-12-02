@@ -70,10 +70,10 @@ class MalwareFile:
         self.file_type = file_type_split.split(",")[0]
 
     def set_permalink(self, data):
-        self.permalink = data['permalink']
+        self.permalink = data['permalink'] if ('permalink' in data) else '-'
 
     def set_detection_rate(self, data):
-        self.detection_rate =  str(data['positives']) + '/' + str(data['total'])
+        self.detection_rate = str(data['positives']) + '/' + str(data['total']) if ('positives' in data) else '-'
 
     def set_file_kind(self, data):
         #something code
