@@ -125,7 +125,7 @@ class VirusTotal():
         request = urllib2.Request(self.VIRUS_TOTAL_REPORT_URL, data)
         response = urllib2.urlopen(request)
         res_json = json.loads(response.read())
-        self.increment_time()
+        self.increment_request_time()
 
         if res_json['response_code'] == 0:
             print '[LOG] RESPONSE CODE IS 0.'
@@ -135,7 +135,7 @@ class VirusTotal():
             malware.set_detection_rate(res_json)
 #            malware.set_file_kind(res_json)
 
-    def increment_time(self):
+    def increment_request_time(self):
         self.request_time+=1
 
     def check_request_time(self):
