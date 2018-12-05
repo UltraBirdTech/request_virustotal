@@ -29,7 +29,7 @@ def main():
        if malware.check_date():
            if virus_total.check_request_time():
                print '[LOG] Sleep 65 seconds.'
-               sleep(65)
+               sleep(65) # APIに1分間における使用回数があるため60秒近くsleepする
 
            print '[LOG] Check: ' + malware.file_name
            virus_total.request(malware)
