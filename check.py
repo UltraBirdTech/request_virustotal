@@ -103,6 +103,11 @@ class MalwareFile:
 # generate output file for paste a article.
 class OutputFile:
     def generate(self, malwares):
+        length = len(malwares)
+        if length == 0:
+            print '[LOG] Not Create file: check file num equal zero.'
+            return
+
         with open(self.generate_file_name(), 'w') as f:
             f.writelines('Total: ' + str(len(malwares)) + '\n')
             f.writelines('\n')
