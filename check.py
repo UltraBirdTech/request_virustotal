@@ -127,6 +127,8 @@ class OutputFile:
     def file_constitution(self):
         # something write...
         # I want to automatic.
+        print 'something write'
+
 ####################################
 # Virus Totalに関するClass
 class VirusTotal():
