@@ -109,7 +109,7 @@ class OutputFile:
             return
 
         with open(self.generate_file_name(), 'w') as f:
-            f.writelines('Total: ' + str(len(malwares)) + '\n')
+            f.writelines('Total: ' + str(length) + '\n')
             f.writelines('\n')
             f.writelines(self.header() + '\n')
             f.writelines(self.constitution() + '\n')
