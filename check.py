@@ -124,6 +124,9 @@ class OutputFile:
     def generate_row(self, malware):
         return '| [' + malware.file_name +  '](' + malware.permalink + ') |'+ malware.file_type  + '|' + malware.datetime + '|' + malware.detection_rate + '|'
 
+    def file_constitution(self):
+        # something write...
+        # I want to automatic.
 ####################################
 # Virus Totalに関するClass
 class VirusTotal():
