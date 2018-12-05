@@ -106,10 +106,10 @@ class OutputFile:
         with open(self.generate_file_name(), 'w') as f:
             f.writelines('Total: ' + str(len(malwares)) + '\n')
             f.writelines('\n')
-            f.writelines(self.header() + "\n")
-            f.writelines(self.constitution() + "\n")
+            f.writelines(self.header() + '\n')
+            f.writelines(self.constitution() + '\n')
             for malware in malwares:
-                f.writelines(self.generate_row(malware) + "\n")
+                f.writelines(self.generate_row(malware) + '\n')
 
     def generate_file_name(self):
         # like 'virus_total_20180000000000.txt'
