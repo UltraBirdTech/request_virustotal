@@ -124,12 +124,15 @@ class OutputFile:
     def generate_row(self, malware):
         return '| [' + malware.file_name +  '](' + malware.permalink + ') |'+ malware.file_type  + '|' + malware.datetime + '|' + malware.detection_rate + '|'
 
+####################################
+# Virus Totalに関するClass
 class VirusTotal():
     VIRUS_TOTAL_REPORT_URL = 'https://www.virustotal.com/vtapi/v2/file/report'
     def __init__(self):
         self.set_api_key()
         self.request_time = 0
 
+    # Virus Totalへ実際にリクエストをするメソッド
     def request(self, malware):
         parameters = {'resource': malware.sha256, 'apikey': self.api_key}
         data = urllib.urlencode(parameters)
@@ -145,9 +148,12 @@ class VirusTotal():
         malware.set_detection_rate(res_json)
 #        malware.set_file_kind(res_json)
 
+    # Virus Totalへのリクエスト回数を計算するメソッド
     def increment_request_time(self):
         self.request_time+=1
 
+    # Virus Total へのリクエスト回数をチェックするメソッド
+    # NOTE: virus totalのAPIは1分間に4回までしか使用することができない
     def check_request_time(self):
         return self.request_time != 0 and self.request_time % 4 == 0
 
