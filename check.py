@@ -26,16 +26,17 @@ def main():
        with open(file, 'rb') as f:
            malware = MalwareFile(f)
 
-       if malware.check_date():
-           if virus_total.check_request_time():
-               print '[LOG] Sleep 65 seconds.'
-               sleep(65) # APIに1分間における使用回数があるため60秒近くsleepする
-
-           print '[LOG] Check: ' + malware.file_name
-           virus_total.request(malware)
-           malwares.append(malware)
-       else:
+       if not malware.check_date():
            print '[LOG] Skip: ' + malware.file_name
+           continue
+
+       if virus_total.check_request_time():
+           print '[LOG] Sleep 65 seconds.'
+           sleep(65) # APIに1分間における使用回数があるため60秒近くsleepする
+
+       print '[LOG] Check: ' + malware.file_name
+       virus_total.request(malware)
+       malwares.append(malware)
 
     output_file = OutputFile()
     output_file.generate(malwares)
