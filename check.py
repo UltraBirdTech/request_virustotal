@@ -1,17 +1,17 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import sys
+import glob
+import hashlib
 import json
+import os
+import subprocess
+import sys
 import urllib
 import urllib2
-import hashlib
-import glob
 from datetime import datetime
 from datetime import timedelta
 from time import sleep
-import os
-import subprocess
 
 MALWARE_DIR = './downloads/malware/'
 
