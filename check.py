@@ -54,7 +54,7 @@ class MalwareFile:
         self.kind = '-'
 
     def set_file_name(self, f):
-        self.file_name = f.name.split("/")[-1]
+        self.file_name = f.name.split('/')[-1]
 
     def set_sha_256(self, f):
         self.sha256 = hashlib.sha256(f.read()).hexdigest()
