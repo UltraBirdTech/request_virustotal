@@ -50,13 +50,16 @@ def main():
 # argv class
 class Argv:
     def __init__(self, argv):
-      argv = sys.argv
-      self.check_validation()
-      self.argument = argv[1] # argv[0] is file name "check.py"
+      self.argv = sys.argv
+      # self.check_validation()
+      self.argument = if self.check_validation() 7 else argv[1] # argv[0] is file name "check.py"
 
     def check_validation():
-        #something write
-
+        if (len(self.argv) != 2):
+            print 'Set argument date is 7'
+            return true
+        return false
+            
 #################################
 # マルウェアクラス
 # __init__() f: file information
