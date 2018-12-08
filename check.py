@@ -96,7 +96,7 @@ class MalwareFile:
     # ファイルの日付が、検査対象の日付に含まれているかの確認。
     # TODO: 日付に変更してコマンドライン引数で受け取れるようにする。
     def check_date(self):
-        week_ago_date = datetime.now().date() + timedelta(weeks=-1)
+        week_ago_date = datetime.now().date() + timedelta(weeks=-1) # change here.
         file_date = datetime.strptime(self.datetime,'%Y/%m/%d %H:%M:%S').date()
         return week_ago_date <= file_date
 
