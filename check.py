@@ -19,6 +19,9 @@ MALWARE_DIR = './downloads/malware/'
 # main method
 def main():
     print '[LOG] START SCRIPT'
+    argv = sys.argv
+    print str(argv)
+    print str(argv[1])
     file_array = sorted(glob.glob( MALWARE_DIR + '*'), key=os.path.getmtime)
     print '[LOG] target file num is :' + str(len(file_array))
     malwares = []
@@ -42,6 +45,17 @@ def main():
     output_file = OutputFile()
     output_file.generate(malwares)
     print '[LOG] END SCRIPT'
+
+################################
+# argv class
+class Argv:
+    def __init__(self, argv):
+      argv = sys.argv
+      self.check_validation()
+      self.argument = argv[1] # argv[0] is file name "check.py"
+
+    def check_validation():
+        #something write
 
 #################################
 # マルウェアクラス
