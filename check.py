@@ -18,7 +18,7 @@ MALWARE_DIR = './downloads/malware/'
 ################################
 # main method
 def main():
-    print 'START SCRIPT'
+    print '[LOG] START SCRIPT'
     file_array = sorted(glob.glob( MALWARE_DIR + '*'), key=os.path.getmtime)
     malwares = []
     virus_total = VirusTotal()
@@ -40,7 +40,7 @@ def main():
 
     output_file = OutputFile()
     output_file.generate(malwares)
-    print 'END SCRIPT'
+    print '[LOG] END SCRIPT'
 
 #################################
 # マルウェアクラス
