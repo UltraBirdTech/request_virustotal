@@ -19,9 +19,6 @@ MALWARE_DIR = './downloads/malware/'
 # main method
 def main():
     print '[LOG] START SCRIPT'
-    #argv = sys.argv
-    #print str(argv)
-    #print str(argv[1])
     argv = Argv()
     file_array = sorted(glob.glob( MALWARE_DIR + '*'), key=os.path.getmtime)
     print '[LOG] target file num is :' + str(len(file_array))
@@ -114,7 +111,6 @@ class MalwareFile:
         exit()
 
     # ファイルの日付が、検査対象の日付に含まれているかの確認。
-    # TODO: 日付に変更してコマンドライン引数で受け取れるようにする。
     def check_date(self, date):
         week_ago_date = datetime.now().date() + timedelta(days=-int(date)) # change here.
         file_date = datetime.strptime(self.datetime,'%Y/%m/%d %H:%M:%S').date()
