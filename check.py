@@ -31,7 +31,7 @@ def main():
        with open(file, 'rb') as f:
            malware = MalwareFile(f)
 
-       if not malware.check_date(argv.argument):
+       if not malware.check_date(argv.argument_date):
            print '[LOG] Skip: ' + malware.file_name
            continue
 
@@ -50,16 +50,18 @@ def main():
 ################################
 # argv class
 class Argv:
+    DEFAULT_DATE = 7
     def __init__(self):
       self.argv = sys.argv
-      # self.check_validation()
-      self.argument = 7 if (self.check_validation()) else self.argv[1] # argv[0] is file name "check.py"
+      self.set_check_date()
 
-    def check_validation(self):
+    def set_check_date(self):
         if (len(self.argv) != 2):
             print 'argument date is nothing.'
-            return True
-        return False
+            self.argument_date = DEFAULT_DATE
+            return
+
+        self.argument_date = self.argv[1]
             
 #################################
 # マルウェアクラス
