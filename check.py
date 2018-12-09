@@ -19,9 +19,10 @@ MALWARE_DIR = './downloads/malware/'
 # main method
 def main():
     print '[LOG] START SCRIPT'
-    argv = sys.argv
-    print str(argv)
-    print str(argv[1])
+    #argv = sys.argv
+    #print str(argv)
+    #print str(argv[1])
+    argv = Argv()
     file_array = sorted(glob.glob( MALWARE_DIR + '*'), key=os.path.getmtime)
     print '[LOG] target file num is :' + str(len(file_array))
     malwares = []
@@ -30,7 +31,7 @@ def main():
        with open(file, 'rb') as f:
            malware = MalwareFile(f)
 
-       if not malware.check_date():
+       if not malware.check_date(argv.argument):
            print '[LOG] Skip: ' + malware.file_name
            continue
 
@@ -49,16 +50,16 @@ def main():
 ################################
 # argv class
 class Argv:
-    def __init__(self, argv):
+    def __init__(self):
       self.argv = sys.argv
       # self.check_validation()
-      self.argument = if self.check_validation() 7 else argv[1] # argv[0] is file name "check.py"
+      self.argument = 7 if (self.check_validation()) else self.argv[1] # argv[0] is file name "check.py"
 
-    def check_validation():
+    def check_validation(self):
         if (len(self.argv) != 2):
-            print 'Set argument date is 7'
-            return true
-        return false
+            print 'argument date is nothing.'
+            return True
+        return False
             
 #################################
 # マルウェアクラス
@@ -112,8 +113,8 @@ class MalwareFile:
 
     # ファイルの日付が、検査対象の日付に含まれているかの確認。
     # TODO: 日付に変更してコマンドライン引数で受け取れるようにする。
-    def check_date(self):
-        week_ago_date = datetime.now().date() + timedelta(weeks=-1) # change here.
+    def check_date(self, date):
+        week_ago_date = datetime.now().date() + timedelta(days=-int(date)) # change here.
         file_date = datetime.strptime(self.datetime,'%Y/%m/%d %H:%M:%S').date()
         return week_ago_date <= file_date
 
