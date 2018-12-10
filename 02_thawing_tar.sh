@@ -1,11 +1,9 @@
 #!/bin/bash
 
 DOWNLOAD_DIR='./downloads'
-MALWARE_DIR='/root/work/malware'
 DOWNLOAD_FILE='downloads.tar.gz'
 TAR_FILE='downloads.tar'
 
-echo 'start move a tar file from /root/work/honeypot to /root/work/malware'
 if [ ! -e $DOWNLOAD_DIR/downloads.tar.gz ]
   then
     echo "Not Found File. Please check $DOWNLOAD_DIR/$DOWNLOAD_FILE"
