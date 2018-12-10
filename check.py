@@ -156,9 +156,10 @@ class OutputFile:
 # Virus Totalに関するClass
 class VirusTotal():
     VIRUS_TOTAL_REPORT_URL = 'https://www.virustotal.com/vtapi/v2/file/report'
+    FIRTS_REQUEST_TIME = 0
     def __init__(self):
         self.set_api_key()
-        self.request_time = 0
+        self.request_time = self.FIRTS_REQUEST_TIME
 
     # Virus Totalへ実際にリクエストをするメソッド
     def request(self, malware):
