@@ -72,8 +72,12 @@ class MalwareFile:
         self.kind = '-'
 
     def set_file_name(self, f):
-        # TODO: add char limit. if char size is too long, char should become short.
         self.file_name = f.name.split('/')[-1]
+        if 10 < len(self.file_name):
+          self.display_file_name = self.file_name[0:9] + '...'
+          return
+
+        self.display_file_name = self.file_name
 
     def set_sha_256(self, f):
         self.sha256 = hashlib.sha256(f.read()).hexdigest()
@@ -146,7 +150,7 @@ class OutputFile:
         return '|:--|:--|:--|:--:|'
 
     def generate_row(self, malware):
-        return '| [' + malware.file_name +  '](' + malware.permalink + ') |'+ malware.file_type  + '|' + malware.datetime + '|' + malware.detection_rate + '|'
+        return '| [' + malware.display_file_name +  '](' + malware.permalink + ') |'+ malware.file_type  + '|' + malware.datetime + '|' + malware.detection_rate + '|'
 
     def file_constitution(self):
         # something write...
