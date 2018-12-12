@@ -164,6 +164,7 @@ class OutputFile:
 class VirusTotal():
     VIRUS_TOTAL_REPORT_URL = 'https://www.virustotal.com/vtapi/v2/file/report'
     DEFAULT_REQUEST_TIME = 0
+    API_LIMIT_TIME = 4
     def __init__(self):
         self.set_api_key()
         self.request_time = self.DEFAULT_REQUEST_TIME
@@ -174,9 +175,14 @@ class VirusTotal():
         data = urllib.urlencode(parameters)
         request = urllib2.Request(self.VIRUS_TOTAL_REPORT_URL, data)
         response = urllib2.urlopen(request)
+        print(response.read())
         res_json = json.loads(response.read())
+        print(res_json)
         self.increment_request_time()
 
+
+        # reverse, response code == 1
+        # add error hudling about error from api
         if res_json['response_code'] == 0:
             print '[LOG] RESPONSE CODE IS 0.'
             print res_json
@@ -191,7 +197,7 @@ class VirusTotal():
     # Virus Total へのリクエスト回数をチェックするメソッド
     # NOTE: virus totalのAPIは1分間に4回までしか使用することができない
     def check_request_time(self):
-        return self.request_time != 0 and self.request_time % 4 == 0
+        return self.request_time != 0 and self.request_time % self.API_LIMIT_TIME == 0
 
     # read api_key from ./api_key.txt
     def set_api_key(self):
