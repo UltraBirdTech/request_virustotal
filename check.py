@@ -72,6 +72,7 @@ class MalwareFile:
         self.kind = '-'
 
     def set_file_name(self, f):
+        # TODO: add char limit. if char size is too long, char should become short.
         self.file_name = f.name.split('/')[-1]
 
     def set_sha_256(self, f):
