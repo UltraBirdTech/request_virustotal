@@ -109,14 +109,6 @@ class MalwareFile:
     def set_detection_rate(self, data):
         self.detection_rate = str(data['positives']) + '/' + str(data['total']) if ('positives' in data) else '-'
 
-    def set_file_kind(self, data):
-        #something code
-        #Output; Torjian, DDos Script
-        #Check response code.
-        print self
-        print data
-        exit()
-
     # ファイルの日付が、検査対象の日付に含まれているかの確認。
     def check_date(self, date):
         week_ago_date = datetime.now().date() + timedelta(days=-int(date)) # change here.
@@ -186,7 +178,6 @@ class VirusTotal():
             print res_json
         malware.set_permalink(res_json)
         malware.set_detection_rate(res_json)
-#        malware.set_file_kind(res_json)
 
     # Virus Totalへのリクエスト回数を計算するメソッド
     def increment_request_time(self):
