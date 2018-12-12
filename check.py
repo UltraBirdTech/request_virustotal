@@ -175,9 +175,7 @@ class VirusTotal():
         data = urllib.urlencode(parameters)
         request = urllib2.Request(self.VIRUS_TOTAL_REPORT_URL, data)
         response = urllib2.urlopen(request)
-        print(response.read())
         res_json = json.loads(response.read())
-        print(res_json)
         self.increment_request_time()
 
 
