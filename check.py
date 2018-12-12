@@ -170,12 +170,11 @@ class VirusTotal():
         res_json = json.loads(response.read())
         self.increment_request_time()
 
-
-        # reverse, response code == 1
         # add error hudling about error from api
         if res_json['response_code'] == 0:
             print '[LOG] RESPONSE CODE IS 0.'
             print res_json
+
         malware.set_permalink(res_json)
         malware.set_detection_rate(res_json)
 
