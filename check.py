@@ -54,7 +54,7 @@ class Argv:
 
     def set_check_date(self):
         if (len(self.argv) != 2):
-            print 'argument date is nothing so, set default dat:' + str(self.DEFAULT_DATE)
+            print 'argument date is nothing so, set default date:' + str(self.DEFAULT_DATE)
             self.argument_date = self.DEFAULT_DATE
             return
 
