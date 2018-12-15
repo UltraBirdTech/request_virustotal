@@ -138,13 +138,13 @@ class OutputFile:
         return 'virus_total_' + str(datetime.now().strftime('%Y%m%d%H%M%S')) + '.txt'
 
     def header(self):
-        return '| ファイル名 | タイプ | 取得日時 | 検出率 |'
+        return '| ファイル名 | 取得日時 | タイプ| 検出率 |'
 
     def constitution(self):
         return '|:--|:--|:--|:--:|'
 
     def generate_row(self, malware):
-        return '| [' + malware.display_file_name +  '](' + malware.permalink + ') |'+ malware.file_type  + '|' + malware.datetime + '|' + malware.detection_rate + '|'
+        return '| [' + malware.display_file_name +  '](' + malware.permalink + ') |'+ malware.datetime  + '|' + malware.file_type + '|' + malware.detection_rate + '|'
 
     def file_constitution(self):
         # something write...
