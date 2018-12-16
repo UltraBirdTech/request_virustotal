@@ -85,7 +85,7 @@ class MalwareFile:
         self.sha256 = hashlib.sha256(f.read()).hexdigest()
 
     def set_datetime(self):
-        time_float = os.path.getmtime( MALWARE_DIR + self.file_name)
+        time_float = os.path.getmtime( MALWARE_DIR + self.file_name )
         self.datetime = datetime.fromtimestamp(time_float).strftime('%Y/%m/%d %H:%M:%S')
 
     # 自分自身のファイルタイプを調査し格納する。
