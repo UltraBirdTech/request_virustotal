@@ -185,7 +185,7 @@ class VirusTotal():
     # Virus Total へのリクエスト回数をチェックするメソッド
     # NOTE: virus totalのAPIは1分間に4回までしか使用することができない
     def check_request_time(self):
-        return (self.request_time != 0) and ((self.request_time % self.API_LIMIT_TIME) == 0)
+        return (self.request_time != 0) and ((self.request_time % self.API_LIMIT_TIME) == 0 )
 
     # read api_key from ./api_key.txt
     def set_api_key(self):
