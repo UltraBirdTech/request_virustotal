@@ -20,7 +20,7 @@ MALWARE_DIR = './downloads/malware/'
 def main():
     print '[LOG] START SCRIPT'
     argv = Argv()
-    file_array = sorted(glob.glob( MALWARE_DIR + '*'), key=os.path.getmtime)
+    file_array = sorted(glob.glob( MALWARE_DIR + '*' ), key=os.path.getmtime)
     print '[LOG] target file num is :' + str(len(file_array))
     malwares = []
     virus_total = VirusTotal()
