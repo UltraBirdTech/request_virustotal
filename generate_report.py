@@ -20,7 +20,7 @@ MALWARE_DIR = './downloads/malware/'
 def main():
     print '[LOG] START SCRIPT'
     argv = Argv()
-    file_array = sorted(glob.glob( MALWARE_DIR + '*'), key=os.path.getmtime)
+    file_array = sorted(glob.glob( MALWARE_DIR + '*' ), key=os.path.getmtime)
     print '[LOG] target file num is :' + str(len(file_array))
     malwares = []
     virus_total = VirusTotal()
@@ -53,6 +53,7 @@ class Argv:
       self.set_check_date()
 
     def set_check_date(self):
+        # 引数が存在しなければデフォルト日数を設定
         if (len(self.argv) != 2):
             print 'argument date is nothing so, set default date:' + str(self.DEFAULT_DATE)
             self.argument_date = self.DEFAULT_DATE
