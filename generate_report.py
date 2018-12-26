@@ -196,4 +196,3 @@ class VirusTotal():
         print '[LOG] api key: ' + self.api_key
 
 main()
-
