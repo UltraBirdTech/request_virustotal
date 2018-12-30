@@ -16,7 +16,7 @@ from time import sleep
 MALWARE_DIR = './downloads/malware/'
 
 ################################
-# main method
+# メインメソッド
 def main():
     print '[LOG] START SCRIPT'
     argv = Argv()
