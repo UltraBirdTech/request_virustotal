@@ -46,6 +46,7 @@ def main():
 
 ################################
 # argv class
+# 引数を管理するクラス
 class Argv:
     DEFAULT_DATE = 7
     def __init__(self):
