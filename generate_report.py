@@ -13,15 +13,16 @@ from datetime import datetime
 from datetime import timedelta
 from time import sleep
 
-MALWARE_DIR = './downloads/malware/'
+#MALWARE_DIR = './downloads/malware/'
+MALWARE_DIR = './dionaea/downloads/malware/'
 
 ################################
 # メインメソッド
 def main():
-    print '[LOG] START SCRIPT'
+    print('[LOG] START SCRIPT')
     argv = Argv()
     file_array = sorted(glob.glob( MALWARE_DIR + '*' ), key=os.path.getmtime)
-    print '[LOG] target file num is :' + str(len(file_array))
+    print('[LOG] target file num is :' + str(len(file_array)))
     malwares = []
     virus_total = VirusTotal()
     for file in file_array:
@@ -29,20 +30,20 @@ def main():
            malware = MalwareFile(f)
 
        if not malware.check_date(argv.argument_date):
-           print '[LOG] Skip: ' + malware.file_name
+           print('[LOG] Skip: ' + malware.file_name)
            continue
 
        if virus_total.check_request_time():
-           print '[LOG] Sleep 65 seconds.'
+           print('[LOG] Sleep 65 seconds.')
            sleep(65) # APIに1分間における使用回数があるため60秒近くsleepする
 
-       print '[LOG] Check: ' + malware.file_name
+       print('[LOG] Check: ' + malware.file_name)
        virus_total.request(malware)
        malwares.append(malware)
 
     output_file = OutputFile()
     output_file.generate(malwares)
-    print '[LOG] END SCRIPT'
+    print('[LOG] END SCRIPT')
 
 ################################
 # argv class
@@ -56,7 +57,7 @@ class Argv:
     def set_check_date(self):
         # 引数が存在しなければデフォルト日数を設定
         if (len(self.argv) != 2):
-            print 'argument date is nothing. Set default date:' + str(self.DEFAULT_DATE)
+            print('argument date is nothing. Set default date:' + str(self.DEFAULT_DATE))
             self.argument_date = self.DEFAULT_DATE
             return
 
@@ -124,7 +125,7 @@ class OutputFile:
     def generate(self, malwares):
         length = len(malwares)
         if length == 0:
-            print '[LOG] Not Create file: check file num equal zero.'
+            print('[LOG] Not Create file: check file num equal zero.')
             return
 
         with open(self.generate_file_name(), 'w') as f:
@@ -169,8 +170,8 @@ class VirusTotal():
 
         # add error hudling about error from api
         if res_json['response_code'] == 0:
-            print '[LOG] RESPONSE CODE IS 0.'
-            print res_json
+            print('[LOG] RESPONSE CODE IS 0.')
+            print(res_json)
 
         malware.set_permalink(res_json)
         malware.set_detection_rate(res_json)
@@ -190,6 +191,6 @@ class VirusTotal():
         with open(api_key_file_path) as f:
           read = f.read()
         self.api_key = read.replace('\n', '')
-        print '[LOG] api key: ' + self.api_key
+        print('[LOG] api key: ' + self.api_key)
 
 main()
