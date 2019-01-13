@@ -1,10 +1,10 @@
 #!/bin/bash
 
 DOWNLOAD_DIR='./downloads'
-DOWNLOAD_FILE='downloads.tar.gz'
-TAR_FILE='downloads.tar'
+DOWNLOAD_FILE='dionaea_malwares.tar.gz'
+TAR_FILE='dionaea_malwares.tar'
 
-if [ ! -e $DOWNLOAD_DIR/downloads.tar.gz ]
+if [ ! -e $DOWNLOAD_DIR/dionaea_malwares.tar.gz ]
   then
     echo "Not Found File. Please check $DOWNLOAD_DIR/$DOWNLOAD_FILE"
     exit 0
