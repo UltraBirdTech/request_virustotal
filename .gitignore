@@ -1,5 +1,6 @@
 /api_key.txt
 /cowrie/01_download.sh
 /dionaea/01_download.sh
-downloads/*
+/cowrie/downloads/*
+/dionaea/downloads/*
 !.gitkeep
