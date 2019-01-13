@@ -16,16 +16,12 @@ from datetime import datetime
 from datetime import timedelta
 from time import sleep
 
-MALWARE_DIR = './cowrie/downloads/malware/'
-#MALWARE_DIR = './dionaea/downloads/malware/'
-
 ################################
 # メインメソッド
 def main():
     print('[LOG] START SCRIPT')
     argv = Argv()
     honey = kind_of_honey(argv)
-    print(honey.path)
     file_array = sorted(glob.glob( honey.path + '*' ), key=os.path.getmtime)
     print('[LOG] target file num is :' + str(len(file_array)))
     malwares = []
@@ -58,9 +54,7 @@ class Argv:
     DEFAULT_HONEY = 'cowrie'
     def __init__(self):
       self.argv = sys.argv
-      print(sys.argv)
       self.set_kind_of_honey()
-      print(self.honey)
       self.set_check_date()
 
     def set_kind_of_honey(self):
@@ -87,8 +81,6 @@ class Argv:
         self.argument_date = self.argv[2]
 
 def kind_of_honey(argv):
-    print('================')
-    print(argv.honey) 
     if (argv.honey == 'cowrie'):
        honey = Cowrie()
     elif (argv.honey == 'dionaea'):
@@ -96,7 +88,6 @@ def kind_of_honey(argv):
     else:
        print('error')
        exit()
-    print('check now') 
     return honey
             
 #################################
