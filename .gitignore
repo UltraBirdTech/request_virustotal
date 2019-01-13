@@ -1,4 +1,5 @@
 /api_key.txt
 /01_download.sh
+/dionaea/01_download.sh
 downloads/*
 !.gitkeep
