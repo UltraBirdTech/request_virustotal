@@ -20,7 +20,7 @@ else
 echo 'aggregation files.'
 for i in `seq $folder_num`
 do
-  cp -pu $MALWARE_DOWNLOAD_DIR/$HONEYPOT_DIR/data$i/$DOWNLOAD_DIR $MALWARE_DOWNLOAD_DIR/malware
+  cp -p $MALWARE_DOWNLOAD_DIR/$HONEYPOT_DIR/data$i/$DOWNLOAD_DIR $MALWARE_DOWNLOAD_DIR/malware
 done
 
 echo '[FINISH]aggregnation shell.'
