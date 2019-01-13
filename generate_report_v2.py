@@ -13,20 +13,21 @@ from datetime import datetime
 from datetime import timedelta
 from time import sleep
 
-MALWARE_DIR = './downloads/malware/'
+# MALWARE_DIR = './downloads/malware/'
 
 ################################
 # main method
 def main():
     print '[LOG] START SCRIPT'
     argv = Argv()
-    file_array = sorted(glob.glob( MALWARE_DIR + '*' ), key=os.path.getmtime)
+    honey = kind_of_honey(argv)
+    file_array = sorted(glob.glob( honey.path + '*' ), key=os.path.getmtime)
     print '[LOG] target file num is :' + str(len(file_array))
     malwares = []
     virus_total = VirusTotal()
     for file in file_array:
        with open(file, 'rb') as f:
-           malware = MalwareFile(f)
+           malware = MalwareFile(f, honey)
 
        if not malware.check_date(argv.argument_date):
            print '[LOG] Skip: ' + malware.file_name
@@ -41,7 +42,7 @@ def main():
        malwares.append(malware)
 
     output_file = OutputFile()
-    output_file.generate(malwares)
+    output_file.generate(malwares, honey)
     print '[LOG] END SCRIPT'
 
 ################################
@@ -50,27 +51,52 @@ class Argv:
     DEFAULT_DATE = 7
     def __init__(self):
       self.argv = sys.argv
+      self.set_kind_of_honey() 
       self.set_check_date()
+
+    def set_kind_of_honey(self):
+        if (len(self.argv) < 2):
+            self.honey = 'cowrie'
+            return
+
+        if (self.argv[1] == 'c'):
+            self.honey = 'cowrie'
+        elif (self.argv[1] == 'd'):
+            self.honey = 'dionaea'
+        else:
+            exit()
 
     def set_check_date(self):
         # 引数が存在しなければデフォルト日数を設定
-        if (len(self.argv) != 2):
+        if (len(self.argv) < 2):
             print 'argument date is nothing so, set default date:' + str(self.DEFAULT_DATE)
             self.argument_date = self.DEFAULT_DATE
             return
 
-        self.argument_date = self.argv[1]
+        self.argument_date = self.argv[2]
+
+def kind_of_honey(argv):
+    if (argv.honey == 'cowrie'):
+        honey = Cowrie()
+    elif (argv.honey == 'dionaea'):
+        honey = Dionaea()
+    else:
+        print 'error'
+        exit()
+    print honey
+    print honey.path
+    return honey
             
 #################################
 # マルウェアクラス
 # __init__() f: file information
 class MalwareFile:
     FILE_NAME_LIMIT = 10
-    def __init__(self, f):
+    def __init__(self, f, honey):
         self.set_file_name(f)
         self.set_sha_256(f)
-        self.set_datetime()
-        self.set_file_type()
+        self.set_datetime(honey)
+        self.set_file_type(honey)
         self.kind = '-'
 
     def set_file_name(self, f):
@@ -85,14 +111,14 @@ class MalwareFile:
     def set_sha_256(self, f):
         self.sha256 = hashlib.sha256(f.read()).hexdigest()
 
-    def set_datetime(self):
-        time_float = os.path.getmtime( MALWARE_DIR + self.file_name )
+    def set_datetime(self, honey):
+        time_float = os.path.getmtime( honey.path + self.file_name )
         self.datetime = datetime.fromtimestamp(time_float).strftime('%Y/%m/%d %H:%M:%S')
 
     # 自分自身のファイルタイプを調査し格納する。
     # 内部的に Linux の file コマンドを打ち結果を格納する。
-    def set_file_type(self):
-        proc = subprocess.Popen( 'file ' + MALWARE_DIR + self.file_name, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT )
+    def set_file_type(self, honey):
+        proc = subprocess.Popen( 'file ' + honey.path + self.file_name, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT )
         file_type = proc.stdout.readline()
         proc.poll()
         file_type_split = file_type.split(':')[-1]
@@ -120,13 +146,14 @@ class MalwareFile:
 # Output File Class
 # generate output file for paste a article.
 class OutputFile:
-    def generate(self, malwares):
+    def generate(self, malwares, honey):
         length = len(malwares)
         if length == 0:
             print '[LOG] Not Create file: check file num equal zero.'
             return
 
-        with open(self.generate_file_name(), 'w') as f:
+        with open(self.generate_file_name(honey), 'w') as f:
+            f.writelines('##' + honey.title() + '\n')
             f.writelines('Total: ' + str(length) + '\n')
             f.writelines('\n')
             f.writelines(self.header() + '\n')
@@ -134,9 +161,10 @@ class OutputFile:
             for malware in malwares:
                 f.writelines(self.generate_row(malware) + '\n')
 
-    def generate_file_name(self):
+    def generate_file_name(self, honey):
         # like 'virus_total_20180000000000.txt'
-        return 'virus_total_' + str(datetime.now().strftime('%Y%m%d%H%M%S')) + '.txt'
+        # return 'virus_total_' + str(datetime.now().strftime('%Y%m%d%H%M%S')) + '.txt'
+        return honey.file_name()
 
     def header(self):
         return '| ファイル名 | 取得日時 | タイプ| 検出率 |'
@@ -190,5 +218,25 @@ class VirusTotal():
           read = f.read()
         self.api_key = read.replace('\n', '')
         print '[LOG] api key: ' + self.api_key
+
+class Cowrie():
+    def __init__(self):
+        self.path = './cowrie/downloads/malware/'
+
+    def file_name(self):
+        return 'cowire_virus_total_' + str(datetime.now().strftime('%Y%m%d%H%M%S')) + '.txt'
+
+    def title(self):
+        return 'Cowrie'
+
+class Dionaea():
+    def __init__(self):
+        self.path = './dionaea/downloads/malware/'
+
+    def file_name(self):
+        return 'dinoaea_virus_total_' + str(datetime.now().strftime('%Y%m%d%H%M%S')) + '.txt'
+
+    def title(self):
+        return 'Dinoaea'
 
 main()
