@@ -1,7 +1,7 @@
 #!/bin/bash
 
 MALWARE_DOWNLOAD_DIR='./downloads'
-HONEY_POT_DIR='home/honey/downloads'
+HONEY_POT_DIR='home/honey/dionaea_malwares'
 
 echo 'start expansion tars'
 num=$1
@@ -19,13 +19,13 @@ fi
 
 for i in `seq $num`
 do
-gunzip -v $MALWARE_DOWNLOAD_DIR/$HONEY_POT_DIR/downloads.tgz.$i.gz
+gunzip -v $MALWARE_DOWNLOAD_DIR/$HONEY_POT_DIR/binaries.tgz.$i.gz
 if [ ! -e $MALWARE_DOWNLOAD_DIR/$HONEY_POT_DIR/data$i ]
   then
     echo 'create folder'
     mkdir $MALWARE_DOWNLOAD_DIR/$HONEY_POT_DIR/data$i
 fi
-tar -xzvf $MALWARE_DOWNLOAD_DIR/$HONEY_POT_DIR/downloads.tgz.$i -C $MALWARE_DOWNLOAD_DIR/$HONEY_POT_DIR/data$i
+tar -xzvf $MALWARE_DOWNLOAD_DIR/$HONEY_POT_DIR/binaries.tgz.$i -C $MALWARE_DOWNLOAD_DIR/$HONEY_POT_DIR/data$i
 done
 
 echo 'finish expansiton tars'

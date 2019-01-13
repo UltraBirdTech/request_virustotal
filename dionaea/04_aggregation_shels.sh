@@ -1,8 +1,8 @@
 #!/bin/bash
 
 MALWARE_DOWNLOAD_DIR='./downloads'
-HONEYPOT_DIR='home/honey/downloads'
-DOWNLOAD_DIR='data/cowrie/downloads/*'
+HONEYPOT_DIR='home/honey/dionaea_malwares'
+DOWNLOAD_DIR='data/dionaea/binaries/*'
 
 folder_num=$(ls $MALWARE_DOWNLOAD_DIR/$HONEYPOT_DIR | grep data* | wc -l)
 
@@ -19,8 +19,8 @@ else
 
 echo 'aggregation files.'
 for i in `seq $folder_num`
-do
-  cp -pu $MALWARE_DOWNLOAD_DIR/$HONEYPOT_DIR/data$i/$DOWNLOAD_DIR $MALWARE_DOWNLOAD_DIR/malware
+do 
+  cp -p $MALWARE_DOWNLOAD_DIR/$HONEYPOT_DIR/data$i/$DOWNLOAD_DIR $MALWARE_DOWNLOAD_DIR/malware
 done
 
 echo '[FINISH]aggregnation shell.'
