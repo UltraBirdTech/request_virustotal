@@ -1,6 +1,0 @@
-/api_key.txt
-/dionaea/01_download.sh
-/cowrie/01_download.sh
-/cowrie/downloads/*
-/dionaea/downloads/*
-!.gitkeep
