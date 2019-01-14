@@ -220,7 +220,6 @@ class VirusTotal():
         self.api_key = read.replace('\n', '')
         print('[LOG] api key: ' + self.api_key)
 
-
 class Cowrie():
     def __init__(self):
       self.path = './cowrie/downloads/malware/'
@@ -229,7 +228,6 @@ class Cowrie():
         return 'cowrie_virus_total_' + str(datetime.now().strftime('%Y%m%d%H%M%S')) + '.txt'
       
     def title(self):
-        print('ktkr')
         return 'Cowrie'
 
 class Dionaea():
