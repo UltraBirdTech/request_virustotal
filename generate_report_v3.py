@@ -59,16 +59,9 @@ class Argv:
     def set_kind_of_honey(self):
         if(len(self.argv) < 2):
             print('argument honey is nothing. Set default honey:' + str(self.DEFAULT_HONEY))
-            self.honey = 'cowrie'
+            self.honey = self.argv[1] 
             return
-        
-        if (self.argv[1] == 'c'):
-            self.honey = 'cowrie'
-        elif (self.argv[1] == 'd'):
-            self.honey = 'dionaea'
-        else:
-            print('please set argument c or d for first argv')
-            exit()
+        self.honey = self.argv[1]
 
     def set_check_date(self):
         # 引数が存在しなければデフォルト日数を設定
