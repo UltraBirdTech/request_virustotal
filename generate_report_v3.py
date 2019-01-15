@@ -73,9 +73,9 @@ class Argv:
         self.argument_date = self.argv[2]
 
 def kind_of_honey(argv):
-    if (argv.honey == 'cowrie'):
+    if (argv.honey == 'c'):
        honey = Cowrie()
-    elif (argv.honey == 'dionaea'):
+    elif (argv.honey == 'd'):
        honey = Dionaea()
     else:
        print('error')
