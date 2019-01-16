@@ -50,7 +50,7 @@ def main():
 # 引数を管理するクラス
 class Argv:
     DEFAULT_DATE = 7
-    DEFAULT_HONEY = 'cowrie'
+    DEFAULT_HONEY = 'c'
     def __init__(self):
       self.argv = sys.argv
       self.set_kind_of_honey()
@@ -59,7 +59,7 @@ class Argv:
     def set_kind_of_honey(self):
         if(len(self.argv) < 2):
             print('argument honey is nothing. Set default honey:' + str(self.DEFAULT_HONEY))
-            self.honey = 'c'
+            self.honey = DEFAULT_HONEY
             return
         self.honey = self.argv[1]
 
