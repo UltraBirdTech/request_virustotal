@@ -59,7 +59,7 @@ class Argv:
     def set_kind_of_honey(self):
         if(len(self.argv) < 2):
             print('argument honey is nothing. Set default honey:' + str(self.DEFAULT_HONEY))
-            self.honey = DEFAULT_HONEY
+            self.honey = self.DEFAULT_HONEY
             return
         self.honey = self.argv[1]
 
