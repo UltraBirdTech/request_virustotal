@@ -73,6 +73,8 @@ class Argv:
         self.argument_date = self.argv[2]
 
 def kind_of_honey(argv):
+    honeys = [ Cowrie(), Dionaea()]
+    
     if (argv.honey == Cowrie().__class__.__name__[0].lower()):
        honey = Cowrie()
     elif (argv.honey == Dionaea().__class__.__name__[0].lower()):
@@ -217,6 +219,9 @@ class Cowrie():
     def __init__(self):
       self.path = './cowrie/downloads/malware/'
 
+    def first_char(self):
+      return self.__class__.__name__[0].lower()
+
     def file_name(self):
         return 'cowrie_virus_total_' + str(datetime.now().strftime('%Y%m%d%H%M%S')) + '.txt'
       
@@ -226,6 +231,9 @@ class Cowrie():
 class Dionaea():
     def __init__(self):
       self.path = './dionaea/downloads/malware/'
+
+    def first_char(self):
+      return self.__class__.__name__[0].lower()
 
     def file_name(self):
         return 'dionaea_virus_total_' + str(datetime.now().strftime('%Y%m%d%H%M%S')) + '.txt'
