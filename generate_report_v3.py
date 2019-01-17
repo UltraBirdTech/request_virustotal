@@ -73,15 +73,11 @@ class Argv:
         self.argument_date = self.argv[2]
 
 def kind_of_honey(argv):
-    honeys = [ Cowrie(), Dionaea()]
-    
-    if (argv.honey == Cowrie().__class__.__name__[0].lower()):
-       honey = Cowrie()
-    elif (argv.honey == Dionaea().__class__.__name__[0].lower()):
-       honey = Dionaea()
-    else:
-       print('error')
-       exit()
+    honeys = [ Cowrie(), Dionaea() ]
+    for h in honeys:
+      if (argv.honey == h.first_char()):
+        honey = h
+        break
     return honey
             
 #################################
