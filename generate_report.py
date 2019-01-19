@@ -164,8 +164,8 @@ class OutputFile:
     def constitution(self):
         return '|:--|:--|:--|:--:|'
 
-    def generate_row(self, malware):
-        return '| [' + malware.display_file_name +  '](' + malware.permalink + ') |'+ malware.datetime  + '|' + malware.file_type + '|' + malware.detection_rate + '|'
+    def generate_row(self, m):
+        return '| [' + m.display_file_name +  '](' + m.permalink + ') |'+ m.datetime  + '|' + m.file_type + '|' + m.detection_rate + '|'
 
 ####################################
 # Virus Totalに関するClass
