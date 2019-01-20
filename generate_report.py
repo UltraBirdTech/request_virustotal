@@ -74,10 +74,14 @@ class Argv:
 
 def kind_of_honey(argv):
     honeys = [ Cowrie(), Dionaea() ]
+    honey = ''
     for h in honeys:
       if (argv.honey == h.first_char()):
         honey = h
         break
+    if (honey == ''):
+        print('[LOG] ERROR: not set kind of honey.')
+        exit()
     return honey
             
 #################################
