@@ -1,3 +1,4 @@
+# [USAGE]: python -m unittest tests/generate_report_test.py
 import unittest
 from generate_report import Cowrie
 from unittest import mock
