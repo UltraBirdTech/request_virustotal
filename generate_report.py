@@ -226,7 +226,7 @@ class Cowrie():
         return 'cowrie_virus_total_' + str(datetime.now().strftime('%Y%m%d%H%M%S')) + '.txt'
       
     def class_name(self):
-        return 'Cowrie'
+      return self.__class__.__name__
 
 class Dionaea():
     def __init__(self):
@@ -239,6 +239,6 @@ class Dionaea():
         return 'dionaea_virus_total_' + str(datetime.now().strftime('%Y%m%d%H%M%S')) + '.txt'
       
     def class_name(self):
-        return 'Cowrie'
+      return self.__class__.__name__
 
 #main()
