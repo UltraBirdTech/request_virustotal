@@ -241,4 +241,4 @@ class Dionaea():
     def title(self):
         return 'Cowrie'
 
-main()
+# main()
