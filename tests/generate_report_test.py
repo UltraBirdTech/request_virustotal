@@ -1,5 +1,6 @@
 import unittest
 from generate_report import Cowrie
+from unittest import mock
 
 class TestCowrie(unittest.TestCase):
   def setUp(self):
@@ -14,3 +15,5 @@ class TestCowrie(unittest.TestCase):
     # Mock 使用してdatetime.now()の挙動を同じにする。
     self.assertEqual(self.cowrie.file_name(), 'something write.')
 
+  def test_class_name(self):
+    self.assertEqual(self.cowrie.title(), 'Cowrie')
