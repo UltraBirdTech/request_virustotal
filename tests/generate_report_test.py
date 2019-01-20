@@ -1,4 +1,3 @@
-#from unittest import TestCase
 import unittest
 from generate_report import Cowrie
 
