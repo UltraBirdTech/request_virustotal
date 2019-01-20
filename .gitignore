@@ -3,4 +3,5 @@
 /cowrie/01_download.sh
 /cowrie/downloads/*
 /dionaea/downloads/*
+/__pycache__
 !.gitkeep
