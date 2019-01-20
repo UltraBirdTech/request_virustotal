@@ -16,4 +16,4 @@ class TestCowrie(unittest.TestCase):
     self.assertEqual(self.cowrie.file_name(), 'something write.')
 
   def test_class_name(self):
-    self.assertEqual(self.cowrie.title(), 'Cowrie')
+    self.assertEqual(self.cowrie.class_name(), 'Cowrie')

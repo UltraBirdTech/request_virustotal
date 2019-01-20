@@ -149,7 +149,7 @@ class OutputFile:
             print('[LOG] Not Create file: check file num equal zero.')
             return
         with open(self.generate_file_name(honey), 'w') as f:
-            f.writelines('##' + honey.title() + '\n')
+            f.writelines('##' + honey.class_name() + '\n')
             f.writelines('Total: ' + str(length) + '\n')
             f.writelines('\n')
             f.writelines(self.header() + '\n')
@@ -225,7 +225,7 @@ class Cowrie():
     def file_name(self):
         return 'cowrie_virus_total_' + str(datetime.now().strftime('%Y%m%d%H%M%S')) + '.txt'
       
-    def title(self):
+    def class_name(self):
         return 'Cowrie'
 
 class Dionaea():
@@ -238,7 +238,7 @@ class Dionaea():
     def file_name(self):
         return 'dionaea_virus_total_' + str(datetime.now().strftime('%Y%m%d%H%M%S')) + '.txt'
       
-    def title(self):
+    def class_name(self):
         return 'Cowrie'
 
-# main()
+#main()
