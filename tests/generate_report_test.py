@@ -6,6 +6,9 @@ class TestCowrie(unittest.TestCase):
   def setUp(self):
     self.cowrie = Cowrie()
 
+  def test_init_path(self):
+    self.assertEqual(self.cowrie.path, './cowrie/downloads/malware/')
+
   def test_first_char(self):
     self.assertEqual(self.cowrie.first_char(), 'c')
 
