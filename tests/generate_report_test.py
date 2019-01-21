@@ -28,7 +28,7 @@ class TestDionaea(unittest.TestCase):
     self.cowrie = Dionaea()
 
   def test_init_path(self):
-    self.assertEqual(self.cowrie.path, './cowrie/downloads/malware/')
+    self.assertEqual(self.cowrie.path, './dionaea/downloads/malware/')
 
   def test_first_char(self):
     self.assertEqual(self.cowrie.first_char(), 'c')
