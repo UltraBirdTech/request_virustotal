@@ -40,4 +40,4 @@ class TestDionaea(unittest.TestCase):
     self.assertEqual(self.cowrie.file_name(), 'something write.')
 
   def test_class_name(self):
-    self.assertEqual(self.cowrie.class_name(), 'Cowrie')
+    self.assertEqual(self.dionaea.class_name(), 'Dionaea')
