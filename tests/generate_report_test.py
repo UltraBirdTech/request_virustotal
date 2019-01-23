@@ -25,13 +25,13 @@ class TestCowrie(unittest.TestCase):
 
 class TestDionaea(unittest.TestCase):
   def setUp(self):
-    self.cowrie = Dionaea()
+    self.dionaea = Dionaea()
 
   def test_init_path(self):
-    self.assertEqual(self.cowrie.path, './dionaea/downloads/malware/')
+    self.assertEqual(self.dionaea.path, './dionaea/downloads/malware/')
 
   def test_first_char(self):
-    self.assertEqual(self.cowrie.first_char(), 'c')
+    self.assertEqual(self.dionaea.first_char(), 'd')
 
   @unittest.skip("I should create mock and reseponse from Mock")
   def test_file_name(self):
