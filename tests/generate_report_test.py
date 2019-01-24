@@ -37,7 +37,7 @@ class TestDionaea(unittest.TestCase):
   def test_file_name(self):
     pass
     # Mock 使用してdatetime.now()の挙動を同じにする。
-    self.assertEqual(self.cowrie.file_name(), 'something write.')
+    self.assertEqual(self.cowrie.file_name(), self.dionaea.class_name() + 'virus_total')
 
   def test_class_name(self):
     self.assertEqual(self.dionaea.class_name(), 'Dionaea')
