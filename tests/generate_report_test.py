@@ -1,8 +1,8 @@
 # [USAGE]: python -m unittest tests/generate_report_test.py
 import unittest
+from unittest import mock
 from generate_report import Cowrie
 from generate_report import Dionaea
-from unittest import mock
 
 class TestCowrie(unittest.TestCase):
   def setUp(self):
