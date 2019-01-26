@@ -21,6 +21,27 @@ class TestVirusTotal(unittest.TestCase):
     self.virus_total.increment_request_time()
     self.assertEqual(self.virus_total.request_time, 1)
 
+  # check_request_timeは4の場合のみFalseを返却する
+  def test_check_request_time(self):
+    # 初期値は0のためFalseが返却される
+    self.assertFalse(self.virus_total.check_request_time())
+
+    # リクエスト回数が1の場合はFlase
+    self.virus_total.request_time = 1
+    self.assertFalse(self.virus_total.check_request_time())
+
+    # リクエスト回数が4の場合はTrue
+    self.virus_total.request_time = 4
+    self.assertTrue(self.virus_total.check_request_time())
+
+    # リクエスト回数が5以上で4で割り切れない数の場合Flase
+    self.virus_total.request_time = 5
+    self.assertFalse(self.virus_total.check_request_time())
+
+    # リクエスト回数が5以上で4で割り切れる数の場合True
+    self.virus_total.request_time = 8
+    self.assertTrue(self.virus_total.check_request_time())
+
 class TestCowrie(unittest.TestCase):
   def setUp(self):
     self.cowrie = Cowrie()
