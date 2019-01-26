@@ -16,7 +16,10 @@ class TestVirusTotal(unittest.TestCase):
     self.assertEqual(self.virus_total.DEFAULT_REQUEST_TIME, 0)
     self.assertEqual(self.virus_total.API_LIMIT_TIME, 4)
 
-
+  def test_increment_request_time(self):
+    self.assertEqual(self.virus_total.request_time, 0)
+    self.virus_total.increment_request_time()
+    self.assertEqual(self.virus_total.request_time, 1)
 
 class TestCowrie(unittest.TestCase):
   def setUp(self):
