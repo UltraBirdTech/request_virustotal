@@ -33,13 +33,9 @@ class TestDionaea(unittest.TestCase):
   def test_first_char(self):
     self.assertEqual(self.dionaea.first_char(), 'd')
 
-#  @unittest.skip("I should create mock and reseponse from Mock")
   @freezegun.freeze_time('2018-01-01')
   def test_file_name(self):
     self.assertEqual(self.dionaea.file_name(), 'dionaea_virus_total_20180101000000.txt') # freezegun を使用して2018-01-01に固定
-#    pass
-    # Mock 使用してdatetime.now()の挙動を同じにする。
-#    self.assertEqual(self.cowrie.file_name(), self.dionaea.class_name() + 'virus_total')
 
   def test_class_name(self):
     self.assertEqual(self.dionaea.class_name(), 'Dionaea')
