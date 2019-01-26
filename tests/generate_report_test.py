@@ -16,9 +16,9 @@ class TestCowrie(unittest.TestCase):
   def test_first_char(self):
     self.assertEqual(self.cowrie.first_char(), 'c')
 
-  @freezegun.freeze_time('2018-01-01')
+  @freezegun.freeze_time('2019-01-01')
   def test_file_name(self):
-    self.assertEqual(self.cowrie.file_name(), 'cowrie_virus_total_20180101000000.txt') # freezegun を使用して2018-01-01に固定
+    self.assertEqual(self.cowrie.file_name(), 'cowrie_virus_total_20190101000000.txt') # freezegun を使用して2019-01-01に固定
 
   def test_class_name(self):
     self.assertEqual(self.cowrie.class_name(), 'Cowrie')
@@ -33,9 +33,9 @@ class TestDionaea(unittest.TestCase):
   def test_first_char(self):
     self.assertEqual(self.dionaea.first_char(), 'd')
 
-  @freezegun.freeze_time('2018-01-01')
+  @freezegun.freeze_time('2019-01-01')
   def test_file_name(self):
-    self.assertEqual(self.dionaea.file_name(), 'dionaea_virus_total_20180101000000.txt') # freezegun を使用して2018-01-01に固定
+    self.assertEqual(self.dionaea.file_name(), 'dionaea_virus_total_20190101000000.txt') # freezegun を使用して2019-01-01に固定
 
   def test_class_name(self):
     self.assertEqual(self.dionaea.class_name(), 'Dionaea')
