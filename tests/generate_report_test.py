@@ -16,6 +16,7 @@ class TestVirusTotal(unittest.TestCase):
     self.assertEqual(self.virus_total.DEFAULT_REQUEST_TIME, 0)
     self.assertEqual(self.virus_total.API_LIMIT_TIME, 4)
     self.assertEqual(self.virus_total.api_key, 'e7416f0e54656ee951c464471fdea80e33e89e859d798eb158fdd713f7646d72')
+
   def test_increment_request_time(self):
     self.assertEqual(self.virus_total.request_time, 0)
     self.virus_total.increment_request_time()
