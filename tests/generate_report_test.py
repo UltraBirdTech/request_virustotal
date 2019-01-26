@@ -13,6 +13,10 @@ class TestVirusTotal(unittest.TestCase):
 
   def test_init_values(self):
     self.assertEqual(self.virus_total.VIRUS_TOTAL_REPORT_URL, 'https://www.virustotal.com/vtapi/v2/file/report')
+    self.assertEqual(self.virus_total.DEFAULT_REQUEST_TIME, 0)
+    self.assertEqual(self.virus_total.API_LIMIT_TIME, 4)
+
+
 
 class TestCowrie(unittest.TestCase):
   def setUp(self):
