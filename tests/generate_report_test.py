@@ -3,8 +3,16 @@ import unittest
 import freezegun
 from datetime import datetime
 from unittest import mock
+from generate_report import VirusTotal
 from generate_report import Cowrie
 from generate_report import Dionaea
+
+class TestVirusTotal(unittest.TestCase):
+  def setUp(self):
+    self.virus_total = VirusTotal()
+
+  def test_init_values(self):
+    self.assertEqual(self.virus_total.VIRUS_TOTAL_REPORT_URL, 'https://www.virustotal.com/vtapi/v2/file/report')
 
 class TestCowrie(unittest.TestCase):
   def setUp(self):
