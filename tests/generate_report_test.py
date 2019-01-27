@@ -4,6 +4,7 @@ import freezegun
 from datetime import datetime
 from unittest import mock
 from unittest.mock import MagicMock
+from generate_report import OutputFile
 from generate_report import VirusTotal
 from generate_report import Cowrie
 from generate_report import Dionaea
@@ -12,12 +13,19 @@ from generate_report import MalwareFile
 class MockMalware:
     def __init__(self):
       self.display_file_name = 'test_file_name'
-      print('initialize')
 
 class TestOutputFile(unittest.TestCase):
   def setUp(self):
     self.malware_mock = MockMalware()
-    
+    self.malware_mocks = [self.malware_mock]
+    self.output_file = OutputFile()
+
+  @freezegun.freeze_time('2019-01-01')
+  def test_generate_file_name(self):
+    # freezegun を使用して2019-01-01に固定
+    self.assertEqual(self.output_file.generate_file_name(Cowrie()), 'cowrie_virus_total_20190101000000.txt')
+    self.assertEqual(self.output_file.generate_file_name(Dionaea()), 'dionaea_virus_total_20190101000000.txt')
+
 class TestVirusTotal(unittest.TestCase):
   def setUp(self):
     self.virus_total = VirusTotal()
