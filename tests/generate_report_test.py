@@ -26,6 +26,9 @@ class TestOutputFile(unittest.TestCase):
     self.assertEqual(self.output_file.generate_file_name(Cowrie()), 'cowrie_virus_total_20190101000000.txt')
     self.assertEqual(self.output_file.generate_file_name(Dionaea()), 'dionaea_virus_total_20190101000000.txt')
 
+  def test_header(self):
+    self.assertEqual(self.output_file.header(), '| ファイル名 | 取得日時 | タイプ| 検出率 |')
+
 class TestVirusTotal(unittest.TestCase):
   def setUp(self):
     self.virus_total = VirusTotal()
