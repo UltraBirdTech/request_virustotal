@@ -44,7 +44,7 @@ class TestVirusTotal(unittest.TestCase):
     self.virus_total.increment_request_time()
     self.assertEqual(self.virus_total.request_time, 1)
 
-  # check_request_timeは4の場合のみTrueを返却する
+  # check_request_timeは計算結果が4の倍数の場合のみTrueを返却する
   def test_check_request_time(self):
     # 初期値は0のためFalseが返却される
     self.assertFalse(self.virus_total.check_request_time())
