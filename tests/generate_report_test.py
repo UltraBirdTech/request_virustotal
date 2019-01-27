@@ -11,8 +11,13 @@ from generate_report import MalwareFile
 
 class MockMalware:
     def __init__(self):
+      self.display_file_name = 'test_file_name'
       print('initialize')
 
+class TestOutputFile(unittest.TestCase):
+  def setUp(self):
+    self.malware_mock = MockMalware()
+    
 class TestVirusTotal(unittest.TestCase):
   def setUp(self):
     self.virus_total = VirusTotal()
