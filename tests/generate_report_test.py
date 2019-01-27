@@ -16,6 +16,7 @@ class MockMalware:
 class TestVirusTotal(unittest.TestCase):
   def setUp(self):
     self.virus_total = VirusTotal()
+    # setting malware mock
     self.malware_mock = MockMalware()
     self.malware_mock.sha256 = MagicMock(return_value='sha256')
     self.malware_mock.set_permalink = MagicMock(return_value='permalink')
