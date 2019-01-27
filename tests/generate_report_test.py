@@ -26,7 +26,7 @@ class TestVirusTotal(unittest.TestCase):
     self.assertEqual(self.virus_total.VIRUS_TOTAL_REPORT_URL, 'https://www.virustotal.com/vtapi/v2/file/report')
     self.assertEqual(self.virus_total.DEFAULT_REQUEST_TIME, 0)
     self.assertEqual(self.virus_total.API_LIMIT_TIME, 4)
-    self.assertEqual(self.virus_total.api_key[0:5], 'e7416')
+    self.assertEqual(self.virus_total.api_key[0:5], 'e7416') # セキュリティの都合上APIキー全てを出さずに最初の5文字を確認する
 
   @unittest.skip('Should create a mock about URL request')
   def test_request(self):
