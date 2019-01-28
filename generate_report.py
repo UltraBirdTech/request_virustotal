@@ -163,7 +163,7 @@ class OutputFile:
         return honey.file_name()
 
     def header(self):
-        return '| ファイル名 | 取得日時 | タイプ| 検出率 |'
+        return '|ファイル名|取得日時|タイプ|検出率|'
 
     def constitution(self):
         return '|:--|:--|:--|:--:|'
