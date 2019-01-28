@@ -32,6 +32,7 @@ class TestOutputFile(unittest.TestCase):
   def test_consititution(self):
     self.assertEqual(self.output_file.constitution(), '|:--|:--|:--|:--:|')
 
+  # Malware Mock file
   @unittest.skip('Should create a mock about URL request')
   def test_generation_row(self):
     skip
