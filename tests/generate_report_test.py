@@ -29,6 +29,9 @@ class TestOutputFile(unittest.TestCase):
   def test_header(self):
     self.assertEqual(self.output_file.header(), '| ファイル名 | 取得日時 | タイプ| 検出率 |')
 
+  def test_consititution(self):
+    self.assertEqual(self.output_file.constitution(), '|:--|:--|:--|:--:|')
+
 class TestVirusTotal(unittest.TestCase):
   def setUp(self):
     self.virus_total = VirusTotal()
