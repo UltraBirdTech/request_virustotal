@@ -14,6 +14,14 @@ class MockMalware:
     def __init__(self):
       self.display_file_name = 'test_file_name'
 
+class MockFile:
+  def __init__(self):
+    self.file_name = 'FILE_NAME'
+
+class TestMalwareFile(unittest.TestCase):
+  def setUp(self):
+#    self.malware = MalwareFile()
+
 class TestOutputFile(unittest.TestCase):
   def setUp(self):
     self.malware_mock = MockMalware()
