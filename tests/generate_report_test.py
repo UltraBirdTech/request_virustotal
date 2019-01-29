@@ -18,6 +18,9 @@ class MockFile:
   def __init__(self):
     self.file_name = 'FILE_NAME'
 
+class TestArgv(unittest.TestCase):
+  
+
 class TestMalwareFile(unittest.TestCase):
   def setUp(self):
     self.malware_mock.sha256 = MagicMock(return_value='sha256')
