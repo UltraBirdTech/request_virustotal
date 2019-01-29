@@ -241,4 +241,5 @@ class Dionaea():
     def class_name(self):
         return self.__class__.__name__
 
-#main()
+if __name__ == '__main__':
+  main()
