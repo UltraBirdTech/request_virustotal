@@ -20,8 +20,9 @@ class MockFile:
 
 class TestMalwareFile(unittest.TestCase):
   def setUp(self):
-#    self.malware = MalwareFile()
-    print('write something test')
+    self.malware_mock.sha256 = MagicMock(return_value='sha256')
+    self.malware_mock.set_permalink = MagicMock(return_value='permalink')
+    self.malware_mock.set_detection_rate = MagicMock(return_value='detection_rate')
 
 class TestOutputFile(unittest.TestCase):
   def setUp(self):
