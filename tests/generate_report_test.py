@@ -4,6 +4,7 @@ import freezegun
 from datetime import datetime
 from unittest import mock
 from unittest.mock import MagicMock
+from generate_report import Argv
 from generate_report import OutputFile
 from generate_report import VirusTotal
 from generate_report import Cowrie
@@ -19,7 +20,28 @@ class MockFile:
     self.file_name = 'FILE_NAME'
 
 class TestArgv(unittest.TestCase):
-  
+  def setUp(self):
+    self.argv = Argv()
+    self.argv.argv = ['file_name', 'c', 7]
+
+  def test_set_kind_honey(self):
+    self.argv.set_kind_of_honey()
+    self.assertEqual(self.argv.honey, 'c')
+
+    self.argv.argv[1] = 'd'
+    self.argv.set_kind_of_honey()
+    self.assertEqual(self.argv.honey, 'd')
+
+    # 定義されていない文字だとしても受け取った引数がそのまま入る
+    # TODO: この時点で存在しないものはエラーとして処理してしまってもいい？
+    self.argv.argv[1] = 'A'
+    self.argv.set_kind_of_honey()
+    self.assertEqual(self.argv.honey, 'A')
+
+    # 引数が存在しない場合はデフォルトの 'c' が入る
+    self.argv.argv[1:3] = []
+    self.argv.set_kind_of_honey()
+    self.assertEqual(self.argv.honey, 'c')
 
 class TestMalwareFile(unittest.TestCase):
   def setUp(self):
