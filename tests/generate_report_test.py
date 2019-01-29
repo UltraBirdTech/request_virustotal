@@ -12,8 +12,8 @@ from generate_report import Dionaea
 from generate_report import MalwareFile
 
 class MockMalware:
-    def __init__(self):
-      self.display_file_name = 'test_file_name'
+  def __init__(self):
+    self.display_file_name = 'test_file_name'
 
 class MockFile:
   def __init__(self):
