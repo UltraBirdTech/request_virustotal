@@ -21,6 +21,7 @@ class MockFile:
 class TestMalwareFile(unittest.TestCase):
   def setUp(self):
 #    self.malware = MalwareFile()
+    print('write something test')
 
 class TestOutputFile(unittest.TestCase):
   def setUp(self):
