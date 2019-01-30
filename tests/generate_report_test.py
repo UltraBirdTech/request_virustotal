@@ -61,7 +61,6 @@ class TestArgv(unittest.TestCase):
     self.argv.set_check_date()
     self.assertEqual(self.argv.argument_date, 7 )
 
-
 class TestMalwareFile(unittest.TestCase):
   def setUp(self):
     self.malware_mock.sha256 = MagicMock(return_value='sha256')
