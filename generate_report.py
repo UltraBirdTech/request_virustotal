@@ -60,18 +60,15 @@ class Argv:
             print('argument honey is nothing. Set default honey:' + str(self.DEFAULT_HONEY))
             self.honey = Cowrie()
             return
-        argument_honey = self.argv[1]
 
         honeys = [ Cowrie(), Dionaea() ]
-        honey = ''
         for h in honeys:
           if (self.argv[1] == h.first_char()):
-            honey = h
+            self.honey = h
             break
-        if (honey == ''):
+        if (h == ''):
             print('[LOG] ERROR: not set kind of honey.')
 #            exit(1)
-        self.honey = honey
 
     def set_check_date(self):
         # 引数が存在しなければデフォルト日数を設定
