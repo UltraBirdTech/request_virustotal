@@ -43,6 +43,25 @@ class TestArgv(unittest.TestCase):
     self.argv.set_kind_of_honey()
     self.assertEqual(self.argv.honey, 'c')
 
+  def test_set_check_date(self):
+    self.argv.set_check_date()
+    self.assertEqual(self.argv.argument_date, 7)
+
+    self.argv.argv[2] = 5
+    self.argv.set_check_date()
+    self.assertEqual(self.argv.argument_date, 5 )
+
+    # TODO: 数値以外のものであればエラーで弾く
+    self.argv.argv[2] = 'A'
+    self.argv.set_check_date()
+    self.assertEqual(self.argv.argument_date, 'A')
+
+    # 引数が存在しない場合はデフォルトの 7 が入る
+    self.argv.argv[1:3] = []
+    self.argv.set_check_date()
+    self.assertEqual(self.argv.argument_date, 7 )
+
+
 class TestMalwareFile(unittest.TestCase):
   def setUp(self):
     self.malware_mock.sha256 = MagicMock(return_value='sha256')
