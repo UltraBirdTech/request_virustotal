@@ -20,14 +20,13 @@ from time import sleep
 def main():
     print('[LOG] START SCRIPT')
     argv = Argv()
-    honey = kind_of_honey(argv)
-    file_array = sorted(glob.glob( honey.path + '*' ), key=os.path.getmtime)
+    file_array = sorted(glob.glob( argv.honey.path + '*' ), key=os.path.getmtime)
     print('[LOG] target file num is :' + str(len(file_array)))
     malwares = []
     virus_total = VirusTotal()
     for file in file_array:
        with open(file, 'rb') as f:
-           malware = MalwareFile(f, honey)
+           malware = MalwareFile(f, argv.honey)
 
        if not malware.check_date(argv.argument_date):
            print('[LOG] Skip: ' + malware.file_name)
@@ -82,18 +81,6 @@ class Argv:
             return
 
         self.argument_date = self.argv[2]
-
-def kind_of_honey(argv):
-    honeys = [ Cowrie(), Dionaea() ]
-    honey = ''
-    for h in honeys:
-      if (argv.honey == h.first_char()):
-        honey = h
-        break
-    if (honey == ''):
-        print('[LOG] ERROR: not set kind of honey.')
-        exit()
-    return honey
             
 #################################
 # マルウェアクラス
