@@ -33,7 +33,7 @@ class TestArgv(unittest.TestCase):
     self.assertEqual(type(self.argv.honey), type(Dionaea()))
 
     # 定義されていない文字だとしても受け取った引数がそのまま入る
-    # TODO: この時点で存在しないものはエラーとして処理してしまってもいい？
+    # TODO: この時点で存在しないものはエラーとして処理をする
     self.argv.argv[1] = 'A'
 #    self.argv.set_kind_of_honey()
 #    self.assertEqual(self.argv.honey, 'A')
