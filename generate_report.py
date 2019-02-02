@@ -41,7 +41,7 @@ def main():
        malwares.append(malware)
 
     output_file = OutputFile()
-    output_file.generate(malwares, honey)
+    output_file.generate(malwares, argv.honey)
     print('[LOG] END SCRIPT')
 
 ################################
