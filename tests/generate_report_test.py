@@ -56,6 +56,7 @@ class TestArgv(unittest.TestCase):
     self.argv.set_check_date()
 #    self.assertEqual(self.argv.argument_date, 'A')
     # Error 処理
+    self.assertRaise()
 
     # 引数が存在しない場合はデフォルトの 7 が入る
     self.argv.argv[1:3] = []
