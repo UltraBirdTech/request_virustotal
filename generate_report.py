@@ -69,6 +69,7 @@ class Argv:
         if (h == ''):
             print('[LOG] ERROR: not set kind of honey.')
 #            exit(1)
+# TODO:存在しない場合はエラーとして処理をする
 
     def set_check_date(self):
         # 引数が存在しなければデフォルト日数を設定
