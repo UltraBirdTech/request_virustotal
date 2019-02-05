@@ -77,8 +77,10 @@ class Argv:
             print('argument date is nothing. Set default date:' + str(self.DEFAULT_DATE))
             self.argument_date = self.DEFAULT_DATE
             return
+        
+        date = self.argv[2]
 
-        self.argument_date = self.argv[2]
+        self.argument_date = date
             
 #################################
 # マルウェアクラス
