@@ -33,7 +33,11 @@ class TestArgv(unittest.TestCase):
     self.assertEqual(type(self.argv.honey), type(Dionaea()))
 
     # 定義されていない文字だとしても受け取った引数がそのまま入る
+<<<<<<< HEAD
     # TODO: この時点で存在しないものはエラーとして処理をする
+=======
+    # TODO: この時点で存在しないものはエラーとして処理する
+>>>>>>> 2f0b7362cbf31359a3564ebc98a4b1f0d4186fae
     self.argv.argv[1] = 'A'
 #    self.argv.set_kind_of_honey()
 #    self.assertEqual(self.argv.honey, 'A')
@@ -53,8 +57,10 @@ class TestArgv(unittest.TestCase):
 
     # TODO: 数値以外のものであればエラーで弾く
     self.argv.argv[2] = 'A'
-    self.argv.set_check_date()
-    self.assertEqual(self.argv.argument_date, 'A')
+#    self.argv.set_check_date()
+#    self.assertEqual(self.argv.argument_date, 'A')
+    # Error 処理
+    self.assertRaise(MyException, self.argv.set_check_date())
 
     # 引数が存在しない場合はデフォルトの 7 が入る
     self.argv.argv[1:3] = []
