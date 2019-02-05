@@ -53,10 +53,10 @@ class TestArgv(unittest.TestCase):
 
     # TODO: 数値以外のものであればエラーで弾く
     self.argv.argv[2] = 'A'
-    self.argv.set_check_date()
+#    self.argv.set_check_date()
 #    self.assertEqual(self.argv.argument_date, 'A')
     # Error 処理
-    self.assertRaise()
+    self.assertRaise(MyException, self.argv.set_check_date())
 
     # 引数が存在しない場合はデフォルトの 7 が入る
     self.argv.argv[1:3] = []
