@@ -77,8 +77,10 @@ class Argv:
             print('argument date is nothing. Set default date:' + str(self.DEFAULT_DATE))
             self.argument_date = self.DEFAULT_DATE
             return
-        
+
         date = self.argv[2]
+        if (type(date) is not int):
+          raise MyException
 
         self.argument_date = date
             
@@ -238,6 +240,10 @@ class Dionaea():
       
     def class_name(self):
         return self.__class__.__name__
+
+class MyException(Exception):
+  print('Error!!!!!!!!!!!!!!!')
+  pass
 
 if __name__ == '__main__':
   main()

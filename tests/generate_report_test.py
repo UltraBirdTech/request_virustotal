@@ -60,7 +60,9 @@ class TestArgv(unittest.TestCase):
 #    self.assertEqual(self.argv.argument_date, 'A')
     # Error 処理
     print('kiteru?')
-    self.assertRaises(MyException, self.argv.set_check_date())
+    with self.assertRaises(MyException):
+      self.argv.set_check_date()
+#    self.assertRaises(MyException, self.argv.set_check_date)
 
     # 引数が存在しない場合はデフォルトの 7 が入る
     self.argv.argv[1:3] = []
