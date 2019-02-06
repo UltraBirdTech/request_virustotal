@@ -10,6 +10,7 @@ from generate_report import VirusTotal
 from generate_report import Cowrie
 from generate_report import Dionaea
 from generate_report import MalwareFile
+from generate_report import MyException
 
 class MockMalware:
   def __init__(self):
@@ -18,9 +19,6 @@ class MockMalware:
 class MockFile:
   def __init__(self):
     self.file_name = 'FILE_NAME'
-
-class MyException(Exception):
-  pass
 
 class TestArgv(unittest.TestCase):
   def setUp(self):
