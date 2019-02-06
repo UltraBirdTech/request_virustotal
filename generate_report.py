@@ -242,7 +242,6 @@ class Dionaea():
         return self.__class__.__name__
 
 class MyException(Exception):
-  print('Error!!!!!!!!!!!!!!!')
   pass
 
 if __name__ == '__main__':
