@@ -38,6 +38,9 @@ class TestArgv(unittest.TestCase):
     self.argv.argv[1] = 'A'
 #    self.argv.set_kind_of_honey()
 #    self.assertEqual(self.argv.honey, 'A')
+    with self.assertRaises(MyException):
+      self.argv.set_kind_of_honey()
+
 
     # 引数が存在しない場合はデフォルトの 'c' が入る
     self.argv.argv[1:3] = []
