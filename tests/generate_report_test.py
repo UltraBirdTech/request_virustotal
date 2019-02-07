@@ -20,6 +20,10 @@ class MockFile:
   def __init__(self):
     self.file_name = 'FILE_NAME'
 
+class MyException:
+  print('error')
+  pass
+
 class TestArgv(unittest.TestCase):
   def setUp(self):
     self.argv = Argv()
@@ -38,9 +42,9 @@ class TestArgv(unittest.TestCase):
     self.argv.argv[1] = 'A'
 #    self.argv.set_kind_of_honey()
 #    self.assertEqual(self.argv.honey, 'A')
-    with self.assertRaises(MyException):
-      self.argv.set_kind_of_honey()
-
+#    with self.assertRaises(MyException):
+#      self.argv.set_kind_of_honey()
+    self.assertRaises(MyException, lambda: self.argv.set_kind_of_honey())
 
     # 引数が存在しない場合はデフォルトの 'c' が入る
     self.argv.argv[1:3] = []
@@ -56,8 +60,8 @@ class TestArgv(unittest.TestCase):
     self.assertEqual(self.argv.argument_date, 5 )
 
     self.argv.argv[2] = 'A'
-    with self.assertRaises(MyException):
-      self.argv.set_check_date()
+#    with self.assertRaises(MyException):
+#      self.argv.set_check_date()
 
     # 引数が存在しない場合はデフォルトの 7 が入る
     self.argv.argv[1:3] = []
