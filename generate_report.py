@@ -56,6 +56,7 @@ class Argv:
       self.set_check_date()
 
     def set_kind_of_honey(self):
+        print(self.argv)
         self.honey = ''
         if(len(self.argv) < 2):
             print('argument honey is nothing. Set default honey:' + str(self.DEFAULT_HONEY))
