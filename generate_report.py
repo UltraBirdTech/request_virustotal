@@ -7,7 +7,6 @@ import json
 import os
 import subprocess
 import sys
-import urllib
 import urllib.request
 import urllib.error
 import urllib.parse
