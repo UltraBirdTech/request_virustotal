@@ -56,7 +56,6 @@ class Argv:
       self.set_check_date()
 
     def set_kind_of_honey(self):
-        print(self.argv)
         self.honey = ''
         if(len(self.argv) < 2):
             print('argument honey is nothing. Set default honey:' + str(self.DEFAULT_HONEY))
@@ -71,8 +70,6 @@ class Argv:
         if (self.honey == ''):
           print('[LOG] ERROR: not set kind of honey.')
           raise MyException
-#            exit(1)
-# TODO:存在しない場合はエラーとして処理をする
 
     def set_check_date(self):
         # 引数が存在しなければデフォルト日数を設定
