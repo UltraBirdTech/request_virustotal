@@ -38,7 +38,7 @@ class TestArgv(unittest.TestCase):
 
     self.argv.argv[1] = 'A'
     with self.assertRaises(MyException):
-      self.argv.set_kind_of_honey()
+      self.argv.set_kind_of_honey() # 存在しない文字列が入った場合はErrorとする
 
     # 引数が存在しない場合はデフォルトの 'c' が入る
     self.argv.argv[1:3] = []
