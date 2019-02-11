@@ -1,6 +1,7 @@
 # [USAGE]: python -m unittest tests/generate_report_test.py
 import unittest
 import freezegun
+import sys, os
 from datetime import datetime
 from unittest import mock
 from unittest.mock import MagicMock
@@ -20,12 +21,10 @@ class MockFile:
   def __init__(self):
     self.file_name = 'FILE_NAME'
 
-class MyException:
-  print('error')
-  pass
-
 class TestArgv(unittest.TestCase):
   def setUp(self):
+    del sys.argv[0]
+    sys.argv.append('c')
     self.argv = Argv()
     self.argv.argv = ['file_name', 'c', 7]
 
@@ -37,14 +36,9 @@ class TestArgv(unittest.TestCase):
     self.argv.set_kind_of_honey()
     self.assertEqual(type(self.argv.honey), type(Dionaea()))
 
-    # 定義されていない文字だとしても受け取った引数がそのまま入る
-    # TODO: この時点で存在しないものはエラーとして処理をする
     self.argv.argv[1] = 'A'
-#    self.argv.set_kind_of_honey()
-#    self.assertEqual(self.argv.honey, 'A')
-#    with self.assertRaises(MyException):
-#      self.argv.set_kind_of_honey()
-    self.assertRaises(MyException, lambda: self.argv.set_kind_of_honey())
+    with self.assertRaises(MyException):
+      self.argv.set_kind_of_honey()
 
     # 引数が存在しない場合はデフォルトの 'c' が入る
     self.argv.argv[1:3] = []
@@ -60,8 +54,8 @@ class TestArgv(unittest.TestCase):
     self.assertEqual(self.argv.argument_date, 5 )
 
     self.argv.argv[2] = 'A'
-#    with self.assertRaises(MyException):
-#      self.argv.set_check_date()
+    with self.assertRaises(MyException):
+      self.argv.set_check_date()
 
     # 引数が存在しない場合はデフォルトの 7 が入る
     self.argv.argv[1:3] = []
