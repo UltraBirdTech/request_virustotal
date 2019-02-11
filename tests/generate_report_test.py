@@ -17,9 +17,7 @@ class MockMalware:
   def __init__(self):
     self.display_file_name = 'test_file_name'
 
-class MockFile:
-  def __init__(self):
-    self.file_name = 'FILE_NAME'
+class MockFile: def __init__(self): self.file_name = 'FILE_NAME'
 
 class TestArgv(unittest.TestCase):
   def setUp(self):
@@ -67,6 +65,9 @@ class TestMalwareFile(unittest.TestCase):
     self.malware_mock.sha256 = MagicMock(return_value='sha256')
     self.malware_mock.set_permalink = MagicMock(return_value='permalink')
     self.malware_mock.set_detection_rate = MagicMock(return_value='detection_rate')
+
+  def test_set_file_name(self):
+    # write something.
 
 class TestOutputFile(unittest.TestCase):
   def setUp(self):
