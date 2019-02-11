@@ -19,29 +19,32 @@ from time import sleep
 # メインメソッド
 def main():
     print('[LOG] START SCRIPT')
-    argv = Argv()
-    file_array = sorted(glob.glob( argv.honey.path + '*' ), key=os.path.getmtime)
-    print('[LOG] target file num is :' + str(len(file_array)))
-    malwares = []
-    virus_total = VirusTotal()
-    for file in file_array:
-       with open(file, 'rb') as f:
-           malware = MalwareFile(f, argv.honey)
+    try:
+      argv = Argv()
+      file_array = sorted(glob.glob( argv.honey.path + '*' ), key=os.path.getmtime)
+      print('[LOG] target file num is :' + str(len(file_array)))
+      malwares = []
+      virus_total = VirusTotal()
+      for file in file_array:
+         with open(file, 'rb') as f:
+             malware = MalwareFile(f, argv.honey)
 
-       if not malware.check_date(argv.argument_date):
-           print('[LOG] Skip: ' + malware.file_name)
-           continue
+         if not malware.check_date(argv.argument_date):
+             print('[LOG] Skip: ' + malware.file_name)
+             continue
 
-       if virus_total.check_request_time():
-           print('[LOG] Sleep 65 seconds.')
-           sleep(65) # APIに1分間における使用回数があるため60秒近くsleepする
+         if virus_total.check_request_time():
+             print('[LOG] Sleep 65 seconds.')
+             sleep(65) # APIに1分間における使用回数があるため60秒近くsleepする
 
-       print('[LOG] Check: ' + malware.file_name)
-       virus_total.request(malware)
-       malwares.append(malware)
+         print('[LOG] Check: ' + malware.file_name)
+         virus_total.request(malware)
+         malwares.append(malware)
 
-    output_file = OutputFile()
-    output_file.generate(malwares, argv.honey)
+      output_file = OutputFile()
+      output_file.generate(malwares, argv.honey)
+    except MyException as e:
+      print('Exception!!!' + e.args)
     print('[LOG] END SCRIPT')
 
 ################################
@@ -69,7 +72,7 @@ class Argv:
             break
         if (self.honey == ''):
           print('[LOG] ERROR: not set kind of honey.')
-          raise MyException
+          raise MyException()
 
     def set_check_date(self):
         # 引数が存在しなければデフォルト日数を設定
@@ -242,7 +245,6 @@ class Dionaea():
         return self.__class__.__name__
 
 class MyException(Exception):
-  print('ERROR!!!')
   pass
 
 if __name__ == '__main__':
