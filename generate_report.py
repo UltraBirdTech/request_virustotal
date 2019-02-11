@@ -18,12 +18,12 @@ from time import sleep
 # メインメソッド
 def main():
     print('[LOG] START SCRIPT')
+    malwares = []
+    virus_total = VirusTotal()
     try:
       argv = Argv()
       file_array = sorted(glob.glob( argv.honey.path + '*' ), key=os.path.getmtime)
       print('[LOG] target file num is :' + str(len(file_array)))
-      malwares = []
-      virus_total = VirusTotal()
       for file in file_array:
          with open(file, 'rb') as f:
              malware = MalwareFile(f, argv.honey)
