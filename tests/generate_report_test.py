@@ -72,6 +72,9 @@ class TestMalwareFile(unittest.TestCase):
   def test_set_sha_256(self):
     # write something.
 
+  def test_set_datetime(self, honey):
+    # write something.
+
 class TestOutputFile(unittest.TestCase):
   def setUp(self):
     self.malware_mock = MockMalware()
