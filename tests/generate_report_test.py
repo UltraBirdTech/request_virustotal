@@ -20,7 +20,7 @@ class MockMalware:
 class MockFile: 
   def __init__(self): 
     self.file_name = 'FILE_NAME'
-    self.name = 'file_name'
+    self.name = 'file_name.txt'
 
   def read(self):
     return 'file_read_result'.encode('utf-8') # utf-8 で encodeする必要あり
@@ -70,7 +70,9 @@ class TestMalwareFile(unittest.TestCase):
   def setUp(self):
     self.file_mock = MockFile()
     print(self.file_mock.read())
-    self.malware = MalwareFile(self.file_mock, Cowrie())
+    cowrie = Cowrie()
+    cowrie.path = './tests/' + cowrie.path
+    self.malware = MalwareFile(self.file_mock, cowrie)
 
   def test_set_file_name(self):
     # write something.
@@ -79,7 +81,6 @@ class TestMalwareFile(unittest.TestCase):
   def test_set_sha_256(self):
      # write something.
     print('hoge')
-
 
   def test_set_datetime(self, honey):
     # write something.
