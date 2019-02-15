@@ -1,6 +1,7 @@
 # [USAGE]: python -m unittest tests/generate_report_test.py
 import unittest
 import freezegun
+import sys, os
 from datetime import datetime
 from unittest import mock
 from unittest.mock import MagicMock
@@ -10,17 +11,24 @@ from generate_report import VirusTotal
 from generate_report import Cowrie
 from generate_report import Dionaea
 from generate_report import MalwareFile
+from generate_report import MyException
 
 class MockMalware:
   def __init__(self):
     self.display_file_name = 'test_file_name'
 
-class MockFile:
-  def __init__(self):
+class MockFile: 
+  def __init__(self): 
     self.file_name = 'FILE_NAME'
+    self.name = 'file_name.txt'
+
+  def read(self):
+    return 'file_read_result'.encode('utf-8') # utf-8 で encodeする必要あり
 
 class TestArgv(unittest.TestCase):
   def setUp(self):
+    del sys.argv[0]
+    sys.argv.append('c')
     self.argv = Argv()
     self.argv.argv = ['file_name', 'c', 7]
 
@@ -32,11 +40,9 @@ class TestArgv(unittest.TestCase):
     self.argv.set_kind_of_honey()
     self.assertEqual(type(self.argv.honey), type(Dionaea()))
 
-    # 定義されていない文字だとしても受け取った引数がそのまま入る
-    # TODO: この時点で存在しないものはエラーとして処理してしまってもいい？
     self.argv.argv[1] = 'A'
-#    self.argv.set_kind_of_honey()
-#    self.assertEqual(self.argv.honey, 'A')
+    with self.assertRaises(MyException):
+      self.argv.set_kind_of_honey() # 存在しない文字列が入った場合はErrorとする
 
     # 引数が存在しない場合はデフォルトの 'c' が入る
     self.argv.argv[1:3] = []
@@ -51,10 +57,9 @@ class TestArgv(unittest.TestCase):
     self.argv.set_check_date()
     self.assertEqual(self.argv.argument_date, 5 )
 
-    # TODO: 数値以外のものであればエラーで弾く
     self.argv.argv[2] = 'A'
-    self.argv.set_check_date()
-    self.assertEqual(self.argv.argument_date, 'A')
+    with self.assertRaises(MyException):
+      self.argv.set_check_date()
 
     # 引数が存在しない場合はデフォルトの 7 が入る
     self.argv.argv[1:3] = []
@@ -63,9 +68,23 @@ class TestArgv(unittest.TestCase):
 
 class TestMalwareFile(unittest.TestCase):
   def setUp(self):
-    self.malware_mock.sha256 = MagicMock(return_value='sha256')
-    self.malware_mock.set_permalink = MagicMock(return_value='permalink')
-    self.malware_mock.set_detection_rate = MagicMock(return_value='detection_rate')
+    self.file_mock = MockFile()
+    print(self.file_mock.read())
+    cowrie = Cowrie()
+    cowrie.path = './tests/' + cowrie.path
+    self.malware = MalwareFile(self.file_mock, cowrie)
+
+  def test_set_file_name(self):
+    # write something.
+    print('hoge')
+
+  def test_set_sha_256(self):
+     # write something.
+    print('hoge')
+
+  def test_set_datetime(self, honey):
+    # write something.
+    print('hoge')
 
 class TestOutputFile(unittest.TestCase):
   def setUp(self):
