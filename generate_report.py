@@ -23,7 +23,7 @@ def main():
     virus_total = VirusTotal()
     try:
         argv = Argv()
-        file_array = sorted(glob.glob( argv.honey.path + '*' ), key=os.path.getmtime)
+        file_array = sorted(glob.glob(argv.honey.path + '*'), key=os.path.getmtime)
         print('[LOG] target file num is :' + str(len(file_array)))
         for file in file_array:
            with open(file, 'rb') as f:
