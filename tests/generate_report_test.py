@@ -69,10 +69,10 @@ class TestArgv(unittest.TestCase):
 class TestMalwareFile(unittest.TestCase):
   def setUp(self):
     self.file_mock = MockFile()
-    print(self.file_mock.read())
+#    print(self.file_mock.read())
     cowrie = Cowrie()
     cowrie.path = './tests/' + cowrie.path
-    self.malware = MalwareFile(self.file_mock, cowrie)
+#    self.malware = MalwareFile(self.file_mock, cowrie)
 
   def test_set_file_name(self):
     # write something.
@@ -80,11 +80,11 @@ class TestMalwareFile(unittest.TestCase):
 
   def test_set_sha_256(self):
      # write something.
-    print('hoge')
+    print('moge')
 
-  def test_set_datetime(self, honey):
+  def test_set_datetime(self):
     # write something.
-    print('hoge')
+    print('piyo')
 
 class TestOutputFile(unittest.TestCase):
   def setUp(self):
