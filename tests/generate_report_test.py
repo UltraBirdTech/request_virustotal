@@ -72,6 +72,7 @@ class TestMalwareFile(unittest.TestCase):
 #    print(self.file_mock.read())
     cowrie = Cowrie()
     cowrie.path = './tests/' + cowrie.path
+# subprosessのメソッドを呼ぶ際にエラーとなるためコメント
 #    self.malware = MalwareFile(self.file_mock, cowrie)
 
   def test_set_file_name(self):
