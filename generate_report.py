@@ -48,6 +48,7 @@ def main():
         print('Exception!!!' + e.args)
     print('[LOG] END SCRIPT')
 
+
 ################################
 # argv class
 # 引数を管理するクラス
