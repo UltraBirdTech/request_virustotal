@@ -27,20 +27,20 @@ def main():
         file_array = sorted(glob_path, key=os.path.getmtime)
         print('[LOG] target file num is :' + str(len(file_array)))
         for file in file_array:
-           with open(file, 'rb') as f:
-               malware = MalwareFile(f, argv.honey)
+            with open(file, 'rb') as f:
+                malware = MalwareFile(f, argv.honey)
 
-           if not malware.check_date(argv.argument_date):
-               print('[LOG] Skip: ' + malware.file_name)
-               continue
+            if not malware.check_date(argv.argument_date):
+                print('[LOG] Skip: ' + malware.file_name)
+                continue
 
-           if virus_total.check_request_time():
-               print('[LOG] Sleep 65 seconds.')
-               sleep(65) # APIに1分間における使用回数があるため60秒近くsleepする
+            if virus_total.check_request_time():
+                print('[LOG] Sleep 65 seconds.')
+                sleep(65)  # APIに1分間における使用回数があるため60秒近くsleepする
 
-           print('[LOG] Check: ' + malware.file_name)
-           virus_total.request(malware)
-           malwares.append(malware)
+            print('[LOG] Check: ' + malware.file_name)
+            virus_total.request(malware)
+            malwares.append(malware)
 
         output_file = OutputFile()
         output_file.generate(malwares, argv.honey)
