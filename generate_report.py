@@ -56,9 +56,9 @@ class Argv:
     DEFAULT_DATE = 7
 
     def __init__(self):
-      self.argv = sys.argv
-      self.set_kind_of_honey()
-      self.set_check_date()
+        self.argv = sys.argv
+        self.set_kind_of_honey()
+        self.set_check_date()
 
     def set_kind_of_honey(self):
         self.honey = ''
