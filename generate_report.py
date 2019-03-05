@@ -69,12 +69,12 @@ class Argv:
 
         honeys = [Cowrie(), Dionaea()]
         for h in honeys:
-          if (self.argv[1] == h.first_char()):
-            self.honey = h
-            break
+            if (self.argv[1] == h.first_char()):
+                self.honey = h
+                break
         if (self.honey == ''):
-          print('[LOG] ERROR: not set kind of honey.')
-          raise MyException()
+            print('[LOG] ERROR: not set kind of honey.')
+            raise MyException()
 
     def set_check_date(self):
         # 引数が存在しなければデフォルト日数を設定
