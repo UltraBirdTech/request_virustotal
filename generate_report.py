@@ -67,7 +67,7 @@ class Argv:
             self.honey = Cowrie()
             return
 
-        honeys = [ Cowrie(), Dionaea() ]
+        honeys = [Cowrie(), Dionaea()]
         for h in honeys:
           if (self.argv[1] == h.first_char()):
             self.honey = h
