@@ -54,6 +54,7 @@ def main():
 # 引数を管理するクラス
 class Argv:
     DEFAULT_DATE = 7
+
     def __init__(self):
       self.argv = sys.argv
       self.set_kind_of_honey()
