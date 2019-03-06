@@ -85,7 +85,7 @@ class Argv:
 
         date = self.argv[2]
         if (type(date) is not int):
-          raise MyException
+            raise MyException
 
         self.argument_date = date
             
