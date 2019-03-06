@@ -79,7 +79,8 @@ class Argv:
     def set_check_date(self):
         # 引数が存在しなければデフォルト日数を設定
         if (len(self.argv) < 3):
-            print('argument date is nothing. Set default date:' + str(self.DEFAULT_DATE))
+            log_message = 'argument date is nothing. Set default date:'
+            print(log_message + str(self.DEFAULT_DATE))
             self.argument_date = self.DEFAULT_DATE
             return
 
