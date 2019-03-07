@@ -96,6 +96,7 @@ class Argv:
 # __init__() f: file information
 class MalwareFile:
     FILE_NAME_LIMIT = 10
+
     def __init__(self, f, honey):
         self.set_file_name(f)
         self.set_sha_256(f)
