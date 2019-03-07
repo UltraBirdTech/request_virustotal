@@ -89,7 +89,8 @@ class Argv:
             raise MyException
 
         self.argument_date = date
-            
+
+
 #################################
 # マルウェアクラス
 # __init__() f: file information
