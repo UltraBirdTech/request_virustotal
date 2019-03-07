@@ -107,9 +107,9 @@ class MalwareFile:
     def set_file_name(self, f):
         self.file_name = f.name.split('/')[-1]
         if self.FILE_NAME_LIMIT < len(self.file_name):
-          # file name is long. So, add limit and slice.
-          self.display_file_name = self.file_name[0:9] + '...'
-          return
+            # file name is long. So, add limit and slice.
+            self.display_file_name = self.file_name[0:9] + '...'
+            return
 
         self.display_file_name = self.file_name
 
