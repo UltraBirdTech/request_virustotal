@@ -118,7 +118,8 @@ class MalwareFile:
 
     def set_datetime(self, honey):
         time_float = os.path.getmtime(honey.path + self.file_name)
-        self.datetime = datetime.fromtimestamp(time_float).strftime('%Y/%m/%d %H:%M:%S')
+        time_form = ('%Y/%m/%d %H:%M:%S')
+        self.datetime = datetime.fromtimestamp(time_float).strftime(time_form)
 
     # 自分自身のファイルタイプを調査し格納する。
     # 内部的に Linux の file コマンドを打ち結果を格納する。
