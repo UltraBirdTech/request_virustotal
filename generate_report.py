@@ -141,7 +141,12 @@ class MalwareFile:
     # ステータスコードが0の場合、'positives', 'total' のハッシュキーは存在しないためエラーになる。
     # エラーになる前に、キーの存在チェックを行いエラーを回避。
     def set_detection_rate(self, data):
-        self.detection_rate = str(data['positives']) + '/' + str(data['total']) if ('positives' in data) else '-'
+        if ('positives' in data):
+          p = data['positives']
+          t = data['total']
+          self.detection_rate = p + '/' + t
+        else:
+          self.detection_rate = '-'
 
     # ファイルの日付が、検査対象の日付に含まれているかの確認。
     def check_date(self, date):
