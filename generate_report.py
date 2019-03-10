@@ -150,7 +150,7 @@ class MalwareFile:
 
     # ファイルの日付が、検査対象の日付に含まれているかの確認。
     def check_date(self, date):
-        week_ago_date = datetime.now().date() + timedelta(days=-int(date)) # change here.
+        week_ago_date = datetime.now().date() + timedelta(days=-int(date))  # change here.
         file_date = datetime.strptime(self.datetime,'%Y/%m/%d %H:%M:%S').date()
         return week_ago_date <= file_date
 
