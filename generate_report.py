@@ -124,7 +124,8 @@ class MalwareFile:
     # 自分自身のファイルタイプを調査し格納する。
     # 内部的に Linux の file コマンドを打ち結果を格納する。
     def set_file_type(self, honey):
-        proc = subprocess.Popen( 'file ' + honey.path + self.file_name, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT )
+        file_path = 'file ' + honey.path + self.file_name,
+        proc = subprocess.Popen(file_path, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
         file_type = proc.stdout.readline()
         proc.poll()
         file_type_split = file_type.decode().split(':')[-1]
