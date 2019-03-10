@@ -142,11 +142,11 @@ class MalwareFile:
     # エラーになる前に、キーの存在チェックを行いエラーを回避。
     def set_detection_rate(self, data):
         if ('positives' in data):
-          p = data['positives']
-          t = data['total']
-          self.detection_rate = p + '/' + t
+            p = data['positives']
+            t = data['total']
+            self.detection_rate = p + '/' + t
         else:
-          self.detection_rate = '-'
+            self.detection_rate = '-'
 
     # ファイルの日付が、検査対象の日付に含まれているかの確認。
     def check_date(self, date):
