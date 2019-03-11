@@ -152,8 +152,8 @@ class MalwareFile:
     def check_date(self, date):
         now_date = datetime.now().date()
         week_day = now_date + timedelta(days=-int(date))  # change here.
-        file_date = datetime.strptime(self.datetime, '%Y/%m/%d %H:%M:%S').date()
-        return week_day <= file_date
+        file_day = datetime.strptime(self.datetime, '%Y/%m/%d %H:%M:%S').date()
+        return week_day <= file_day
 
 ####################################
 # Output File Class
