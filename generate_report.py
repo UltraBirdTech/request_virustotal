@@ -155,6 +155,7 @@ class MalwareFile:
         file_day = datetime.strptime(self.datetime, '%Y/%m/%d %H:%M:%S').date()
         return week_day <= file_day
 
+
 ####################################
 # Output File Class
 # generate output file for paste a article.
