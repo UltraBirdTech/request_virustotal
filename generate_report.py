@@ -176,7 +176,6 @@ class OutputFile:
 
     def generate_file_name(self, honey):
         # like 'virus_total_20180000000000.txt'
-        # return 'virus_total_' + str(datetime.now().strftime('%Y%m%d%H%M%S')) + '.txt'
         return honey.file_name()
 
     def header(self):
