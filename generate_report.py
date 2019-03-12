@@ -187,12 +187,14 @@ class OutputFile:
     def generate_row(self, m):
         return '| [' + m.display_file_name + '](' + m.permalink + ') |'+ m.datetime + '|' + m.file_type + '|' + m.detection_rate + '|'
 
+
 ####################################
 # Virus Totalに関するClass
 class VirusTotal():
     VIRUS_TOTAL_REPORT_URL = 'https://www.virustotal.com/vtapi/v2/file/report'
     DEFAULT_REQUEST_TIME = 0
     API_LIMIT_TIME = 4
+
     def __init__(self):
         self.set_api_key()
         self.request_time = self.DEFAULT_REQUEST_TIME
