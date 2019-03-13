@@ -201,7 +201,7 @@ class VirusTotal():
 
     # Virus Totalへ実際にリクエストをするメソッド
     def request(self, malware):
-        parameters = { 'resource': malware.sha256, 'apikey': self.api_key }
+        parameters = {'resource': malware.sha256, 'apikey': self.api_key}
         data = urllib.parse.urlencode(parameters)
         request = urllib.request.Request(self.VIRUS_TOTAL_REPORT_URL, data.encode())
         response = urllib.request.urlopen(request)
