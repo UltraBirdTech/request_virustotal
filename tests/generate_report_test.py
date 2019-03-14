@@ -121,7 +121,7 @@ class TestVirusTotal(unittest.TestCase):
     self.malware_mock.set_detection_rate = MagicMock(return_value='detection_rate')
 
   def test_init_values(self):
-    self.assertEqual(self.virus_total.VIRUS_TOTAL_REPORT_URL, 'https://www.virustotal.com/vtapi/v2/file/report')
+    self.assertEqual(self.virus_total.VIRUS_TOTAL_URL, 'https://www.virustotal.com/vtapi/v2/file/report')
     self.assertEqual(self.virus_total.DEFAULT_REQUEST_TIME, 0)
     self.assertEqual(self.virus_total.API_LIMIT_TIME, 4)
     self.assertEqual(self.virus_total.api_key[0:5], 'e7416') # セキュリティの都合上APIキー全てを出さずに最初の5文字を確認する
