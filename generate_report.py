@@ -191,7 +191,7 @@ class OutputFile:
 ####################################
 # Virus Totalに関するClass
 class VirusTotal():
-    VIRUS_TOTAL_REPORT_URL = 'https://www.virustotal.com/vtapi/v2/file/report'
+    VIRUS_TOTAL_URL = 'https://www.virustotal.com/vtapi/v2/file/report'
     DEFAULT_REQUEST_TIME = 0
     API_LIMIT_TIME = 4
 
@@ -203,8 +203,8 @@ class VirusTotal():
     def request(self, malware):
         parameters = {'resource': malware.sha256, 'apikey': self.api_key}
         data = urllib.parse.urlencode(parameters)
-        request = urllib.request.Request(self.VIRUS_TOTAL_REPORT_URL, data.encode())
-        response = urllib.request.urlopen(request)
+        req = urllib.request.Request(self.VIRUS_TOTAL_URL, data.encode())
+        response = urllib.request.urlopen(req)
         res_json = json.loads(response.read())
         self.increment_request_time()
 
