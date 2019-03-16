@@ -144,7 +144,7 @@ class MalwareFile:
         if ('positives' in data):
             p = data['positives']
             t = data['total']
-            self.detection_rate = p + '/' + t
+            self.detection_rate = str(p) + '/' + str(t)
         else:
             self.detection_rate = '-'
 
