@@ -185,7 +185,7 @@ class OutputFile:
         return '|:--|:--|:--|:--:|'
 
     def generate_row(self, m):
-        return '| [' + m.display_file_name + '](' + m.permalink + ') |'+ m.datetime + '|' + m.file_type + '|' + m.detection_rate + '|'
+        return '| [' + m.display_file_name + '](' + m.permalink + ') |' + m.datetime + '|' + m.file_type + '|' + m.detection_rate + '|'
 
 
 ####################################
