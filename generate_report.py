@@ -218,7 +218,7 @@ class VirusTotal():
 
     # Virus Totalへのリクエスト回数を計算するメソッド
     def increment_request_time(self):
-        self.request_time+=1
+        self.request_time += 1
 
     # Virus Total へのリクエスト回数をチェックするメソッド
     # NOTE: virus totalのAPIは1分間に4回までしか使用することができない
