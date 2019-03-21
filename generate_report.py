@@ -229,7 +229,7 @@ class VirusTotal():
     def set_api_key(self):
         api_key_file_path = './api_key.txt'
         with open(api_key_file_path) as f:
-          read = f.read()
+            read = f.read()
         self.api_key = read.replace('\n', '')
         print('[LOG] api key: ' + self.api_key)
 
