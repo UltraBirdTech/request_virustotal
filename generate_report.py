@@ -233,6 +233,7 @@ class VirusTotal():
         self.api_key = read.replace('\n', '')
         print('[LOG] api key: ' + self.api_key)
 
+
 class Cowrie():
     def __init__(self):
         self.path = './cowrie/downloads/malware/'
