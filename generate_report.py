@@ -45,7 +45,7 @@ def main():
         output_file = OutputFile()
         output_file.generate(malwares, argv.honey)
     except MyException as e:
-        print('Exception!!!' + e.args)
+        print('Exception!!!' + str(e.args))
     print('[LOG] END SCRIPT')
 
 
