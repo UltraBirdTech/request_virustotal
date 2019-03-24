@@ -205,7 +205,7 @@ class VirusTotal():
         data = urllib.parse.urlencode(parameters)
         req = urllib.request.Request(self.VIRUS_TOTAL_URL, data.encode())
         response = urllib.request.urlopen(req)
-        res_json = json.loads(response.read())
+        res_json = json.loads(response.read().decode('utf-8'))
         self.increment_request_time()
 
         # add error hudling about error from api
