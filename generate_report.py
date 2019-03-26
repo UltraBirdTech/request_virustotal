@@ -243,7 +243,7 @@ class Cowrie():
 
     def file_name(self):
         return 'cowrie_virus_total_' + str(datetime.now().strftime('%Y%m%d%H%M%S')) + '.txt'
-      
+
     def class_name(self):
         return self.__class__.__name__
 
