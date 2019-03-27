@@ -256,7 +256,7 @@ class Dionaea():
 
     def file_name(self):
         return 'dionaea_virus_total_' + str(datetime.now().strftime('%Y%m%d%H%M%S')) + '.txt'
-      
+
     def class_name(self):
         return self.__class__.__name__
 
