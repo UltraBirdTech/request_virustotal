@@ -247,6 +247,7 @@ class Cowrie():
     def class_name(self):
         return self.__class__.__name__
 
+
 class Dionaea():
     def __init__(self):
         self.path = './dionaea/downloads/malware/'
