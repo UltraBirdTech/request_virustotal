@@ -1,5 +1,6 @@
 #!/bin/bash
 
+CURRENT_PATH = '/homey/honey/virustotal_api/cowrie'
 MALWARE_DOWNLOAD_DIR='./downloads'
 HONEY_POT_DIR='home/honey/downloads'
 
