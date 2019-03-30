@@ -18,9 +18,6 @@ else
   echo "expansion tar file is $num files."
 fi
 
-echo '---------------------------'
-echo $OPERATE_PATH
-
 for i in `seq $num`
 do
 gunzip -v $OPERATE_PATH/downloads.tgz.$i.gz
