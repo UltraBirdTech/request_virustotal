@@ -1,7 +1,8 @@
 #!/bin/bash
 
-CURRENT_PATH = '/homey/honey/virustotal_api/cowrie'
-MALWARE_DOWNLOAD_DIR='./downloads'
+CURRENT_PATH='/home/honey/virustotal_api/cowrie'
+MALWARE_DOWNLOAD_DIR='downloads'
+OPERATE_PATH=$CURRENT_PATH/$MALWARE_DOWNLOAD_DIR
 
 echo 'start expansion tars'
 num=$1
@@ -17,15 +18,18 @@ else
   echo "expansion tar file is $num files."
 fi
 
+echo '---------------------------'
+echo $OPERATE_PATH
+
 for i in `seq $num`
 do
-gunzip -v $MALWARE_DOWNLOAD_DIR/downloads.tgz.$i.gz
-if [ ! -e $MALWARE_DOWNLOAD_DIR/data$i ]
+gunzip -v $OPERATE_PATH/downloads.tgz.$i.gz
+if [ ! -e $OPERATE_PATH/data$i ]
   then
     echo 'create folder'
-    mkdir $MALWARE_DOWNLOAD_DIR/data$i
+    mkdir $OPERATE_PATH/data$i
 fi
-tar -xzvf $MALWARE_DOWNLOAD_DIR/downloads.tgz.$i -C $MALWARE_DOWNLOAD_DIR/data$i
+tar -xzvf $OPERATE_PATH/downloads.tgz.$i -C $OPERATE_PATH/data$i
 done
 
 echo 'finish expansiton tars'
