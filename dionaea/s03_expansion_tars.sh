@@ -2,7 +2,6 @@
 
 DIONAEA_OPERATE_PATH='/home/honey/virustotal_api/dionaea'
 MALWARE_DOWNLOAD_DIR='downloads'
-HONEY_POT_DIR='home/honey/downloads'
 OPERATE_PATH=$DIONAEA_OPERATE_PATH/$MALWARE_DOWNLOAD_DIR
 
 echo 'start expansion tars'
