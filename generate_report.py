@@ -261,6 +261,7 @@ class Dionaea():
     def class_name(self):
         return self.__class__.__name__
 
+
 class MyException(Exception):
   pass
 
