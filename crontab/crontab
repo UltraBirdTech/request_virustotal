@@ -1,0 +1,41 @@
+# /etc/crontab: system-wide crontab
+# Unlike any other crontab you don't have to run the `crontab'
+# command to install the new version when you edit this file
+# and files in /etc/cron.d. These files also have username fields,
+# that none of the other crontabs do.
+
+SHELL=/bin/sh
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+# m h dom mon dow user	command
+17 *	* * *	root    cd / && run-parts --report /etc/cron.hourly
+25 6	* * *	root	test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.daily )
+47 6	* * 7	root	test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.weekly )
+52 6	1 * *	root	test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.monthly )
+#
+# Check if updated images are available and download them
+27 1 * * *      root    docker-compose -f /opt/tpot/etc/tpot.yml pull
+# Delete elasticsearch logstash indices older than 90 days
+27 4 * * *      root    curator --config /opt/tpot/etc/curator/curator.yml /opt/tpot/etc/curator/actions.yml
+# Uploaded binaries are not supposed to be downloaded
+*/1 * * * *     root    mv --backup=numbered /data/dionaea/roots/ftp/* /data/dionaea/binaries/
+# Daily reboot
+27 3 * * *      root    reboot
+# Check for updated packages every sunday, upgrade and reboot
+27 16 * * 0     root    apt-get autoclean -y && apt-get autoremove -y && apt-get update -y && apt-get upgrade -y && sleep 10 && reboot
+# generate honeypot folder
+55 23 * * 5     root    sh /home/honey/01_generate_tar_file.sh > /home/honey/cron.log 2>&1
+# remove honeypot folder
+55 23 * * 4     root    sh /home/honey/02_remove_tar_file.sh > /home/honey/cron.log 2>&1
+
+# operate about cowrie report
+55 23 * * 4     root    sh /home/honey/virus_total_api/shells/01_copy_malwares.sh > /home/honey/cron.log 2>&1
+00 01 * * 6     root    sh /home/honey/virus_total_api/shells/cowrie/s03_expansion_tars.sh > /home/honey/cowrie_cron.log 2>&1
+10 01 * * 6     root    sh /home/honey/virus_total_api/shells/cowrie/s04_aggregation_shels.sh > /home/honey/cowrie_cron.log 2>&1
+#10 01 * * 6     root    sh /home/honey/virus_total_api/shells/cowrie/s05_delete_files.sh > /home/honey/cowrie_cron.log 2>&1
+
+# operate about dinoaea report
+00 02 * * 6     root    sh /home/honey/virus_total_api/shells/dinoaea/s03_expansion_tars.sh > /home/honey/dinoaea_cron.log 2>&1
+10 02 * * 6     root    sh /home/honey/virus_total_api/shells/dinoaea/s04_aggregation_shels.sh > /home/honey/dinoaea_cron.log 2>&1
+#10 02 * * 6     root    sh /home/honey/virus_total_api/shells/dinoaea/s05_delete_files.sh > /home/honey/dinoaea_cron.log 2>&1
+
