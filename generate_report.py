@@ -263,7 +263,7 @@ class Dionaea():
 
 
 class MyException(Exception):
-  pass
+    pass
 
 if __name__ == '__main__':
   main()
