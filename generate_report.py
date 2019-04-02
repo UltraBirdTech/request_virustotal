@@ -266,4 +266,4 @@ class MyException(Exception):
     pass
 
 if __name__ == '__main__':
-  main()
+    main()
