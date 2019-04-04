@@ -77,15 +77,15 @@ class TestMalwareFile(unittest.TestCase):
 
   def test_set_file_name(self):
     # write something.
-    print('hoge')
+    return ''
 
   def test_set_sha_256(self):
      # write something.
-    print('moge')
+     return ''
 
   def test_set_datetime(self):
     # write something.
-    print('piyo')
+    return ''
 
 class TestOutputFile(unittest.TestCase):
   def setUp(self):
