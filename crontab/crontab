@@ -33,11 +33,19 @@ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 00 01 * * 6     root    sh /home/honey/virustotal_api/shells/cowrie/s03_expansion_tars.sh > /home/honey/cowrie_cron.log 2>&1
 10 01 * * 6     root    sh /home/honey/virustotal_api/shells/cowrie/s04_aggregation_shels.sh > /home/honey/cowrie_cron.log 2>&1
 20 01 * * 6     root    cd /home/honey/virustotal_api/; bash -l -c 'python3 /home/honey/virustotal_api/generate_report.py c'
-#10 01 * * 6     root    sh /home/honey/virus_total_api/shells/cowrie/s05_delete_files.sh > /home/honey/cowrie_cron.log 2>&1
+00 01 * * 7     root    sh /home/honey/virus_total_api/shells/cowrie/s05_delete_files.sh > /home/honey/cowrie_cron.log 2>&1
 
 # operate about dinoaea report
 00 02 * * 6     root    sh /home/honey/virustotal_api/shells/dinoaea/s03_expansion_tars.sh > /home/honey/dinoaea_cron.log 2>&1
 10 02 * * 6     root    sh /home/honey/virustotal_api/shells/dinoaea/s04_aggregation_shels.sh > /home/honey/dinoaea_cron.log 2>&1
 20 01 * * 6     root    cd /home/honey/virustotal_api/; bash -l -c 'python3 /home/honey/virustotal_api/generate_report.py d'
-#10 02 * * 6     root    sh /home/honey/virus_total_api/shells/dinoaea/s05_delete_files.sh > /home/honey/dinoaea_cron.log 2>&1
+00 02 * * 7     root    sh /home/honey/virus_total_api/shells/dinoaea/s05_delete_files.sh > /home/honey/dinoaea_cron.log 2>&1
 
+####################################################
+# TEST 
+####################################################
+#00 14 * * 7     root    sh /home/honey/virustotal_api/shells/01_copy_malwares.sh > /home/honey/cron.log 2>&1
+#05 14 * * 7     root    sh /home/honey/virustotal_api/shells/cowrie/s03_expansion_tars.sh > /home/honey/cowrie_cron.log 2>&1
+#10 14 * * 7     root    sh /home/honey/virustotal_api/shells/cowrie/s04_aggregation_shels.sh > /home/honey/cowrie_cron.log 2>&1
+#20 14 * * 7     root    cd /home/honey/virustotal_api/; bash -l -c 'python3 /home/honey/virustotal_api/generate_report.py c'
+#
