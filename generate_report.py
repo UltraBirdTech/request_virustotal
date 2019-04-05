@@ -223,7 +223,9 @@ class VirusTotal():
     # Virus Total へのリクエスト回数をチェックするメソッド
     # NOTE: virus totalのAPIは1分間に4回までしか使用することができない
     def check_request_time(self):
-        return (self.request_time != 0) and ((self.request_time % self.API_LIMIT_TIME) == 0)
+        is_request_time = self.request_time != 0
+        is_equal_zero = (self.request_time % self.API_LIMIT_TIME) == 0
+        return is_request_time and is_equal_zero
 
     # read api_key from ./api_key.txt
     def set_api_key(self):
@@ -261,8 +263,9 @@ class Dionaea():
     def class_name(self):
         return self.__class__.__name__
 
+
 class MyException(Exception):
-  pass
+    pass
 
 if __name__ == '__main__':
-  main()
+    main()
