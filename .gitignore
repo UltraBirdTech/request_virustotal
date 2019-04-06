@@ -1,6 +1,7 @@
 /api_key.txt
 /dionaea/01_download.sh
 /cowrie/01_download.sh
+/shells/02_download_reports.sh
 /cowrie/downloads/*
 /dionaea/downloads/*
 /__pycache__
