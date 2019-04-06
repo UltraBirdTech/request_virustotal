@@ -10,4 +10,5 @@ rm -rf $OPERATE_PATH/home
 rm -rf $OPERATE_PATH/malware
 rm -rf $OPERATE_PATH/data*
 rm -rf $OPERATE_PATH/downloads*
+rm /home/honey/virustotal_api/cowrie_*
 echo '[FINISH]delete file and direcotry'

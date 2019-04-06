@@ -10,4 +10,5 @@ rm -rf $OPERATE_PATH/home
 rm -rf $OPERATE_PATH/malware
 rm -rf $OPERATE_PATH/data*
 rm -rf $OPERATE_PATH/binaries*
+rm /home/honey/virustotal_api/dionaea_*
 echo '[FINISH]delete file and direcotry'
